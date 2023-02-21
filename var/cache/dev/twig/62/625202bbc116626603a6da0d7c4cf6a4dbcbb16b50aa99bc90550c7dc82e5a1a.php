@@ -153,7 +153,7 @@ class __TwigTemplate_10431df4e78c0fbd7490f6ff706373411543cf876eefb8e89e397cf0498
         if (!$context['_iterated']) {
             // line 36
             echo "            <tr>
-                <td colspan=\"5\">no records found</td>
+                <td colspan=\"5\">aucun enregistrement trouvé</td>
             </tr>
         ";
         }
@@ -226,7 +226,7 @@ class __TwigTemplate_10431df4e78c0fbd7490f6ff706373411543cf876eefb8e89e397cf0498
             </tr>
         {% else %}
             <tr>
-                <td colspan=\"5\">no records found</td>
+                <td colspan=\"5\">aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>

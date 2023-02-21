@@ -16,6 +16,6 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerVscLFDk\App_KernelDevDebugContainer([
     'container.build_hash' => 'VscLFDk',
-    'container.build_id' => '11942ea2',
-    'container.build_time' => 1676988841,
+    'container.build_id' => '560af0ec',
+    'container.build_time' => 1676991137,
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerVscLFDk');

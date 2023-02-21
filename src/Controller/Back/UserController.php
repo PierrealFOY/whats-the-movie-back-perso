@@ -3,6 +3,7 @@
 namespace App\Controller\Back;
 
 use App\Entity\User;
+use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -40,7 +41,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/ajouter", name="app_back_user_add", methods={"POST"})
+     * @Route("/ajouter", name="app_back_user_add", methods={"GET","POST"})
      * Je viens ajouter un utilisateur
      */
     public function add(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
