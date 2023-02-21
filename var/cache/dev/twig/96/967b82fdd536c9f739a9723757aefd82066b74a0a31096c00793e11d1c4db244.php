@@ -45,31 +45,126 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
 
         // line 1
         echo "<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset=\"UTF-8\">
+<html lang=\"fr\">
+
+
+<head> <!-- Required meta tags -->
+    <meta charset=\"utf-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+
+    <!-- Bootstrap CSS -->
+    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css\" rel=\"stylesheet\"
+        integrity=\"sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU\" crossorigin=\"anonymous\">
+
+    <!-- Bootstrap icons -->
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css\">    
+
+    <!-- Our custom CSS -->
+    <link rel=\"stylesheet\" href=\"";
+        // line 17
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("css/wtm.css"), "html", null, true);
+        echo "\">
+
         <title>";
-        // line 5
+        // line 19
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
+
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
         ";
-        // line 8
+        // line 23
         echo "        ";
         $this->displayBlock('stylesheets', $context, $blocks);
-        // line 11
+        // line 26
         echo "
         ";
-        // line 12
+        // line 27
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 15
-        echo "    </head>
+        // line 30
+        echo "</head>
+
     <body>
-        ";
-        // line 17
+
+        <!-- Navigation -->
+
+         ";
+        // line 37
+        echo "    ";
+        if (twig_in_filter("back", twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 37, $this->source); })()), "request", [], "any", false, false, false, 37), "get", [0 => "_route"], "method", false, false, false, 37))) {
+            // line 38
+            echo "        <nav class=\"navbar navbar-expand-lg navbar-dark bg-sucess\">
+    ";
+        } else {
+            // line 40
+            echo "    <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
+    ";
+        }
+        // line 42
+        echo "    
+  <div class=\"container-fluid\">
+    <a href=\"";
+        // line 44
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back_user_list");
+        echo "\" class=\"navbar-brand\" href=\"#\">Navbar</a>
+    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+      <span class=\"navbar-toggler-icon\"></span>
+    </button>
+    <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
+      <ul class=\"navbar-nav me-auto\">
+        <li class=\"nav-item\">
+          <a class=\"nav-link active\" href=\"#\">Accueil
+            <span class=\"visually-hidden\">(current)</span>
+          </a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">Gestion Utilisateurs</a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">Gestion Films</a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">Espace Personnel</a>
+        </li>
+        <li class=\"nav-item dropdown\">
+          <a class=\"nav-link dropdown-toggle\" data-bs-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown</a>
+          <div class=\"dropdown-menu\">
+            <a class=\"dropdown-item\" href=\"#\">Action</a>
+            <a class=\"dropdown-item\" href=\"#\">Another action</a>
+            <a class=\"dropdown-item\" href=\"#\">Something else here</a>
+            <div class=\"dropdown-divider\"></div>
+            <a class=\"dropdown-item\" href=\"#\">Separated link</a>
+          </div>
+        </li>
+      </ul>
+      <form class=\"d-flex\">
+        <input class=\"form-control me-sm-2\" type=\"search\" placeholder=\"Search\">
+        <button class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+    ";
+        // line 83
         $this->displayBlock('body', $context, $blocks);
-        // line 18
-        echo "    </body>
+        // line 84
+        echo "
+
+    <!-- footer -->
+
+    <footer class=\"container-fluid py-4 border-top text-center\">
+        <span class=\"text-muted\">What's the Movie !
+            <br><small>Thème :<a href=\"\" class=\"link-secondary text-decoration-none\"><i class=\"bi bi-toggle-on mx-1\"></i></a></small></a>
+        </span>
+    </footer>
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js\"
+        integrity=\"sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ\"
+        crossorigin=\"anonymous\"></script>
+
+</body>
+
 </html>
 ";
         
@@ -80,7 +175,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
 
     }
 
-    // line 5
+    // line 19
     public function block_title($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -90,7 +185,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "Welcome!";
+        echo "Welcome dans le Back Office de What's The Movie!";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -99,7 +194,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
 
     }
 
-    // line 8
+    // line 23
     public function block_stylesheets($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -109,7 +204,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
 
-        // line 9
+        // line 24
         echo "            ";
         echo twig_escape_filter($this->env, $this->env->getFunction('encore_entry_link_tags')->getCallable()("app"), "html", null, true);
         echo "
@@ -122,7 +217,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
 
     }
 
-    // line 12
+    // line 27
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -132,7 +227,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 13
+        // line 28
         echo "            ";
         echo twig_escape_filter($this->env, $this->env->getFunction('encore_entry_script_tags')->getCallable()("app"), "html", null, true);
         echo "
@@ -145,7 +240,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
 
     }
 
-    // line 17
+    // line 83
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -168,18 +263,38 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
         return "base.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  149 => 17,  136 => 13,  126 => 12,  113 => 9,  103 => 8,  84 => 5,  72 => 18,  70 => 17,  66 => 15,  64 => 12,  61 => 11,  58 => 8,  53 => 5,  47 => 1,);
+        return array (  244 => 83,  231 => 28,  221 => 27,  208 => 24,  198 => 23,  179 => 19,  151 => 84,  149 => 83,  107 => 44,  103 => 42,  99 => 40,  95 => 38,  92 => 37,  84 => 30,  82 => 27,  79 => 26,  76 => 23,  70 => 19,  65 => 17,  47 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset=\"UTF-8\">
-        <title>{% block title %}Welcome!{% endblock %}</title>
+<html lang=\"fr\">
+
+
+<head> <!-- Required meta tags -->
+    <meta charset=\"utf-8\">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+
+    <!-- Bootstrap CSS -->
+    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css\" rel=\"stylesheet\"
+        integrity=\"sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU\" crossorigin=\"anonymous\">
+
+    <!-- Bootstrap icons -->
+    <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css\">    
+
+    <!-- Our custom CSS -->
+    <link rel=\"stylesheet\" href=\"{{asset('css/wtm.css')}}\">
+
+        <title>{% block title %}Welcome dans le Back Office de What's The Movie!{% endblock %}</title>
+
         <link rel=\"icon\" href=\"data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>\">
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
@@ -189,10 +304,77 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-    </head>
+</head>
+
     <body>
-        {% block body %}{% endblock %}
-    </body>
+
+        <!-- Navigation -->
+
+         {# Si le mot back est présent dans la route #}
+    {% if \"back\" in app.request.get(\"_route\") %}
+        <nav class=\"navbar navbar-expand-lg navbar-dark bg-sucess\">
+    {% else %}
+    <nav class=\"navbar navbar-expand-lg navbar-dark bg-primary\">
+    {% endif %}
+    
+  <div class=\"container-fluid\">
+    <a href=\"{{path(\"app_back_user_list\")}}\" class=\"navbar-brand\" href=\"#\">Navbar</a>
+    <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+      <span class=\"navbar-toggler-icon\"></span>
+    </button>
+    <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
+      <ul class=\"navbar-nav me-auto\">
+        <li class=\"nav-item\">
+          <a class=\"nav-link active\" href=\"#\">Accueil
+            <span class=\"visually-hidden\">(current)</span>
+          </a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">Gestion Utilisateurs</a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">Gestion Films</a>
+        </li>
+        <li class=\"nav-item\">
+          <a class=\"nav-link\" href=\"#\">Espace Personnel</a>
+        </li>
+        <li class=\"nav-item dropdown\">
+          <a class=\"nav-link dropdown-toggle\" data-bs-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown</a>
+          <div class=\"dropdown-menu\">
+            <a class=\"dropdown-item\" href=\"#\">Action</a>
+            <a class=\"dropdown-item\" href=\"#\">Another action</a>
+            <a class=\"dropdown-item\" href=\"#\">Something else here</a>
+            <div class=\"dropdown-divider\"></div>
+            <a class=\"dropdown-item\" href=\"#\">Separated link</a>
+          </div>
+        </li>
+      </ul>
+      <form class=\"d-flex\">
+        <input class=\"form-control me-sm-2\" type=\"search\" placeholder=\"Search\">
+        <button class=\"btn btn-secondary my-2 my-sm-0\" type=\"submit\">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+    {% block body %}{% endblock %}
+
+
+    <!-- footer -->
+
+    <footer class=\"container-fluid py-4 border-top text-center\">
+        <span class=\"text-muted\">What's the Movie !
+            <br><small>Thème :<a href=\"\" class=\"link-secondary text-decoration-none\"><i class=\"bi bi-toggle-on mx-1\"></i></a></small></a>
+        </span>
+    </footer>
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js\"
+        integrity=\"sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ\"
+        crossorigin=\"anonymous\"></script>
+
+</body>
+
 </html>
 ", "base.html.twig", "/var/www/html/Apothéose/projet-10-what-s-the-movie-back/templates/base.html.twig");
     }

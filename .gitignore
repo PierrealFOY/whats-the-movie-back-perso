@@ -1,5 +1,4 @@
 
-
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
@@ -9,5 +8,10 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+<<<<<<< HEAD
+
+/var
+=======
 .env.local
 /var
+>>>>>>> ee463d5b778b2ce25e84655f07014888c8a6bb90
