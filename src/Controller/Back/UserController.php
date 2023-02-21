@@ -21,10 +21,10 @@ class UserController extends AbstractController
     /**
      * @Route("/", name="app_back_user_list")
      */
-    public function list(): Response
+    public function list(UserRepository $userRepository): Response
     {
-        return $this->render('user/list.html.twig', [
-            'controller_name' => 'UserController',
+        return $this->render('back/user/list.html.twig', [
+            'users' => $userRepository->findAll(),
         ]);
     }
 
