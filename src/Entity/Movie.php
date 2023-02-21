@@ -6,6 +6,7 @@ use App\Repository\MovieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=MovieRepository::class)
@@ -16,66 +17,79 @@ class Movie
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"movies"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=65)
+     * @Groups({"movies"})
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"movies"})
      */
     private $synopsys;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"movies"})
      */
     private $realeaseDate;
 
     /**
      * @ORM\Column(type="string", length=155)
+     * @Groups({"movies"})
      */
     private $poster;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"movies"})
      */
     private $status;
 
     /**
      * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $genres;
 
     /**
      * @ORM\ManyToMany(targetEntity=Actor::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $actors;
 
     /**
-     * @ORM\ManyToMany(targetEntity=productionStudio::class, inversedBy="movies")
+     * @ORM\ManyToMany(targetEntity=ProductionStudio::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $productionStudios;
 
     /**
      * @ORM\ManyToMany(targetEntity=Director::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $directors;
 
     /**
      * @ORM\ManyToMany(targetEntity=Country::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $countries;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $user;
 
     /**
      * @ORM\ManyToMany(targetEntity=Game::class, inversedBy="movies")
+     * 
      */
     private $games;
 
@@ -210,7 +224,7 @@ class Movie
         return $this->productionStudios;
     }
 
-    public function addProductionStudio(productionStudio $productionStudio): self
+    public function addProductionStudio(ProductionStudio $productionStudio): self
     {
         if (!$this->productionStudios->contains($productionStudio)) {
             $this->productionStudios[] = $productionStudio;
@@ -219,7 +233,7 @@ class Movie
         return $this;
     }
 
-    public function removeProductionStudio(productionStudio $productionStudio): self
+    public function removeProductionStudio(ProductionStudio $productionStudio): self
     {
         $this->productionStudios->removeElement($productionStudio);
 

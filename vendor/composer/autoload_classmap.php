@@ -6,7 +6,9 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Controller\\UserController' => $baseDir . '/src/Controller/UserController.php',
     'App\\DataFixtures\\AppFixtures' => $baseDir . '/src/DataFixtures/AppFixtures.php',
+    'App\\DataFixtures\\Providers\\AppProvider' => $baseDir . '/src/DataFixtures/Providers/AppProvider.php',
     'App\\Entity\\Actor' => $baseDir . '/src/Entity/Actor.php',
     'App\\Entity\\Country' => $baseDir . '/src/Entity/Country.php',
     'App\\Entity\\Director' => $baseDir . '/src/Entity/Director.php',
