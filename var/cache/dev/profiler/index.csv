@@ -28,3 +28,8 @@ d2d863,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/,1676988923,438
 013fcb,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/,1676988956,,200
 6eca74,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/,1676989068,,200
 642934,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/,1676989156,,200
+87e475,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/,1676989723,,200
+084ce8,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/,1676989792,,200
+f27319,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/ajouter,1676989804,8cbfaf,404
+8cbfaf,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/ajouter,1676989804,,404
+652e9a,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/,1676989819,,200

@@ -151,12 +151,17 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
         echo "
 
     <!-- footer -->
-    
+
     <footer class=\"container-fluid py-4 border-top text-center\">
         <span class=\"text-muted\">What's the Movie !
             <br><small>Thème :<a href=\"\" class=\"link-secondary text-decoration-none\"><i class=\"bi bi-toggle-on mx-1\"></i></a></small></a>
         </span>
     </footer>
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js\"
+        integrity=\"sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ\"
+        crossorigin=\"anonymous\"></script>
 
 </body>
 
@@ -265,7 +270,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
 
     public function getDebugInfo()
     {
-        return array (  239 => 83,  226 => 28,  216 => 27,  203 => 24,  193 => 23,  174 => 19,  151 => 84,  149 => 83,  107 => 44,  103 => 42,  99 => 40,  95 => 38,  92 => 37,  84 => 30,  82 => 27,  79 => 26,  76 => 23,  70 => 19,  65 => 17,  47 => 1,);
+        return array (  244 => 83,  231 => 28,  221 => 27,  208 => 24,  198 => 23,  179 => 19,  151 => 84,  149 => 83,  107 => 44,  103 => 42,  99 => 40,  95 => 38,  92 => 37,  84 => 30,  82 => 27,  79 => 26,  76 => 23,  70 => 19,  65 => 17,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -356,12 +361,17 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
 
 
     <!-- footer -->
-    
+
     <footer class=\"container-fluid py-4 border-top text-center\">
         <span class=\"text-muted\">What's the Movie !
             <br><small>Thème :<a href=\"\" class=\"link-secondary text-decoration-none\"><i class=\"bi bi-toggle-on mx-1\"></i></a></small></a>
         </span>
     </footer>
+
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js\"
+        integrity=\"sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ\"
+        crossorigin=\"anonymous\"></script>
 
 </body>
 
