@@ -4,6 +4,7 @@
 
 return [
     'app_api_movie_list' => [[], ['_controller' => 'App\\Controller\\Api\\MovieController::list'], [], [['text', '/api/movies']], [], [], []],
+    'app_api_movie_RandomMoviesGame' => [[], ['_controller' => 'App\\Controller\\Api\\MovieController::RandomMoviesGame'], [], [['text', '/api/movies/game']], [], [], []],
     'app_api_movie_show' => [['id'], ['_controller' => 'App\\Controller\\Api\\MovieController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/movies']], [], [], []],
     'app_api_movie_add' => [[], ['_controller' => 'App\\Controller\\Api\\MovieController::add'], [], [['text', '/api/movies']], [], [], []],
     'app_user' => [[], ['_controller' => 'App\\Controller\\UserController::index'], [], [['text', '/user']], [], [], []],

@@ -34,6 +34,25 @@ class MovieController extends AbstractController
     }
 
     /**
+     * method that returns the list of movies
+     * @Route("/api/movies/game", name="app_api_movie_RandomMoviesGame", methods={"GET"})
+     * 
+     * @param MovieRepository $movieRepository
+     * @return JsonResponse
+     */
+    public function RandomMoviesGame(MovieRepository $movieRepository, Request $request): JsonResponse
+    {
+        //$limit = (int)$request->get('limit', 5);
+        $limit = 8;
+
+        $moviesGame = $movieRepository->findRandomMoviesGame($limit);
+
+        dd($moviesGame);
+
+        return $this->json(null, Response::HTTP_OK, [], ['groups' => 'movies']);
+    }
+
+    /**
      * method that returns one movie
      * @Route("/api/movies/{id}", name="app_api_movie_show", methods={"GET"})
      * 

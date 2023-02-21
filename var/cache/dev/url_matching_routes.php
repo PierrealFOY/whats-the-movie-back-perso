@@ -12,6 +12,7 @@ return [
             [['_route' => 'app_api_movie_list', '_controller' => 'App\\Controller\\Api\\MovieController::list'], null, ['GET' => 0], null, false, false, null],
             [['_route' => 'app_api_movie_add', '_controller' => 'App\\Controller\\Api\\MovieController::add'], null, ['POST' => 0], null, false, false, null],
         ],
+        '/api/movies/game' => [[['_route' => 'app_api_movie_RandomMoviesGame', '_controller' => 'App\\Controller\\Api\\MovieController::RandomMoviesGame'], null, ['GET' => 0], null, false, false, null]],
         '/user' => [[['_route' => 'app_user', '_controller' => 'App\\Controller\\UserController::index'], null, null, null, false, false, null]],
         '/_profiler' => [[['_route' => '_profiler_home', '_controller' => 'web_profiler.controller.profiler::homeAction'], null, null, null, true, false, null]],
         '/_profiler/search' => [[['_route' => '_profiler_search', '_controller' => 'web_profiler.controller.profiler::searchAction'], null, null, null, false, false, null]],
