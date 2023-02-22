@@ -126,7 +126,7 @@
       <parameter key="cookie_secure">auto</parameter>
       <parameter key="cookie_httponly">true</parameter>
       <parameter key="cookie_samesite">lax</parameter>
-      <parameter key="gc_probability">1</parameter>
+      <parameter key="gc_probability">nul</parameter>
     </parameter>
     <parameter key="session.save_path">/var/www/html/Apothéose/projet-10-what-s-the-movie-back/var/cache/dev/sessions</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
