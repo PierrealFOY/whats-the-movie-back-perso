@@ -12,7 +12,7 @@
 /var
 .env.local
 .env.test
-.env
-/vendor
 composer.lock
 symfony.lock
+/vendor
+
