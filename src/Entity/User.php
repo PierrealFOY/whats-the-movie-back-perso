@@ -20,18 +20,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"movies"})
+     * @Groups({"users"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"movies"})
+     * @Groups({"users"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
      * @Groups({"movies"})
+     * @Groups({"users"})
      */
     private $roles = [];
 
@@ -44,18 +47,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="string", length=65)
      * @Groups({"movies"})
+     * @Groups({"users"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Groups({"movies"})
+     * @Groups({"users"})
      */
     private $score;
 
     /**
      * @ORM\Column(type="string", length=155, nullable=true)
      * @Groups({"movies"})
+     * @Groups({"users"})
      */
     private $picture;
 
@@ -66,6 +72,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user")
+     * @Groups({"users"})
      */
     private $games;
 
