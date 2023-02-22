@@ -46,7 +46,7 @@ class MovieController extends AbstractController
     public function RandomMoviesGame(MovieRepository $movieRepository, Request $request): JsonResponse
     {
         $limit = (int)$request->get('limit', 5);
-        
+
         $moviesGame = $movieRepository->findRandomMoviesGame($limit);
 
         return $this->json($moviesGame, Response::HTTP_OK, [], ['groups' => 'movies']);
