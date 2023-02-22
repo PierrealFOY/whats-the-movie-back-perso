@@ -1,9 +1,0 @@
-8cd048,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/,1676995061,,200
-035a86,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/ajouter,1676995269,6c388d,404
-6c388d,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/ajouter,1676995269,,404
-976e64,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/,1676995287,,200
-89d2bd,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/,1676995436,,200
-21aa0b,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/1,1676995504,657907,500
-657907,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/1,1676995504,,500
-951043,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/modifier/1,1676995511,9b8c1a,405
-9b8c1a,127.0.0.1,GET,http://0.0.0.0:8000/back-office/utilisateur/modifier/1,1676995511,,405

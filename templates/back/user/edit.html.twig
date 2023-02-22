@@ -1,11 +1,17 @@
-{% extends 'back/layout/layout.html.twig' %}
+{% extends 'back/user/layout/layout.html.twig' %}
 
 {% block title %}Editer un utilisateur{% endblock %}
 
 {% block subBody %}
     <h1>Editer un utilisateur</h1>
 
-       <div>
+    <div class="form-group">
+      <label for="exampleInputEmail1" class="form-label mt-4"></label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value ={{ user.email }}> 
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+
+    <div class="mt-2">
         {{ include('back/user/_form.html.twig', {'button_label': 'Modifier'}) }}
         {{ include('back/user/_delete_form.html.twig') }}
     </div>

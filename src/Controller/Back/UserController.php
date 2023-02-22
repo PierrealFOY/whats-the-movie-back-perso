@@ -70,13 +70,14 @@ class UserController extends AbstractController
     }
 
      /**
-     * @Route("/modifier/{id}", name="app_back_user_edit", methods={"PUT"})
+     * @Route("/modifier/{id}", name="app_back_user_edit", methods={"GET","POST"})
      * On vient ici modifier un user par son ID
      */
     public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
+        dump($user);
         $form = $this->createForm(UserType::class, $user,["edit" => true]);
-        $form>handleRequest($request);
+        $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user, true);
@@ -84,7 +85,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
             }
 
-            return $this->redirectToRoute('back/user/edit.html.twig', [
+            return $this->renderForm('back/user/edit.html.twig', [
                 'user' => $user,
                 'form' => $form,
             ]);

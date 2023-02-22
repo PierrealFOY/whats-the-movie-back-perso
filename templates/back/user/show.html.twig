@@ -1,4 +1,4 @@
-{% extends 'back/layout/layout.html.twig' %}
+{% extends 'back/user/layout/layout.html.twig' %}
 
 {% block title %}User{% endblock %}
 
@@ -6,44 +6,46 @@
     <h1>User</h1>
 
     <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>Names</th>
-                <td>{{ user.name }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Mot de Passe</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Score</th>
-                <td>{{ user.score }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ user.picture }}</td>
-            </tr>
-        </tbody>
+        <thead>
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ user.name }}</td>s
+                </tr>
+                <tr>
+                    <th>Roles</th>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Mot de Passe</th>
+                    <td>Impossible de modifier le password depuis le Back-Office. Action possible uniquement par le user.</td>
+                </tr>
+                <tr>
+                    <th>Score</th>
+                    <td>{{ user.score }}</td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td>{{ user.picture }}</td>
+                </tr>
+            </tbody>
+        </thead>
     </table>
 
     <div>
-        <a href="{{ path('app_back_user_index') }}">Retourner à la liste des utilisateurs</a>
+        <a href="{{ path('app_back_user_list') }}">Retourner à la liste des utilisateurs</a>
     </div>
     <div>
         <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">Editer</a>
     </div>
 
-    {{ include('back/user/_delete_form.html.twig') }}
+   {# {{ include('back/user/_delete_form.html.twig') }} #}
 {% endblock %}

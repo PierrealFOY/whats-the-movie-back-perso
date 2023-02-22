@@ -43,7 +43,7 @@ return [
     [ // $dynamicRoutes
         44 => [[['_route' => 'app_back_user_show', '_controller' => 'App\\Controller\\Back\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
         58 => [[['_route' => 'app_back_user_add', '_controller' => 'App\\Controller\\Back\\UserController::add'], [], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        82 => [[['_route' => 'app_back_user_edit', '_controller' => 'App\\Controller\\Back\\UserController::edit'], ['id'], ['PUT' => 0], null, false, true, null]],
+        82 => [[['_route' => 'app_back_user_edit', '_controller' => 'App\\Controller\\Back\\UserController::edit'], ['id'], ['GET' => 0, 'POST' => 1], null, false, true, null]],
         107 => [[['_route' => 'app_back_user_delete', '_controller' => 'App\\Controller\\Back\\UserController::delete'], ['id'], ['POST' => 0], null, false, true, null]],
         147 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
         167 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],

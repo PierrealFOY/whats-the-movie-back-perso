@@ -105,17 +105,12 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
     <a href=\"";
         // line 44
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back_user_list");
-        echo "\" class=\"navbar-brand\" href=\"#\">Navbar</a>
+        echo "\" class=\"navbar-brand\" href=\"#\">Accueil</a>
     <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
       <span class=\"navbar-toggler-icon\"></span>
     </button>
     <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
       <ul class=\"navbar-nav me-auto\">
-        <li class=\"nav-item\">
-          <a class=\"nav-link active\" href=\"#\">Accueil
-            <span class=\"visually-hidden\">(current)</span>
-          </a>
-        </li>
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"#\">Gestion Utilisateurs</a>
         </li>
@@ -124,16 +119,6 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
         </li>
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"#\">Espace Personnel</a>
-        </li>
-        <li class=\"nav-item dropdown\">
-          <a class=\"nav-link dropdown-toggle\" data-bs-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown</a>
-          <div class=\"dropdown-menu\">
-            <a class=\"dropdown-item\" href=\"#\">Action</a>
-            <a class=\"dropdown-item\" href=\"#\">Another action</a>
-            <a class=\"dropdown-item\" href=\"#\">Something else here</a>
-            <div class=\"dropdown-divider\"></div>
-            <a class=\"dropdown-item\" href=\"#\">Separated link</a>
-          </div>
         </li>
       </ul>
       <form class=\"d-flex\">
@@ -145,9 +130,9 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
 </nav>
 
     ";
-        // line 83
+        // line 68
         $this->displayBlock('body', $context, $blocks);
-        // line 84
+        // line 69
         echo "
 
     <!-- footer -->
@@ -240,7 +225,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
 
     }
 
-    // line 83
+    // line 68
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -270,7 +255,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
 
     public function getDebugInfo()
     {
-        return array (  244 => 83,  231 => 28,  221 => 27,  208 => 24,  198 => 23,  179 => 19,  151 => 84,  149 => 83,  107 => 44,  103 => 42,  99 => 40,  95 => 38,  92 => 37,  84 => 30,  82 => 27,  79 => 26,  76 => 23,  70 => 19,  65 => 17,  47 => 1,);
+        return array (  229 => 68,  216 => 28,  206 => 27,  193 => 24,  183 => 23,  164 => 19,  136 => 69,  134 => 68,  107 => 44,  103 => 42,  99 => 40,  95 => 38,  92 => 37,  84 => 30,  82 => 27,  79 => 26,  76 => 23,  70 => 19,  65 => 17,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -318,17 +303,12 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
     {% endif %}
     
   <div class=\"container-fluid\">
-    <a href=\"{{path(\"app_back_user_list\")}}\" class=\"navbar-brand\" href=\"#\">Navbar</a>
+    <a href=\"{{path(\"app_back_user_list\")}}\" class=\"navbar-brand\" href=\"#\">Accueil</a>
     <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
       <span class=\"navbar-toggler-icon\"></span>
     </button>
     <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
       <ul class=\"navbar-nav me-auto\">
-        <li class=\"nav-item\">
-          <a class=\"nav-link active\" href=\"#\">Accueil
-            <span class=\"visually-hidden\">(current)</span>
-          </a>
-        </li>
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"#\">Gestion Utilisateurs</a>
         </li>
@@ -337,16 +317,6 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
         </li>
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"#\">Espace Personnel</a>
-        </li>
-        <li class=\"nav-item dropdown\">
-          <a class=\"nav-link dropdown-toggle\" data-bs-toggle=\"dropdown\" href=\"#\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown</a>
-          <div class=\"dropdown-menu\">
-            <a class=\"dropdown-item\" href=\"#\">Action</a>
-            <a class=\"dropdown-item\" href=\"#\">Another action</a>
-            <a class=\"dropdown-item\" href=\"#\">Something else here</a>
-            <div class=\"dropdown-divider\"></div>
-            <a class=\"dropdown-item\" href=\"#\">Separated link</a>
-          </div>
         </li>
       </ul>
       <form class=\"d-flex\">

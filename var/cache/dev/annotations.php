@@ -930,7 +930,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1676995026,
+1 => 1677058224,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
@@ -1043,7 +1043,8 @@ return [[
                 ],
                 'methods' => [
                     [
-                        'PUT',
+                        'GET',
+                        'POST',
                     ],
                 ],
             ],
