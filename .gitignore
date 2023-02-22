@@ -11,3 +11,8 @@
 ###< symfony/phpunit-bridge ###
 .env.local
 /var
+.env.local
+.env.test
+composer.lock
+symfony.lock
+/vendor
