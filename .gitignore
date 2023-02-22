@@ -9,3 +9,9 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+/var
+.env.local
+.env.test
+composer.lock
+symfony.lock
+/vendor
