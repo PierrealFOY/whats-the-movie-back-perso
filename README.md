@@ -21,5 +21,9 @@ Dans le .env.local :
     
   - Lancer la création de la BDD lancer la commande : ```php bin/console doctrine:database:create```
   
+  - Lancer la migration création des tables : ```php bin/console doctrine:migrations:migrate```
+  
   - Générer les données avec la commande : ```php bin/console doctrine:fixtures:load```
+  
+  - Conection serveur : ```php -S 0.0.0.0:8080 -t public```
   
