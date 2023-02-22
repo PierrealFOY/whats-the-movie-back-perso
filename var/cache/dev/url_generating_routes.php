@@ -10,6 +10,8 @@ return [
     'app_api_user_list' => [[], ['_controller' => 'App\\Controller\\Api\\UserController::list'], [], [['text', '/api/users']], [], [], []],
     'app_api_user_show' => [['id'], ['_controller' => 'App\\Controller\\Api\\UserController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/users']], [], [], []],
     'app_api_user_add' => [[], ['_controller' => 'App\\Controller\\Api\\UserController::add'], [], [['text', '/api/users']], [], [], []],
+    'app_api_user_edit' => [['id'], ['_controller' => 'App\\Controller\\Api\\UserController::edit'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/users']], [], [], []],
+    'app_api_user_delete' => [['id'], ['_controller' => 'App\\Controller\\Api\\UserController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/api/users']], [], [], []],
     'app_user' => [[], ['_controller' => 'App\\Controller\\UserController::index'], [], [['text', '/user']], [], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
     '_wdt' => [['token'], ['_controller' => 'web_profiler.controller.profiler::toolbarAction'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/_wdt']], [], [], []],

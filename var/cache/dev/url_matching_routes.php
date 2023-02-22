@@ -28,35 +28,41 @@ return [
         0 => '{^(?'
                 .'|/api/(?'
                     .'|movies/([^/]++)(*:30)'
-                    .'|users/([^/]++)(*:51)'
+                    .'|users/([^/]++)(?'
+                        .'|(*:54)'
+                    .')'
                 .')'
                 .'|/_(?'
-                    .'|error/(\\d+)(?:\\.([^/]++))?(*:90)'
-                    .'|wdt/([^/]++)(*:109)'
+                    .'|error/(\\d+)(?:\\.([^/]++))?(*:94)'
+                    .'|wdt/([^/]++)(*:113)'
                     .'|profiler/([^/]++)(?'
                         .'|/(?'
-                            .'|search/results(*:155)'
-                            .'|router(*:169)'
+                            .'|search/results(*:159)'
+                            .'|router(*:173)'
                             .'|exception(?'
-                                .'|(*:189)'
-                                .'|\\.css(*:202)'
+                                .'|(*:193)'
+                                .'|\\.css(*:206)'
                             .')'
                         .')'
-                        .'|(*:212)'
+                        .'|(*:216)'
                     .')'
                 .')'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
         30 => [[['_route' => 'app_api_movie_show', '_controller' => 'App\\Controller\\Api\\MovieController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        51 => [[['_route' => 'app_api_user_show', '_controller' => 'App\\Controller\\Api\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null]],
-        90 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
-        109 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
-        155 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
-        169 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
-        189 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
-        202 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
-        212 => [
+        54 => [
+            [['_route' => 'app_api_user_show', '_controller' => 'App\\Controller\\Api\\UserController::show'], ['id'], ['GET' => 0], null, false, true, null],
+            [['_route' => 'app_api_user_edit', '_controller' => 'App\\Controller\\Api\\UserController::edit'], ['id'], ['PUT' => 0], null, false, true, null],
+            [['_route' => 'app_api_user_delete', '_controller' => 'App\\Controller\\Api\\UserController::delete'], ['id'], ['DELETE' => 0], null, false, true, null],
+        ],
+        94 => [[['_route' => '_preview_error', '_controller' => 'error_controller::preview', '_format' => 'html'], ['code', '_format'], null, null, false, true, null]],
+        113 => [[['_route' => '_wdt', '_controller' => 'web_profiler.controller.profiler::toolbarAction'], ['token'], null, null, false, true, null]],
+        159 => [[['_route' => '_profiler_search_results', '_controller' => 'web_profiler.controller.profiler::searchResultsAction'], ['token'], null, null, false, false, null]],
+        173 => [[['_route' => '_profiler_router', '_controller' => 'web_profiler.controller.router::panelAction'], ['token'], null, null, false, false, null]],
+        193 => [[['_route' => '_profiler_exception', '_controller' => 'web_profiler.controller.exception_panel::body'], ['token'], null, null, false, false, null]],
+        206 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception_panel::stylesheet'], ['token'], null, null, false, false, null]],
+        216 => [
             [['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],

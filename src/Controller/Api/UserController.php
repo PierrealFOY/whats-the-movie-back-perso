@@ -4,13 +4,14 @@ namespace App\Controller\Api;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
@@ -85,5 +86,70 @@ class UserController extends AbstractController
         ['groups' => 'users']);
     }
 
+    /**
+     * method to edit user profil
+     *@Route("/api/users/{id}", name="app_api_user_edit", methods={"PUT"})
 
-}
+     * @param User $user
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @param ValidatorInterface $validator
+     * @param EntityManagerInterface $em
+     * @param UserPasswordHasherInterface $passwordHasher
+     * @return JsonResponse
+     */
+    public function edit(User $user, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): JsonResponse
+    {
+        $json = $request->getContent();
+
+        $editUser = $serializer->deserialize($json, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);
+
+        $errors = $validator->validate($user);
+
+        if(count($errors) > 0){
+            // Je créer un tableau avec mes erreurs
+            $errorsArray = [];
+            foreach($errors as $error){
+                // A l'index qui correspond au champs mal remplis, j'y injecte le/les messages d'erreurs
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+            return $this->json($errorsArray,Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        // I get my request in a array
+        $content = $request->toArray();
+
+        $password = $content['password'];
+
+        $hashedPassword = $passwordHasher->hashPassword($user, $password);
+
+        $user->setPassword($hashedPassword);        
+        
+        $em->persist($editUser);
+
+        $em->flush();
+    
+        return $this->json(null,
+        Response::HTTP_NO_CONTENT, [
+            "Location" => $this->generateUrl("app_api_user_show", ["id" => $user->getId()])
+        ], 
+        ["groups" => "users"]);
+    }
+
+    /**
+     * method to delete account
+     * @Route("/api/users/{id}", name="app_api_user_delete", methods={"DELETE"})
+     *
+     * @param User $user
+     * @param EntityManagerInterface $em
+     * @return JsonResponse
+     */
+    public function delete(User $user, EntityManagerInterface $em): JsonResponse
+    {
+        $em->remove($user);
+
+        $em->flush();
+
+        return $this->json(null, Response::HTTP_NO_CONTENT);
+    }
+} 
