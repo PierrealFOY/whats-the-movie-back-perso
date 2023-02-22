@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -28,6 +29,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups({"movies"})
      * @Groups({"users"})
+     * @Assert\NotBlank
+     * @Assert\Length(min = 10, max = 180)
      */
     private $email;
 
@@ -41,6 +44,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
      */
     private $password;
 
@@ -48,6 +52,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=65)
      * @Groups({"movies"})
      * @Groups({"users"})
+     * @Assert\NotBlank
+     * @Assert\Length(min = 1, max = 65)
      */
     private $name;
 
@@ -62,6 +68,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=155, nullable=true)
      * @Groups({"movies"})
      * @Groups({"users"})
+     * @Assert\Url
      */
     private $picture;
 
@@ -73,6 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user")
      * @Groups({"users"})
+     * 
      */
     private $games;
 
