@@ -35,7 +35,7 @@ class MovieController extends AbstractController
     }
 
     /**
-     * method that returns the list of movies
+     * method that returns number(limit) of movies for one game
      * @Route("/api/movies/game", name="app_api_movie_RandomMoviesGame", methods={"GET"})
      * 
      * @param MovieRepository $movieRepository

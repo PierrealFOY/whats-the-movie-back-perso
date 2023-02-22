@@ -18,6 +18,7 @@ class Actor
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"movies"})
+     *  
      */
     private $id;
 
