@@ -20,6 +20,9 @@ class UserController extends AbstractController
     /**
      * method that returns the list of users
      * @Route("/api/users", name="app_api_user_list", methods={"GET"})
+     * 
+     * @param UserRepository $userRepository
+     * @return JsonResponse
      */
     public function list(UserRepository $userRepository): JsonResponse
     {
@@ -32,7 +35,7 @@ class UserController extends AbstractController
      * method that returns one user
      * @Route("/api/users/{id}", name="app_api_user_show", methods={"GET"})
      * 
-     * @param MovieRepository $movieRepository
+     * @param User $user
      * @return JsonResponse
      */
     public function show(User $user): JsonResponse
@@ -42,11 +45,13 @@ class UserController extends AbstractController
 
     /**
      * method that records a user 
-     *@Route("/api/users", name="app_api_user_add", methods={"POST"})
-
+     * @Route("/api/users", name="app_api_user_add", methods={"POST"})
+     * 
      * @param Request $request
      * @param SerializerInterface $serializer
      * @param ValidatorInterface $validator
+     * @param UserRepository $userRepository
+     * @param UserPasswordHasherInterface $passwordHasher
      * @return JsonResponse
      */
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): JsonResponse
@@ -72,10 +77,13 @@ class UserController extends AbstractController
         // I get my request in a array
         $content = $request->toArray();
 
+        // I get the password enter
         $password = $content['password'];
 
+        // I hash the password recovered
         $hashedPassword = $passwordHasher->hashPassword($user, $password);
 
+        // I set my hash password
         $user->setPassword($hashedPassword);
 
         $userRepository->add($user, true);

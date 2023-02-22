@@ -39,6 +39,12 @@ class MovieRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * method that returns a random number(limit) of movies
+     *
+     * @param integer $limit
+     * @return array
+     */
     public function findRandomMoviesGame(int $limit): array
     {
         $conn = $this->getEntityManager()->getConnection();
@@ -52,7 +58,6 @@ class MovieRepository extends ServiceEntityRepository
         $stmt->bindValue('limit', intval($limit), \PDO::PARAM_INT);
         $resultSet = $stmt->executeQuery();
 
-        // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();
     }
 

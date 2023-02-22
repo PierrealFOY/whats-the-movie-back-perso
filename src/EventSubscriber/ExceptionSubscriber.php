@@ -10,6 +10,12 @@ use Symfony\Component\Serializer\Exception\NotEncodableValueException;
 
 class ExceptionSubscriber implements EventSubscriberInterface
 {
+    /**
+     * method which when an exception on the api routes is thrown translates it into json
+     *
+     * @param ExceptionEvent $event
+     * @return void
+     */
     public function onKernelException(ExceptionEvent $event): void
     {
         $request = $event->getRequest();
@@ -21,17 +27,21 @@ class ExceptionSubscriber implements EventSubscriberInterface
             return;
         }
 
+        // I catch the exception
         $exception =$event->getThrowable();
 
+        // If is an http exception i catch status ans error message
         if ($exception instanceof HttpException) {
             $data = [
                 'status' => $exception->getStatusCode(),
                 'message' => $exception->getMessage()
             ];
 
+            // I replace the exception with data in json format
             $event->setResponse(new JsonResponse($data));
 
          }else{
+            // I manage the error 500
             $data =[
                 'status' => 500,
                 'message' => $exception->getMessage()

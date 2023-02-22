@@ -24,6 +24,7 @@ class MovieController extends AbstractController
      * method that returns the list of movies
      * @Route("/api/movies", name="app_api_movie_list", methods={"GET"})
      * 
+     * 
      * @param MovieRepository $movieRepository
      * @return JsonResponse
      */
@@ -39,6 +40,7 @@ class MovieController extends AbstractController
      * @Route("/api/movies/game", name="app_api_movie_RandomMoviesGame", methods={"GET"})
      * 
      * @param MovieRepository $movieRepository
+     * @param Request $request
      * @return JsonResponse
      */
     public function RandomMoviesGame(MovieRepository $movieRepository, Request $request): JsonResponse
@@ -54,10 +56,10 @@ class MovieController extends AbstractController
      * method that returns one movie
      * @Route("/api/movies/{id}", name="app_api_movie_show", methods={"GET"})
      * 
-     * @param MovieRepository $movieRepository
+     * @param Movie $movie
      * @return JsonResponse
      */
-    public function show(MovieRepository $movieRepository, Movie $movie): JsonResponse
+    public function show(Movie $movie): JsonResponse
     {
 
         return $this->json($movie, Response::HTTP_OK, [], ['groups' => 'movies']);
@@ -68,6 +70,15 @@ class MovieController extends AbstractController
      * @Route("/api/movies", name="app_api_movie_add", methods={"POST"})
      * 
      * @param MovieRepository $movieRepository
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @param ValidatorInterface $validator
+     * @param GenreRepository $genreRepository
+     * @param ActorRepository $actorRepository
+     * @param ProductionStudioRepository $productionStudioRepository
+     * @param DirectorRepository $directorRepository
+     * @param CountryRepository $countryRepository
+     * @param UserRepository $userRepository
      * @return JsonResponse
      */
     public function add(MovieRepository $movieRepository, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, GenreRepository $genreRepository, ActorRepository $actorRepository, ProductionStudioRepository $productionStudioRepository, DirectorRepository $directorRepository, CountryRepository $countryRepository, UserRepository $userRepository): JsonResponse
