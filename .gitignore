@@ -1,5 +1,4 @@
 
-
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
@@ -9,5 +8,11 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
-.env.local
+
 /var
+.env.local
+.env.test
+.env
+/vendor
+composer.lock
+symfony.lock
