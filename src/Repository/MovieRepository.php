@@ -46,10 +46,11 @@ class MovieRepository extends ServiceEntityRepository
         $sql = "
             SELECT * FROM movie m
             ORDER BY RAND()
-            LIMIT :limit"
-            ;
+            LIMIT :limit
+            ";
         $stmt = $conn->prepare($sql);
-        $resultSet = $stmt->executeQuery(["limit" => $limit]);
+        $stmt->bindValue('limit', intval($limit), \PDO::PARAM_INT);
+        $resultSet = $stmt->executeQuery();
 
         // returns an array of arrays (i.e. a raw data set)
         return $resultSet->fetchAllAssociative();

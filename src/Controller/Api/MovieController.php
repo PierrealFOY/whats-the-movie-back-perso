@@ -9,6 +9,7 @@ use App\Repository\DirectorRepository;
 use App\Repository\GenreRepository;
 use App\Repository\MovieRepository;
 use App\Repository\ProductionStudioRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,14 +43,11 @@ class MovieController extends AbstractController
      */
     public function RandomMoviesGame(MovieRepository $movieRepository, Request $request): JsonResponse
     {
-        //$limit = (int)$request->get('limit', 5);
-        $limit = 8;
-
+        $limit = (int)$request->get('limit', 5);
+        
         $moviesGame = $movieRepository->findRandomMoviesGame($limit);
 
-        dd($moviesGame);
-
-        return $this->json(null, Response::HTTP_OK, [], ['groups' => 'movies']);
+        return $this->json($moviesGame, Response::HTTP_OK, [], ['groups' => 'movies']);
     }
 
     /**
@@ -72,7 +70,7 @@ class MovieController extends AbstractController
      * @param MovieRepository $movieRepository
      * @return JsonResponse
      */
-    public function add(MovieRepository $movieRepository, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, GenreRepository $genreRepository, ActorRepository $actorRepository, ProductionStudioRepository $productionStudioRepository, DirectorRepository $directorRepository, CountryRepository $countryRepository): JsonResponse
+    public function add(MovieRepository $movieRepository, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, GenreRepository $genreRepository, ActorRepository $actorRepository, ProductionStudioRepository $productionStudioRepository, DirectorRepository $directorRepository, CountryRepository $countryRepository, UserRepository $userRepository): JsonResponse
     {
         $json = $request->getContent();
 
@@ -127,6 +125,7 @@ class MovieController extends AbstractController
         }
 
         // ! User TODO
+        $movie->setUser($userRepository->find(291));
 
         $movieRepository->add($movie, true);
 
