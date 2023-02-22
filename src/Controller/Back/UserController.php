@@ -70,7 +70,7 @@ class UserController extends AbstractController
     }
 
      /**
-     * @Route("/modifier/{id}", name="app_back_user_edit", methods={"PUT"})
+     * @Route("/modifier/{id}", name="app_back_user_edit", methods={"GET","POST"})
      * On vient ici modifier un user par son ID
      */
     public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response

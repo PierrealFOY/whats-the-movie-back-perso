@@ -5,6 +5,7 @@
 {% block subBody %}
     <h1>Liste des utilisateurs</h1>
   <a href="{{ path('app_back_user_add') }}">Créer un Utilisateur</a>
+  
     <table class="table">
         <thead>
             <tr>
@@ -16,8 +17,8 @@
                 <th>Score</th>
                 <th>Image</th>
             </tr>
-
         </thead>
+
         <tbody>
         {% for user in users %}
             <tr>
