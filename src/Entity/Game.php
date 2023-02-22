@@ -18,25 +18,28 @@ class Game
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"users"})
-     * 
+     * @Groups({"games"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"users"})
+     * @Groups({"games"})
      * 
      */
     private $score;
 
     /**
      * @ORM\ManyToMany(targetEntity=Movie::class, mappedBy="games")
+     * @Groups({"games"})
      * 
      */
     private $movies;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="games")
+     * @Groups({"games"})
      */
     private $user;
 

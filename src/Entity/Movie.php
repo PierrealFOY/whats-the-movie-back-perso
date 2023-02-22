@@ -19,12 +19,14 @@ class Movie
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"movies"})
+     * @Groups({"games"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=65)
      * @Groups({"movies"})
+     * @Groups({"games"})
      * @Assert\Length(min = 1, max = 65)
      * @Assert\NotBlank
      */

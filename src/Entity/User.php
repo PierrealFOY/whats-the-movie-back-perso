@@ -22,6 +22,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="integer")
      * @Groups({"movies"})
      * @Groups({"users"})
+     * @Groups({"games"})
      */
     private $id;
 
@@ -52,6 +53,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=65)
      * @Groups({"movies"})
      * @Groups({"users"})
+     * @Groups({"games"})
      * @Assert\NotBlank
      * @Assert\Length(min = 1, max = 65)
      */
@@ -61,6 +63,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="integer", nullable=true)
      * @Groups({"movies"})
      * @Groups({"users"})
+     * 
      */
     private $score;
 

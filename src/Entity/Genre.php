@@ -29,6 +29,7 @@ class Genre
 
     /**
      * @ORM\ManyToMany(targetEntity=Movie::class, mappedBy="genres")
+     * 
      */
     private $movies;
 
