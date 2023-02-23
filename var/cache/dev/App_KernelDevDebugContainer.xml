@@ -348,7 +348,6 @@
       <argument type="service" id="security.user_password_hasher"/>
     </service>
     <service id="App\DataFixtures\Providers\AppProvider" class="App\DataFixtures\Providers\AppProvider" autowire="true" autoconfigure="true"/>
-    <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true"/>
     <service id="App\Form\UserType" class="App\Form\UserType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>

@@ -9,4 +9,8 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-/var
+/var/
+/var/*
+
+/vendor/
+/vendor/*

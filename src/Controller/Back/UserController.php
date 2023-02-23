@@ -48,7 +48,7 @@ class UserController extends AbstractController
 
         $userRepository->add($user, true);
 
-        return $this->redirectToRoute('back/user/list.html.twig', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
         }    
     return $this->renderForm('back/user/new.html.twig', [
         'user' => $user,
