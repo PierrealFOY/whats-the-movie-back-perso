@@ -86,10 +86,11 @@ class __TwigTemplate_10431df4e78c0fbd7490f6ff706373411543cf876eefb8e89e397cf0498
 
         // line 6
         echo "    <h1>Liste des utilisateurs</h1>
-  <a href=\"";
+    <button type=\"button\" class=\" mt-2 mb-1 btn btn-outline-primary btn-sm\" href=\"";
         // line 7
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back_user_add");
-        echo "\">Créer un Utilisateur</a>
+        echo "\">Créer un Utilisateur</button>
+
   
     <table class=\"table\">
         <thead>
@@ -101,58 +102,59 @@ class __TwigTemplate_10431df4e78c0fbd7490f6ff706373411543cf876eefb8e89e397cf0498
                 <th>Mot de Passe</th>
                 <th>Score</th>
                 <th>Image</th>
+                <th>Afficher</th>
+                <th>Editer</th>
             </tr>
         </thead>
 
         <tbody>
         ";
-        // line 23
+        // line 26
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable((isset($context["users"]) || array_key_exists("users", $context) ? $context["users"] : (function () { throw new RuntimeError('Variable "users" does not exist.', 23, $this->source); })()));
+        $context['_seq'] = twig_ensure_traversable((isset($context["users"]) || array_key_exists("users", $context) ? $context["users"] : (function () { throw new RuntimeError('Variable "users" does not exist.', 26, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["user"]) {
-            // line 24
+            // line 27
             echo "            <tr>
                 <td>";
-            // line 25
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 25), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 26
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "email", [], "any", false, false, false, 26), "html", null, true);
-            echo "</td>
-                <td>";
-            // line 27
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "name", [], "any", false, false, false, 27), "html", null, true);
-            echo "</td>
-                <td>";
             // line 28
-            ((twig_get_attribute($this->env, $this->source, $context["user"], "roles", [], "any", false, false, false, 28)) ? (print (twig_escape_filter($this->env, json_encode(twig_get_attribute($this->env, $this->source, $context["user"], "roles", [], "any", false, false, false, 28)), "html", null, true))) : (print ("")));
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 28), "html", null, true);
             echo "</td>
                 <td>";
             // line 29
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "score", [], "any", false, false, false, 29), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "email", [], "any", false, false, false, 29), "html", null, true);
             echo "</td>
                 <td>";
             // line 30
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "picture", [], "any", false, false, false, 30), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "name", [], "any", false, false, false, 30), "html", null, true);
             echo "</td>
-                <td>
-                    <a class=\"btn btn-success\" href=\"";
-            // line 32
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back_user_show", ["id" => twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 32)]), "html", null, true);
-            echo "\"><i class=\"bi bi-eye\"></i></a>
-                    <a class=\"btn btn-warning\" href=\"";
+                <td>";
+            // line 31
+            ((twig_get_attribute($this->env, $this->source, $context["user"], "roles", [], "any", false, false, false, 31)) ? (print (twig_escape_filter($this->env, json_encode(twig_get_attribute($this->env, $this->source, $context["user"], "roles", [], "any", false, false, false, 31)), "html", null, true))) : (print ("")));
+            echo "</td>
+                <td><a class=\"badge bg-warning\">Action impossible</a></td>
+                <td>";
             // line 33
-            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back_user_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 33)]), "html", null, true);
-            echo "\"><i class=\"bi bi-pencil\"></i></a>
-                </td>
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "score", [], "any", false, false, false, 33), "html", null, true);
+            echo "</td>
+                <td>";
+            // line 34
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["user"], "picture", [], "any", false, false, false, 34), "html", null, true);
+            echo "</td>
+                <td><a class=\"btn btn-success\" href=\"";
+            // line 35
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back_user_show", ["id" => twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 35)]), "html", null, true);
+            echo "\"><i class=\"bi bi-eye\"></i></a></td>
+                <td><a class=\"btn btn-warning\" href=\"";
+            // line 36
+            echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back_user_edit", ["id" => twig_get_attribute($this->env, $this->source, $context["user"], "id", [], "any", false, false, false, 36)]), "html", null, true);
+            echo "\"><i class=\"bi bi-pencil\"></i></a></td>
             </tr>
         ";
             $context['_iterated'] = true;
         }
         if (!$context['_iterated']) {
-            // line 37
+            // line 39
             echo "            <tr>
                 <td colspan=\"5\">aucun enregistrement trouvé</td>
             </tr>
@@ -161,7 +163,7 @@ class __TwigTemplate_10431df4e78c0fbd7490f6ff706373411543cf876eefb8e89e397cf0498
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['user'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 41
+        // line 43
         echo "        </tbody>
     </table>
 
@@ -186,7 +188,7 @@ class __TwigTemplate_10431df4e78c0fbd7490f6ff706373411543cf876eefb8e89e397cf0498
 
     public function getDebugInfo()
     {
-        return array (  165 => 41,  156 => 37,  147 => 33,  143 => 32,  138 => 30,  134 => 29,  130 => 28,  126 => 27,  122 => 26,  118 => 25,  115 => 24,  110 => 23,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
+        return array (  167 => 43,  158 => 39,  150 => 36,  146 => 35,  142 => 34,  138 => 33,  133 => 31,  129 => 30,  125 => 29,  121 => 28,  118 => 27,  113 => 26,  91 => 7,  88 => 6,  78 => 5,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -197,7 +199,8 @@ class __TwigTemplate_10431df4e78c0fbd7490f6ff706373411543cf876eefb8e89e397cf0498
 
 {% block subBody %}
     <h1>Liste des utilisateurs</h1>
-  <a href=\"{{ path('app_back_user_add') }}\">Créer un Utilisateur</a>
+    <button type=\"button\" class=\" mt-2 mb-1 btn btn-outline-primary btn-sm\" href=\"{{ path('app_back_user_add') }}\">Créer un Utilisateur</button>
+
   
     <table class=\"table\">
         <thead>
@@ -209,6 +212,8 @@ class __TwigTemplate_10431df4e78c0fbd7490f6ff706373411543cf876eefb8e89e397cf0498
                 <th>Mot de Passe</th>
                 <th>Score</th>
                 <th>Image</th>
+                <th>Afficher</th>
+                <th>Editer</th>
             </tr>
         </thead>
 
@@ -219,12 +224,11 @@ class __TwigTemplate_10431df4e78c0fbd7490f6ff706373411543cf876eefb8e89e397cf0498
                 <td>{{ user.email }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td><a class=\"badge bg-warning\">Action impossible</a></td>
                 <td>{{ user.score }}</td>
                 <td>{{ user.picture }}</td>
-                <td>
-                    <a class=\"btn btn-success\" href=\"{{ path('app_back_user_show', {'id': user.id}) }}\"><i class=\"bi bi-eye\"></i></a>
-                    <a class=\"btn btn-warning\" href=\"{{ path('app_back_user_edit', {'id': user.id}) }}\"><i class=\"bi bi-pencil\"></i></a>
-                </td>
+                <td><a class=\"btn btn-success\" href=\"{{ path('app_back_user_show', {'id': user.id}) }}\"><i class=\"bi bi-eye\"></i></a></td>
+                <td><a class=\"btn btn-warning\" href=\"{{ path('app_back_user_edit', {'id': user.id}) }}\"><i class=\"bi bi-pencil\"></i></a></td>
             </tr>
         {% else %}
             <tr>

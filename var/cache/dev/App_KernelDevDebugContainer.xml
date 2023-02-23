@@ -102,7 +102,7 @@
     <parameter key="kernel.secret">%env(APP_SECRET)%</parameter>
     <parameter key="kernel.http_method_override">false</parameter>
     <parameter key="kernel.trusted_hosts" type="collection"/>
-    <parameter key="kernel.default_locale">en</parameter>
+    <parameter key="kernel.default_locale">fr</parameter>
     <parameter key="kernel.enabled_locales" type="collection"/>
     <parameter key="kernel.error_controller">error_controller</parameter>
     <parameter key="debug.file_link_format">null</parameter>
@@ -336,6 +336,7 @@
       <tag name="controller.service_arguments"/>
       <tag name="routing.route_loader"/>
     </service>
+    <service id="app.rot13.transformer" class="App\Util\Rot13Transformer" autowire="true" autoconfigure="true"/>
     <service id="App\Controller\Back\UserController" class="App\Controller\Back\UserController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -401,7 +402,7 @@
       <tag name="container.hot_path"/>
       <tag name="container.hot_path"/>
       <argument type="service" id="request_stack"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <argument type="service" id="router.default" on-invalid="ignore"/>
       <argument>false</argument>
       <argument type="collection"/>
@@ -616,7 +617,7 @@
     </service>
     <service id="slugger" class="Symfony\Component\String\Slugger\AsciiSlugger">
       <tag name="kernel.locale_aware"/>
-      <argument>en</argument>
+      <argument>fr</argument>
     </service>
     <service id="container.getenv" class="Closure">
       <tag name="routing.expression_language_function" function="env"/>
@@ -1065,7 +1066,7 @@
       <argument type="service" id="translation.writer"/>
       <argument type="service" id="translation.reader"/>
       <argument type="service" id="translation.extractor"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <argument>/var/www/html/Apothéose/projet-10-what-s-the-movie-back/translations</argument>
       <argument>/var/www/html/Apothéose/projet-10-what-s-the-movie-back/templates</argument>
       <argument type="collection">
@@ -1107,7 +1108,7 @@
       <argument type="service" id="translation.provider_collection"/>
       <argument type="service" id="translation.writer"/>
       <argument type="service" id="translation.reader"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <argument type="collection"/>
       <argument type="collection"/>
       <call method="setName">
@@ -1576,7 +1577,7 @@
       <tag name="kernel.locale_aware"/>
       <argument type="service" id=".service_locator.yY.p4P7"/>
       <argument type="service" id="translator.formatter.default"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <argument type="collection">
         <argument key="translation.loader.php" type="collection">
           <argument>php</argument>
@@ -2830,7 +2831,7 @@
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
       <argument type="service" id="parameter_bag" on-invalid="ignore"/>
       <argument type="service" id="monolog.logger.router" on-invalid="ignore"/>
-      <argument>en</argument>
+      <argument>fr</argument>
       <call method="setConfigCacheFactory">
         <argument type="service" id="config_cache_factory"/>
       </call>
@@ -6085,7 +6086,7 @@
       <tag name="kernel.event_subscriber"/>
       <tag name="container.hot_path"/>
       <argument type="service" id="sensio_framework_extra.converter.manager"/>
-      <argument>true</argument>
+      <argument>false</argument>
     </service>
     <service id="sensio_framework_extra.converter.manager" class="Sensio\Bundle\FrameworkExtraBundle\Request\ParamConverter\ParamConverterManager">
       <call method="add">
