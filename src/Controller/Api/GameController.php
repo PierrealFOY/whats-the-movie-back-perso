@@ -14,11 +14,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use  Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use OpenApi\Annotations as OA;
 
 class GameController extends AbstractController
 {
     /**
      * method that returns the list of games
+     * 
+     * @OA\Tag(name="games")
+     * 
      * @Route("/api/games", name="app_api_game_list", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
@@ -34,6 +40,9 @@ class GameController extends AbstractController
 
     /**
      * method that returns one game
+     * 
+     * @OA\Tag(name="games")
+     * 
      * @Route("/api/games/{id}", name="app_api_game_show", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
@@ -50,6 +59,9 @@ class GameController extends AbstractController
 
     /**
      * method that returns one game
+     * 
+     * @OA\Tag(name="games")
+     * 
      * @Route("/api/games", name="app_api_game_add", methods={"POST"})
      * 
      * @param Game $game

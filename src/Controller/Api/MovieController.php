@@ -18,11 +18,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use  Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use OpenApi\Annotations as OA;
 
 class MovieController extends AbstractController
 {
     /**
      * method that returns the list of movies
+     * 
+     * @OA\Tag(name="movies")
+     * 
      * @Route("/api/movies", name="app_api_movie_list", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
@@ -38,6 +44,15 @@ class MovieController extends AbstractController
 
     /**
      * method that returns number(limit) of movies for one game
+     * 
+     * @OA\Parameter(
+     *      name="limit",
+     *      in="query",
+     *      description="Le nombre de films que l'on veut récupérer",
+     *      @OA\Schema(type="int")
+     * )
+     * @OA\Tag(name="movies")
+     * 
      * @Route("/api/movies/game", name="app_api_movie_RandomMoviesGame", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * @param MovieRepository $movieRepository
@@ -55,6 +70,9 @@ class MovieController extends AbstractController
 
     /**
      * method that returns one movie
+     * 
+     * @OA\Tag(name="movies")
+     * 
      * @Route("/api/movies/{id}", name="app_api_movie_show", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
@@ -71,8 +89,10 @@ class MovieController extends AbstractController
 
     /**
      * method that records a movie 
-     * @Route("/api/movies", name="app_api_movie_add", methods={"POST"})
      * 
+     * @OA\Tag(name="movies")
+     * 
+     * @Route("/api/movies", name="app_api_movie_add", methods={"POST"})
      * 
      * @param MovieRepository $movieRepository
      * @param Request $request
