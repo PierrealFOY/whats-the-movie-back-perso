@@ -17,6 +17,7 @@ return array(
     'App\\Entity\\Movie' => $baseDir . '/src/Entity/Movie.php',
     'App\\Entity\\ProductionStudio' => $baseDir . '/src/Entity/ProductionStudio.php',
     'App\\Entity\\User' => $baseDir . '/src/Entity/User.php',
+    'App\\Form\\UserType' => $baseDir . '/src/Form/UserType.php',
     'App\\Kernel' => $baseDir . '/src/Kernel.php',
     'App\\Repository\\ActorRepository' => $baseDir . '/src/Repository/ActorRepository.php',
     'App\\Repository\\CountryRepository' => $baseDir . '/src/Repository/CountryRepository.php',

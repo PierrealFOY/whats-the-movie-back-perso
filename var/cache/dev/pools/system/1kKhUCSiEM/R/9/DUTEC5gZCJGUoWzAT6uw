@@ -8,7 +8,7 @@ return [PHP_INT_MAX, static function () { return \Symfony\Component\VarExporter\
     [
         'Symfony\\Component\\Routing\\Annotation\\Route' => [
             'path' => [
-                '/supprimer/{id}',
+                '/back-office/utilisateur/supprimer/{id}',
             ],
             'name' => [
                 'app_back_user_delete',
