@@ -337,6 +337,27 @@
       <tag name="routing.route_loader"/>
     </service>
     <service id="app.rot13.transformer" class="App\Util\Rot13Transformer" autowire="true" autoconfigure="true"/>
+    <service id="App\Controller\Api\GameController" class="App\Controller\Api\GameController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.GNc8e5B.App\Controller\Api\GameController"/>
+      </call>
+    </service>
+    <service id="App\Controller\Api\MovieController" class="App\Controller\Api\MovieController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.GNc8e5B.App\Controller\Api\MovieController"/>
+      </call>
+    </service>
+    <service id="App\Controller\Api\UserController" class="App\Controller\Api\UserController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.GNc8e5B.App\Controller\Api\UserController"/>
+      </call>
+    </service>
     <service id="App\Controller\Back\UserController" class="App\Controller\Back\UserController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -349,6 +370,9 @@
       <argument type="service" id="security.user_password_hasher"/>
     </service>
     <service id="App\DataFixtures\Providers\AppProvider" class="App\DataFixtures\Providers\AppProvider" autowire="true" autoconfigure="true"/>
+    <service id="App\EventSubscriber\ExceptionSubscriber" class="App\EventSubscriber\ExceptionSubscriber" autowire="true" autoconfigure="true">
+      <tag name="kernel.event_subscriber"/>
+    </service>
     <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true"/>
     <service id="App\Form\UserType" class="App\Form\UserType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
@@ -2203,6 +2227,14 @@
         <argument type="collection">
           <argument type="service_closure" id="security.context_listener.0"/>
           <argument>onKernelResponse</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>kernel.exception</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="App\EventSubscriber\ExceptionSubscriber"/>
+          <argument>onKernelException</argument>
         </argument>
         <argument>0</argument>
       </call>
@@ -4409,6 +4441,10 @@
       <call method="setRepositoryFactory">
         <argument type="service" id="doctrine.orm.container_repository_factory"/>
       </call>
+      <call method="addCustomNumericFunction">
+        <argument>rand</argument>
+        <argument>DoctrineExtensions\Query\Mysql\Rand</argument>
+      </call>
     </service>
     <service id="doctrine.orm.default_annotation_metadata_driver" class="Doctrine\ORM\Mapping\Driver\AnnotationDriver">
       <argument type="service" id="annotations.cached_reader"/>
@@ -6173,11 +6209,22 @@
     <service id="doctrine.fixtures.purger.orm_purger_factory" class="Doctrine\Bundle\FixturesBundle\Purger\ORMPurgerFactory">
       <tag name="doctrine.fixtures.purger_factory" alias="default"/>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Api\GameController" class="App\Controller\Api\GameController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Api\GameController" class="App\Controller\Api\GameController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Api\GameController" class="App\Controller\Api\GameController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Api\MovieController" class="App\Controller\Api\MovieController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Api\MovieController" class="App\Controller\Api\MovieController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Api\MovieController" class="App\Controller\Api\MovieController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Api\UserController" class="App\Controller\Api\UserController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Api\UserController" class="App\Controller\Api\UserController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\Api\UserController" class="App\Controller\Api\UserController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\Back\UserController" class="App\Controller\Back\UserController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\Back\UserController" class="App\Controller\Back\UserController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\Back\UserController" class="App\Controller\Back\UserController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\FixturesBundle\ORMFixtureInterface.0.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\DataFixtures\AppFixtures" class="App\DataFixtures\AppFixtures" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\EventDispatcher\EventSubscriberInterface.0.App\EventSubscriber\ExceptionSubscriber" class="App\EventSubscriber\ExceptionSubscriber" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\EventSubscriber\ExceptionSubscriber" class="App\EventSubscriber\ExceptionSubscriber" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserType" class="App\Form\UserType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UserType" class="App\Form\UserType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ActorRepository" class="App\Repository\ActorRepository" autowire="true" abstract="true"/>
@@ -6518,6 +6565,54 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.KfbR3DY.Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
+    <service id=".service_locator.hA3ZfRw" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="gameRepository" type="service_closure" id="App\Repository\GameRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.gBwNVTZ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="game" type="service_closure" id=".errored..service_locator.gBwNVTZ.App\Entity\Game"/>
+      </argument>
+    </service>
+    <service id=".service_locator.iu0LqYR" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="gameRepository" type="service_closure" id="App\Repository\GameRepository"/>
+        <argument key="movieRepository" type="service_closure" id="App\Repository\MovieRepository"/>
+        <argument key="serializer" type="service_closure" id="serializer"/>
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="validator" type="service_closure" id="debug.validator"/>
+      </argument>
+    </service>
+    <service id=".service_locator.eWsEuD9" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="movieRepository" type="service_closure" id="App\Repository\MovieRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.V5oNiHc" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="movie" type="service_closure" id=".errored..service_locator.V5oNiHc.App\Entity\Movie"/>
+      </argument>
+    </service>
+    <service id=".service_locator.mULQAId" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="actorRepository" type="service_closure" id="App\Repository\ActorRepository"/>
+        <argument key="countryRepository" type="service_closure" id="App\Repository\CountryRepository"/>
+        <argument key="directorRepository" type="service_closure" id="App\Repository\DirectorRepository"/>
+        <argument key="genreRepository" type="service_closure" id="App\Repository\GenreRepository"/>
+        <argument key="movieRepository" type="service_closure" id="App\Repository\MovieRepository"/>
+        <argument key="productionStudioRepository" type="service_closure" id="App\Repository\ProductionStudioRepository"/>
+        <argument key="serializer" type="service_closure" id="serializer"/>
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="validator" type="service_closure" id="debug.validator"/>
+      </argument>
+    </service>
     <service id=".service_locator..Ae5NXw" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -6528,6 +6623,32 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="user" type="service_closure" id=".errored..service_locator.ch4Jgvl.App\Entity\User"/>
+      </argument>
+    </service>
+    <service id=".service_locator.29FoB2F" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
+        <argument key="serializer" type="service_closure" id="serializer"/>
+        <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="validator" type="service_closure" id="debug.validator"/>
+      </argument>
+    </service>
+    <service id=".service_locator.ZLmnMju" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="passwordHasher" type="service_closure" id="security.user_password_hasher"/>
+        <argument key="serializer" type="service_closure" id="serializer"/>
+        <argument key="user" type="service_closure" id=".errored..service_locator.ZLmnMju.App\Entity\User"/>
+        <argument key="validator" type="service_closure" id="debug.validator"/>
+      </argument>
+    </service>
+    <service id=".service_locator.5bkioaH" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="em" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="user" type="service_closure" id=".errored..service_locator.5bkioaH.App\Entity\User"/>
       </argument>
     </service>
     <service id=".service_locator.IWVeSst" class="Symfony\Component\DependencyInjection\ServiceLocator">
@@ -6552,9 +6673,21 @@
         <argument key="userRepository" type="service_closure" id="App\Repository\UserRepository"/>
       </argument>
     </service>
-    <service id=".service_locator.W5MptXB" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.gFTnxFJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\Api\GameController::add" type="service_closure" id=".service_locator.iu0LqYR"/>
+        <argument key="App\Controller\Api\GameController::list" type="service_closure" id=".service_locator.hA3ZfRw"/>
+        <argument key="App\Controller\Api\GameController::show" type="service_closure" id=".service_locator.gBwNVTZ"/>
+        <argument key="App\Controller\Api\MovieController::RandomMoviesGame" type="service_closure" id=".service_locator.eWsEuD9"/>
+        <argument key="App\Controller\Api\MovieController::add" type="service_closure" id=".service_locator.mULQAId"/>
+        <argument key="App\Controller\Api\MovieController::list" type="service_closure" id=".service_locator.eWsEuD9"/>
+        <argument key="App\Controller\Api\MovieController::show" type="service_closure" id=".service_locator.V5oNiHc"/>
+        <argument key="App\Controller\Api\UserController::add" type="service_closure" id=".service_locator.29FoB2F"/>
+        <argument key="App\Controller\Api\UserController::delete" type="service_closure" id=".service_locator.5bkioaH"/>
+        <argument key="App\Controller\Api\UserController::edit" type="service_closure" id=".service_locator.ZLmnMju"/>
+        <argument key="App\Controller\Api\UserController::list" type="service_closure" id=".service_locator..Ae5NXw"/>
+        <argument key="App\Controller\Api\UserController::show" type="service_closure" id=".service_locator.ch4Jgvl"/>
         <argument key="App\Controller\Back\UserController::add" type="service_closure" id=".service_locator.IWVeSst"/>
         <argument key="App\Controller\Back\UserController::delete" type="service_closure" id=".service_locator.4MF6DUv"/>
         <argument key="App\Controller\Back\UserController::edit" type="service_closure" id=".service_locator.KdRCMpG"/>
@@ -6564,6 +6697,18 @@
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.KfbR3DY"/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.KfbR3DY"/>
+        <argument key="App\Controller\Api\GameController:add" type="service_closure" id=".service_locator.iu0LqYR"/>
+        <argument key="App\Controller\Api\GameController:list" type="service_closure" id=".service_locator.hA3ZfRw"/>
+        <argument key="App\Controller\Api\GameController:show" type="service_closure" id=".service_locator.gBwNVTZ"/>
+        <argument key="App\Controller\Api\MovieController:RandomMoviesGame" type="service_closure" id=".service_locator.eWsEuD9"/>
+        <argument key="App\Controller\Api\MovieController:add" type="service_closure" id=".service_locator.mULQAId"/>
+        <argument key="App\Controller\Api\MovieController:list" type="service_closure" id=".service_locator.eWsEuD9"/>
+        <argument key="App\Controller\Api\MovieController:show" type="service_closure" id=".service_locator.V5oNiHc"/>
+        <argument key="App\Controller\Api\UserController:add" type="service_closure" id=".service_locator.29FoB2F"/>
+        <argument key="App\Controller\Api\UserController:delete" type="service_closure" id=".service_locator.5bkioaH"/>
+        <argument key="App\Controller\Api\UserController:edit" type="service_closure" id=".service_locator.ZLmnMju"/>
+        <argument key="App\Controller\Api\UserController:list" type="service_closure" id=".service_locator..Ae5NXw"/>
+        <argument key="App\Controller\Api\UserController:show" type="service_closure" id=".service_locator.ch4Jgvl"/>
         <argument key="App\Controller\Back\UserController:add" type="service_closure" id=".service_locator.IWVeSst"/>
         <argument key="App\Controller\Back\UserController:delete" type="service_closure" id=".service_locator.4MF6DUv"/>
         <argument key="App\Controller\Back\UserController:edit" type="service_closure" id=".service_locator.KdRCMpG"/>
@@ -7000,6 +7145,24 @@
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.GNc8e5B.App\Controller\Api\GameController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Api\GameController"/>
+      <argument>App\Controller\Api\GameController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.GNc8e5B" method="withContext"/>
+    </service>
+    <service id=".service_locator.GNc8e5B.App\Controller\Api\MovieController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Api\MovieController"/>
+      <argument>App\Controller\Api\MovieController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.GNc8e5B" method="withContext"/>
+    </service>
+    <service id=".service_locator.GNc8e5B.App\Controller\Api\UserController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Api\UserController"/>
+      <argument>App\Controller\Api\UserController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.GNc8e5B" method="withContext"/>
+    </service>
     <service id=".service_locator.GNc8e5B.App\Controller\Back\UserController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\Back\UserController"/>
       <argument>App\Controller\Back\UserController</argument>
@@ -7188,12 +7351,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
-      <argument type="service" id=".service_locator.W5MptXB"/>
+      <argument type="service" id=".service_locator.gFTnxFJ"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
-      <argument type="service" id=".service_locator.W5MptXB"/>
+      <argument type="service" id=".service_locator.gFTnxFJ"/>
     </service>
     <service id="debug.traced.messenger.bus.default.inner" class="Symfony\Component\Messenger\MessageBus">
       <argument type="iterator">
@@ -7213,7 +7376,11 @@
       </call>
     </service>
     <service id=".errored..service_locator.KfbR3DY.Symfony\Component\Config\Loader\LoaderInterface" class="Symfony\Component\Config\Loader\LoaderInterface"/>
+    <service id=".errored..service_locator.gBwNVTZ.App\Entity\Game" class="App\Entity\Game"/>
+    <service id=".errored..service_locator.V5oNiHc.App\Entity\Movie" class="App\Entity\Movie"/>
     <service id=".errored..service_locator.ch4Jgvl.App\Entity\User" class="App\Entity\User"/>
+    <service id=".errored..service_locator.ZLmnMju.App\Entity\User" class="App\Entity\User"/>
+    <service id=".errored..service_locator.5bkioaH.App\Entity\User" class="App\Entity\User"/>
     <service id=".errored..service_locator.KdRCMpG.App\Entity\User" class="App\Entity\User"/>
     <service id=".errored..service_locator.4MF6DUv.App\Entity\User" class="App\Entity\User"/>
     <service id=".console.command.about.lazy" class="Symfony\Component\Console\Command\LazyCommand">
@@ -8154,7 +8321,7 @@
     <service id="sensio_framework_extra.security.expression_language" alias="sensio_framework_extra.security.expression_language.default"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.gSv9zYw" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.W5MptXB"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.gFTnxFJ"/>
     <service id="session" alias=".session.do-not-use" public="true">
       <deprecated package="symfony/framework-bundle" version="5.3">The "%alias_id%" service and "SessionInterface" alias are deprecated, use "$requestStack-&gt;getSession()" instead.</deprecated>
     </service>
@@ -8178,9 +8345,14 @@
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.0GV1BZZ" alias=".service_locator.gSv9zYw"/>
+    <service id=".service_locator.gSQOkxz" alias=".service_locator.iu0LqYR"/>
+    <service id=".service_locator.Om6RZuT" alias=".service_locator.mULQAId"/>
+    <service id=".service_locator.3eX323O" alias=".service_locator.29FoB2F"/>
+    <service id=".service_locator.kFCnAKo" alias=".service_locator.ZLmnMju"/>
+    <service id=".service_locator.no630kw" alias=".service_locator.5bkioaH"/>
     <service id=".service_locator.uh4DRMP" alias=".service_locator.IWVeSst"/>
     <service id=".service_locator.eEpiI8h" alias=".service_locator.KdRCMpG"/>
-    <service id=".service_locator.9fHg.hr" alias=".service_locator.W5MptXB"/>
+    <service id=".service_locator.F5ybDFZ" alias=".service_locator.gFTnxFJ"/>
     <service id=".service_locator.wKF4yn1" alias=".service_locator.19_mNxd"/>
     <service id=".service_locator.GRReuIi" alias=".service_locator.CfnR51D"/>
     <service id=".service_locator.nk0lT0X" alias=".service_locator.1kmbKC8"/>
@@ -8208,8 +8380,17 @@
     <service id="messenger.bus.default" alias="debug.traced.messenger.bus.default"/>
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id=".service_locator.JBAFp66" alias=".service_locator.KfbR3DY"/>
+    <service id=".service_locator.LC0HKB5" alias=".service_locator.hA3ZfRw"/>
+    <service id=".service_locator.m3K3WLF" alias=".service_locator.gBwNVTZ"/>
+    <service id=".service_locator.8rwUYVg" alias=".service_locator.iu0LqYR"/>
+    <service id=".service_locator.LSFio2W" alias=".service_locator.eWsEuD9"/>
+    <service id=".service_locator.3dzWHKH" alias=".service_locator.V5oNiHc"/>
+    <service id=".service_locator.D25fDVq" alias=".service_locator.mULQAId"/>
     <service id=".service_locator.8PQa8Mp" alias=".service_locator..Ae5NXw"/>
     <service id=".service_locator.NFoOWn0" alias=".service_locator.ch4Jgvl"/>
+    <service id=".service_locator.fHQyowl" alias=".service_locator.29FoB2F"/>
+    <service id=".service_locator.j5hpVT6" alias=".service_locator.ZLmnMju"/>
+    <service id=".service_locator.HMy2eBu" alias=".service_locator.5bkioaH"/>
     <service id=".service_locator.6gCvMLk" alias=".service_locator.IWVeSst"/>
     <service id=".service_locator.pW1Bqjm" alias=".service_locator.KdRCMpG"/>
     <service id=".service_locator.IyTIsd6" alias=".service_locator.4MF6DUv"/>

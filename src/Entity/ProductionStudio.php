@@ -6,6 +6,7 @@ use App\Repository\ProductionStudioRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ProductionStudioRepository::class)
@@ -16,11 +17,13 @@ class ProductionStudio
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"movies"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=65)
+     * @Groups({"movies"})
      */
     private $name;
 
