@@ -15,11 +15,17 @@ use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use  Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use OpenApi\Annotations as OA;
 
 class UserController extends AbstractController
 {
     /**
      * method that returns the list of users
+     * 
+     * @OA\Tag(name="users")
+     * 
      * @Route("/api/users", name="app_api_user_list", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
@@ -35,6 +41,9 @@ class UserController extends AbstractController
 
     /**
      * method that returns one user
+     * 
+     * @OA\Tag(name="users")
+     * 
      * @Route("/api/users/{id}", name="app_api_user_show", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
@@ -50,7 +59,10 @@ class UserController extends AbstractController
     }
 
     /**
-     * method that records a user 
+     * method that records a user
+     * 
+     * @OA\Tag(name="users") 
+     * 
      * @Route("/api/users", name="app_api_user_add", methods={"POST"})
      * 
      * @param Request $request
@@ -102,7 +114,10 @@ class UserController extends AbstractController
 
     /**
      * method to edit user profil
-     *@Route("/api/users/{id}", name="app_api_user_edit", methods={"PUT"})
+     * 
+     * @OA\Tag(name="users")
+     * 
+     * @Route("/api/users/{id}", name="app_api_user_edit", methods={"PUT"})
 
      * @param User $user
      * @param Request $request
@@ -152,6 +167,9 @@ class UserController extends AbstractController
 
     /**
      * method to delete account
+     * 
+     * @OA\Tag(name="users")
+     * 
      * @Route("/api/users/{id}", name="app_api_user_delete", methods={"DELETE"})
      *
      * @param User $user
