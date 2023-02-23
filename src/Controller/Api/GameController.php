@@ -13,12 +13,14 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use  Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class GameController extends AbstractController
 {
     /**
      * method that returns the list of games
      * @Route("/api/games", name="app_api_game_list", methods={"GET"})
+     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param GameRepository $gameRepository
      * @return JsonResponse
@@ -33,6 +35,7 @@ class GameController extends AbstractController
     /**
      * method that returns one game
      * @Route("/api/games/{id}", name="app_api_game_show", methods={"GET"})
+     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param Game $game
      * @return JsonResponse
