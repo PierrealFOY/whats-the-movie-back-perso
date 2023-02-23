@@ -58,11 +58,13 @@ class MovieController extends AbstractController
      * @Route("/api/movies/{id}", name="app_api_movie_show", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
-     * @param Movie $movie
+     * @param MovieRepository $movieRepository
+     * @param int $id
      * @return JsonResponse
      */
-    public function show(Movie $movie): JsonResponse
+    public function show(MovieRepository $movieRepository, int $id): JsonResponse
     {
+        $movie = $movieRepository->find($id);
 
         return $this->json($movie, Response::HTTP_OK, [], ['groups' => 'movies']);
     }
