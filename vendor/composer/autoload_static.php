@@ -625,6 +625,7 @@ class ComposerStaticInit149047b2da48b635ccb995376656bf14
         'App\\Entity\\Movie' => __DIR__ . '/../..' . '/src/Entity/Movie.php',
         'App\\Entity\\ProductionStudio' => __DIR__ . '/../..' . '/src/Entity/ProductionStudio.php',
         'App\\Entity\\User' => __DIR__ . '/../..' . '/src/Entity/User.php',
+        'App\\Form\\UserType' => __DIR__ . '/../..' . '/src/Form/UserType.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
         'App\\Repository\\ActorRepository' => __DIR__ . '/../..' . '/src/Repository/ActorRepository.php',
         'App\\Repository\\CountryRepository' => __DIR__ . '/../..' . '/src/Repository/CountryRepository.php',
