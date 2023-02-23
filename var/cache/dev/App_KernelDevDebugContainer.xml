@@ -348,7 +348,6 @@
       <argument type="service" id="security.user_password_hasher"/>
     </service>
     <service id="App\DataFixtures\Providers\AppProvider" class="App\DataFixtures\Providers\AppProvider" autowire="true" autoconfigure="true"/>
-    <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true"/>
     <service id="App\Form\UserType" class="App\Form\UserType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -4887,6 +4886,14 @@
       <call method="addPath">
         <argument>/var/www/html/Apothéose/projet-10-what-s-the-movie-back/vendor/symfony/debug-bundle/Resources/views</argument>
         <argument>!Debug</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/html/Apothéose/projet-10-what-s-the-movie-back/templates/bundles/TwigBundle</argument>
+        <argument>Twig</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/html/Apothéose/projet-10-what-s-the-movie-back/templates/bundles/TwigBundle</argument>
+        <argument>!Twig</argument>
       </call>
       <call method="addPath">
         <argument>/var/www/html/Apothéose/projet-10-what-s-the-movie-back/vendor/symfony/web-profiler-bundle/Resources/views</argument>
