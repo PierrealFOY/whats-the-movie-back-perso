@@ -2,8 +2,15 @@
 
 namespace App\Form;
 
+use App\Entity\Genre;
 use App\Entity\Movie;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,13 +25,13 @@ class MovieType extends AbstractType
                     "placeholder" => "Titre du film"
                 ]
             ])
-            ->add('synopsis',TextareaType::class,[
+            ->add('synopsys',TextareaType::class,[
                 "label" => "Synopsis",
                 "attr" => [
                     "placeholder" => "Synopsis"
                 ]
             ])
-            ->add('releaseDate', DateType::class,[
+            ->add('realeaseDate', DateType::class,[
                 "label" => "Date de sortie du film",
                 "widget" => "single_text"
             ])
@@ -35,7 +42,7 @@ class MovieType extends AbstractType
                 ],
                 "help"=> "* L'url d'une image"
             ])
-            ->add('status')
+            
             ->add('genres', EntityType::class,[
                 "class" => Genre::class,
                 "label" => "Genres *",
@@ -43,12 +50,13 @@ class MovieType extends AbstractType
                 "expanded" => true,
                 "help" => "* Vous pouvez choisir plusieurs genres"
             ])
-            ->add('actors')
-            ->add('productionStudios')
-            ->add('directors')
-            ->add('countries')
-            ->add('user')
-            ->add('games')
+           ->add('status',ChoiceType::class,[
+            "choices" => [
+                "actif" => 1 ,
+                "inactif" => 0 ,
+            ]
+           ])
+    
         ;
     }
 

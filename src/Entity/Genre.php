@@ -33,6 +33,12 @@ class Genre
      */
     private $movies;
 
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+
     public function __construct()
     {
         $this->movies = new ArrayCollection();

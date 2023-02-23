@@ -42,6 +42,7 @@ class Game
      * @Groups({"games"})
      */
     private $user;
+    
 
     public function __construct()
     {
