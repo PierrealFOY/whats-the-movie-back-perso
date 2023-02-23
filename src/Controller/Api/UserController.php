@@ -14,12 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use  Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class UserController extends AbstractController
 {
     /**
      * method that returns the list of users
      * @Route("/api/users", name="app_api_user_list", methods={"GET"})
+     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param UserRepository $userRepository
      * @return JsonResponse
@@ -34,6 +36,7 @@ class UserController extends AbstractController
     /**
      * method that returns one user
      * @Route("/api/users/{id}", name="app_api_user_show", methods={"GET"})
+     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param User $user
      * @return JsonResponse
