@@ -1,0 +1,48 @@
+{% extends 'back/layout/layout.html.twig' %}
+
+{% block title %}Les films{% endblock %}
+
+{% block subBody %}
+    <h1>Les films</h1>
+    <a href="{{ path('app_back_movie_add') }}">Créer un film</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Titre</th>
+                <th>Durée en min</th>
+                <th>image</th>
+                <th>Date de sortie</th>
+                {# <th>Synopsis</th> 
+                <th>Type</th>
+                <th>actions</th>#}
+            </tr>
+        </thead>
+        <tbody>
+        {% for movie in movies %}
+            <tr>
+                <td>{{ movie.id }}</td>
+                <td>{{ movie.title }}</td>
+                
+                
+               
+                
+                <td><img width="30" height="50" src="{{ movie.poster }}" alt=""></td>
+                {# <td>{{ movie.rating }}</td> #}
+                
+                <td>
+                    <a class="btn btn-success" href="{{ path('app_back_movie_show', {'id': movie.id}) }}"><i class="bi bi-eye"></i></a>
+                    <a class="btn btn-warning" href="{{ path('app_back_movie_edit', {'id': movie.id}) }}"><i class="bi bi-pencil"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+   
+{% endblock %}
