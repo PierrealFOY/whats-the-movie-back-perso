@@ -38,11 +38,14 @@ class UserController extends AbstractController
      * @Route("/api/users/{id}", name="app_api_user_show", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
-     * @param User $user
+     * @param UserRepository $userRepository
+     * @param int $id
      * @return JsonResponse
      */
-    public function show(User $user): JsonResponse
+    public function show(UserRepository $userRepository, int $id): JsonResponse
     {
+        $user = $userRepository->find($id);
+
         return $this->json($user, Response::HTTP_OK, [], ['groups' => 'users']);
     }
 

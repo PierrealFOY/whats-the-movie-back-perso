@@ -37,11 +37,14 @@ class GameController extends AbstractController
      * @Route("/api/games/{id}", name="app_api_game_show", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
-     * @param Game $game
+     * @param GameRepository $gameRepository
+     * @param int $id
      * @return JsonResponse
      */
-    public function show(Game $game): JsonResponse
+    public function show(GameRepository $gameRepository, int $id): JsonResponse
     {
+        $game = $gameRepository->find($id);
+
         return $this->json($game, Response::HTTP_OK, [], ['groups' => 'games']);
     }
 
