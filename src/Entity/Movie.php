@@ -38,14 +38,14 @@ class Movie
      * @Assert\Length(min = 50, max = 2000)
      * @Assert\NotBlank
      */
-    private $synopsys;
+    private $synopsis;
 
     /**
      * @ORM\Column(type="datetime")
      * @Groups({"movies"})
      * @Assert\NotBlank
      */
-    private $realeaseDate;
+    private $releaseDate;
 
     /**
      * @ORM\Column(type="string", length=155)
@@ -131,26 +131,26 @@ class Movie
         return $this;
     }
 
-    public function getSynopsys(): ?string
+    public function getSynopsis(): ?string
     {
-        return $this->synopsys;
+        return $this->synopsis;
     }
 
-    public function setSynopsys(?string $synopsys): self
+    public function setSynopsis(?string $synopsis): self
     {
-        $this->synopsys = $synopsys;
+        $this->synopsis = $synopsis;
 
         return $this;
     }
 
-    public function getRealeaseDate(): ?\DateTimeInterface
+    public function getReleaseDate(): ?\DateTimeInterface
     {
-        return $this->realeaseDate;
+        return $this->releaseDate;
     }
 
-    public function setRealeaseDate(\DateTimeInterface $realeaseDate): self
+    public function setReleaseDate(\DateTimeInterface $releaseDate): self
     {
-        $this->realeaseDate = $realeaseDate;
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }

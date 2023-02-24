@@ -53,8 +53,9 @@ class MovieController extends AbstractController
      * )
      * @OA\Tag(name="movies")
      * 
-     * @Route("/api/movies/game", name="app_api_movie_RandomMoviesGame", methods={"GET"})
+     * @Route("/api/movies/games", name="app_api_movie_RandomMoviesGame", methods={"GET"})
      * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
+     * 
      * @param MovieRepository $movieRepository
      * @param Request $request
      * @return JsonResponse
