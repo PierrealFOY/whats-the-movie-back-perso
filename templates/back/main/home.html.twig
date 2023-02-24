@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
 
+{% block background %}
+
+{% endblock %}
+
 {% block title %}
-<a href="{{ path('app_back_home') }}">Accueil</a>
+
+<a class="btn btn-lg btn-primary" href="{{ path('app_back_home') }}">Accueil</a>
+
 {% endblock %}
 
 {% block body %}
 
-<h2>List of words</h2>
-
-<ul>
-
-</ul>
+  <a class="btn btn-lg btn-primary" type="button" >Gérer les films</a>
+  <a class="btn btn-lg btn-primary" type="button" href="{{ path('app_back_user_list') }}">Gérer les utilisateurs</a>
 
 {% endblock %}
