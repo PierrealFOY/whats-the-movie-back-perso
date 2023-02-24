@@ -40,6 +40,23 @@ class UserController extends AbstractController
     }
 
     /**
+    * @Route("/api/users/classement", name="app_api_movie_bestUsersList", methods={"GET"})
+    * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
+    * 
+    * @param UserRepository $userRepository
+    * @param Request $request
+    * @return JsonResponse
+    */
+   public function bestUsersList(UserRepository $userRepository, Request $request): JsonResponse
+   {
+       $limit = (int)$request->get('limit', 10);
+
+       $bestUsers = $userRepository->findUsersByScore($limit);
+
+       return $this->json($bestUsers, Response::HTTP_OK, [], ['groups' => 'users']);
+   }
+
+    /**
      * method that returns one user
      * 
      * @OA\Tag(name="users")
