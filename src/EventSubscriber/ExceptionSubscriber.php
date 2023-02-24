@@ -2,11 +2,13 @@
 
 namespace App\EventSubscriber;
 
+use Doctrine\DBAL\Exception\NotNullConstraintViolationException;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Serializer\Exception\NotEncodableValueException;
+use TypeError;
 
 class ExceptionSubscriber implements EventSubscriberInterface
 {
@@ -30,6 +32,7 @@ class ExceptionSubscriber implements EventSubscriberInterface
         // I catch the exception
         $exception =$event->getThrowable();
 
+
         // If is an http exception i catch status ans error message
         if ($exception instanceof HttpException) {
             $data = [
@@ -40,7 +43,17 @@ class ExceptionSubscriber implements EventSubscriberInterface
             // I replace the exception with data in json format
             $event->setResponse(new JsonResponse($data));
 
-         }else{
+        }elseif ($exception instanceof TypeError) {
+            $message = explode("\\", $exception->getMessage());
+            $entity = explode(" ", $message[4]);
+            $data = [
+                'status' => 404,
+                'message' => $entity[0]."Id n'existe pas"
+            ];
+    
+            $event->setResponse(new JsonResponse($data));
+
+        }else{
             // I manage the error 500
             $data =[
                 'status' => 500,
@@ -49,7 +62,7 @@ class ExceptionSubscriber implements EventSubscriberInterface
     
             $event->setResponse(new JsonResponse($data));
         }
-    }
+     }
 
     public static function getSubscribedEvents(): array
     {
