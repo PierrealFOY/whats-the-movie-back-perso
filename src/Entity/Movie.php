@@ -94,6 +94,7 @@ class Movie
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="movies")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
      * @Groups({"movies"})
      */
     private $user;
