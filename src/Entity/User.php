@@ -63,6 +63,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="integer", nullable=true)
      * @Groups({"movies"})
      * @Groups({"users"})
+     * @Groups({"games"})
      * 
      */
     private $score;
