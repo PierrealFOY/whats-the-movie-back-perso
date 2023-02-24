@@ -104,7 +104,7 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
   <div class=\"container-fluid\">
     <a href=\"";
         // line 44
-        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back_user_list");
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_back_home");
         echo "\" class=\"navbar-brand\" href=\"#\">Accueil</a>
     <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
       <span class=\"navbar-toggler-icon\"></span>
@@ -112,10 +112,10 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
     <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
       <ul class=\"navbar-nav me-auto\">
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Gestion Utilisateurs</a>
+          <a class=\"nav-link\" href=\"#\">Utilisateurs</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Gestion Films</a>
+          <a class=\"nav-link\" href=\"#\">Films</a>
         </li>
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"#\">Espace Personnel</a>
@@ -303,17 +303,17 @@ class __TwigTemplate_3193f0c345e2299e40d91e2a35c73804125b42025e700f4fb4b92e1d7d0
     {% endif %}
     
   <div class=\"container-fluid\">
-    <a href=\"{{path(\"app_back_user_list\")}}\" class=\"navbar-brand\" href=\"#\">Accueil</a>
+    <a href=\"{{path(\"app_back_home\")}}\" class=\"navbar-brand\" href=\"#\">Accueil</a>
     <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarColor01\" aria-controls=\"navbarColor01\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
       <span class=\"navbar-toggler-icon\"></span>
     </button>
     <div class=\"collapse navbar-collapse\" id=\"navbarColor01\">
       <ul class=\"navbar-nav me-auto\">
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Gestion Utilisateurs</a>
+          <a class=\"nav-link\" href=\"#\">Utilisateurs</a>
         </li>
         <li class=\"nav-item\">
-          <a class=\"nav-link\" href=\"#\">Gestion Films</a>
+          <a class=\"nav-link\" href=\"#\">Films</a>
         </li>
         <li class=\"nav-item\">
           <a class=\"nav-link\" href=\"#\">Espace Personnel</a>

@@ -8,6 +8,7 @@ return [
     'app_back_user_edit' => [['id'], ['_controller' => 'App\\Controller\\Back\\UserController::edit'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back-office/utilisateur/modifier']], [], [], []],
     'app_back_user_show' => [['id'], ['_controller' => 'App\\Controller\\Back\\UserController::show'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back-office/utilisateur']], [], [], []],
     'app_back_user_delete' => [['id'], ['_controller' => 'App\\Controller\\Back\\UserController::delete'], [], [['variable', '/', '[^/]++', 'id', true], ['text', '/back-office/utilisateur/supprimer']], [], [], []],
+    'app_back_home' => [[], ['_controller' => 'App\\Controller\\Back\\UserController::home'], [], [['text', '/']], [], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
     '_wdt' => [['token'], ['_controller' => 'web_profiler.controller.profiler::toolbarAction'], [], [['variable', '/', '[^/]++', 'token', true], ['text', '/_wdt']], [], [], []],
     '_profiler_home' => [[], ['_controller' => 'web_profiler.controller.profiler::homeAction'], [], [['text', '/_profiler/']], [], [], []],

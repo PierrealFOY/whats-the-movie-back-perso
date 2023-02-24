@@ -2,6 +2,7 @@
 
 namespace App\Controller\Back;
 
+use App\Controller\MainController;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -14,7 +15,7 @@ use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\HttpFoundation\Request;
 
 
-class UserController extends AbstractController
+class UserController extends MainController
 {
     /**
      * @Route("/back-office/utilisateur", name="app_back_user_list")

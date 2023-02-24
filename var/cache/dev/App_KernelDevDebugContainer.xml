@@ -336,6 +336,7 @@
       <tag name="controller.service_arguments"/>
       <tag name="routing.route_loader"/>
     </service>
+    <service id="App\Controller\Back\MainController" class="App\Controller\Back\MainController" autowire="true" autoconfigure="true"/>
     <service id="App\Controller\Back\UserController" class="App\Controller\Back\UserController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -4886,6 +4887,14 @@
       <call method="addPath">
         <argument>/var/www/html/Apothéose/projet-10-what-s-the-movie-back/vendor/symfony/debug-bundle/Resources/views</argument>
         <argument>!Debug</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/html/Apothéose/projet-10-what-s-the-movie-back/templates/bundles/TwigBundle</argument>
+        <argument>Twig</argument>
+      </call>
+      <call method="addPath">
+        <argument>/var/www/html/Apothéose/projet-10-what-s-the-movie-back/templates/bundles/TwigBundle</argument>
+        <argument>!Twig</argument>
       </call>
       <call method="addPath">
         <argument>/var/www/html/Apothéose/projet-10-what-s-the-movie-back/vendor/symfony/web-profiler-bundle/Resources/views</argument>

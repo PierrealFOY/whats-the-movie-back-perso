@@ -10,6 +10,7 @@ return [
     [ // $staticRoutes
         '/back-office/utilisateur' => [[['_route' => 'app_back_user_list', '_controller' => 'App\\Controller\\Back\\UserController::list'], null, null, null, false, false, null]],
         '/back-office/utilisateur/ajouter' => [[['_route' => 'app_back_user_add', '_controller' => 'App\\Controller\\Back\\UserController::add'], null, ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        '/' => [[['_route' => 'app_back_home', '_controller' => 'App\\Controller\\Back\\UserController::home'], null, null, null, false, false, null]],
         '/_profiler' => [[['_route' => '_profiler_home', '_controller' => 'web_profiler.controller.profiler::homeAction'], null, null, null, true, false, null]],
         '/_profiler/search' => [[['_route' => '_profiler_search', '_controller' => 'web_profiler.controller.profiler::searchAction'], null, null, null, false, false, null]],
         '/_profiler/search_bar' => [[['_route' => '_profiler_search_bar', '_controller' => 'web_profiler.controller.profiler::searchBarAction'], null, null, null, false, false, null]],
