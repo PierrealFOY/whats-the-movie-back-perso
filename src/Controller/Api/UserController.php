@@ -176,8 +176,9 @@ class UserController extends AbstractController
      * @param EntityManagerInterface $em
      * @return JsonResponse
      */
-    public function delete(User $user, EntityManagerInterface $em): JsonResponse
+    public function delete(UserRepository $userRepository, int $id, EntityManagerInterface $em): JsonResponse
     {
+        $user = $userRepository->find($id);
         $em->remove($user);
 
         $em->flush();

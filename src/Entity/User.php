@@ -81,7 +81,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $movies;
 
     /**
-     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user", orphanRemoval=true)
      * @Groups({"users"})
      * 
      */
