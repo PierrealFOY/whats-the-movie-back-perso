@@ -1,7 +1,10 @@
 <?php
 
 namespace App\Form;
-
+Use App\Entity\Director;
+use App\Entity\Actor;
+use App\Entity\ProductionStudio;
+use App\Entity\Country;
 use App\Entity\Genre;
 use App\Entity\Movie;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -12,7 +15,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Intl\Countries;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class MovieType extends AbstractType
 {
@@ -34,7 +39,43 @@ class MovieType extends AbstractType
             ->add('realeaseDate', DateType::class,[
                 "label" => "Date de sortie du film",
                 "widget" => "single_text"
+
             ])
+            /*
+           ->add('directors',CollectionType::class,[
+               "class"=> Director::class,
+               "label" => "Nom du Réalisateur",
+                "attr" => [
+                    "placeholder" => "Nom d Réalisateur"
+                ]
+            ])
+              
+            ->add('actors',TextType::class,[
+                "label" => "Nom de l'Acteur",
+                "attr" => [
+                    "placeholder" => "Nom de l'Acteur"
+                 
+                ]
+            ]) */
+            
+            ->add('productionStudios',EntityType::class,[
+                "class" => ProductionStudio::class,
+                "label" => "Nom du Studio",
+                "multiple"=> true,
+                "attr" => [
+                    "placeholder" => "Nom du Studio"
+                ]
+            ])  
+            ->add('countries',EntityType::class,[
+                "class" => Country:: class,
+                "label" => "Pays de Production",
+                "multiple" => true,
+                "attr" => [
+                    "placeholder" => "Pays"
+                ]
+            ])
+
+
             ->add('poster',UrlType::class,[
                 "label" => "Votre image *",
                 "attr" => [
@@ -42,20 +83,22 @@ class MovieType extends AbstractType
                 ],
                 "help"=> "* L'url d'une image"
             ])
-            
-            ->add('genres', EntityType::class,[
-                "class" => Genre::class,
-                "label" => "Genres *",
-                "multiple" => true,
-                "expanded" => true,
-                "help" => "* Vous pouvez choisir plusieurs genres"
-            ])
-           ->add('status',ChoiceType::class,[
+
+            ->add('status',ChoiceType::class,[
             "choices" => [
                 "actif" => 1 ,
                 "inactif" => 0 ,
             ]
            ])
+
+            ->add('genres', EntityType::class,[
+                "class" => Genre::class,
+                "label" => "Genres *",
+                "multiple" => true,
+                //"expanded" => true,
+                "help" => "* Vous pouvez choisir plusieurs genres"
+            ])
+           
     
         ;
     }

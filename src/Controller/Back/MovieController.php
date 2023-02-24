@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class MovieController extends AbstractController
 {
     /**
-     * @Route("/", name="app_back_movie_home", methods={"GET"})
+     * @Route("/back-office/film", name="app_back_movie_home", methods={"GET"})
      */
     public function home(MovieRepository $movieRepository): Response
     {
@@ -57,10 +57,11 @@ class MovieController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/modifier/{id}", name="app_back_movie_edit", methods={"GET", "POST"})
-     */
+     * @Route("/back-office/film/modifier/{id}", name="app_back_movie_edit", methods={"GET", "POST"})
+    */
     public function edit(Request $request, Movie $movie, MovieRepository $movieRepository): Response
     {
+        
         $form = $this->createForm(MovieType::class, $movie);
       
         $form->handleRequest($request);
@@ -70,7 +71,7 @@ class MovieController extends AbstractController
             
             $movieRepository->add($movie, true);
 
-            return $this->redirectToRoute('app_back_movie_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_back_movie_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('back/movie/edit.html.twig', [
@@ -80,14 +81,14 @@ class MovieController extends AbstractController
     }
 
     /**
-     * @Route("/back-office/supprimer/film/{id}", name="app_back_movie_delete", methods={"POST"})
+     * @Route("/back-office/film/supprimer/{id}", name="app_back_movie_delete", methods={"POST"})
      */
     public function delete(Request $request, Movie $movie, MovieRepository $movieRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$movie->getId(), $request->request->get('_token'))) {
+         if ($this->isCsrfTokenValid( 'delete'.$movie->getId(), $request->get('_token'))){
             $movieRepository->remove($movie, true);
         }
-
-        return $this->redirectToRoute('app_back_movie_index', [], Response::HTTP_SEE_OTHER);
+        
+        return $this->redirectToRoute('app_back_movie_home', [], Response::HTTP_SEE_OTHER);
     }
 }

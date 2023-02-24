@@ -4,16 +4,19 @@
 
 {% block subBody %}
     <h1>Les films</h1>
-    <a href="{{ path('app_back_movie_add') }}">Créer un film</a>
+
+    <div class="mb-2">
+    <a class="btn btn-success" href="{{ path('app_back_movie_add') }}">Créer un film</a>
+    </div>
 
     <table class="table">
         <thead>
             <tr>
                 
+                <th>Numero</th>
                 <th>Titre</th>
-                <th>Durée en min</th>
-                <th>image</th>
-                <th>Date de sortie</th>
+                <th>Image</th>
+                <th>Edit</th>
                 {# <th>Synopsis</th> 
                 <th>Type</th>
                 <th>actions</th>#}

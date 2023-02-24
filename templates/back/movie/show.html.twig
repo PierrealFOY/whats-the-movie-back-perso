@@ -17,12 +17,12 @@
             </tr>
            
             <tr>
-                <th>ReleaseDate</th>
-                <td>{{ movie.releaseDate ? movie.releaseDate|date('Y-m-d') : '' }}</td>
+                <th>RealeaseDate</th>
+                <td>{{ movie.realeaseDate ? movie.realeaseDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
                 <th>Synopsis</th>
-                <td>{{ movie.synopsis }}</td>
+                <td>{{ movie.synopsys }}</td>
             </tr>
             
             <tr>
@@ -35,10 +35,11 @@
     </table>
 
     <div>
-        <a href="{{ path('app_back_movie_home') }}">back to list</a>
+        <a class="btn btn-success" href="{{ path('app_back_movie_home') }}">Retour liste</a>
     </div>
-    <div>
-        <a href="{{ path('app_back_movie_edit', {'id': movie.id}) }}">edit</a>
+
+    <div class="mt-3">
+        <a class="btn btn-success" href="{{ path('app_back_movie_edit', {'id': movie.id}) }}">Modifier</a>
     </div>
 
     {{ include('back/movie/_delete_form.html.twig') }}
