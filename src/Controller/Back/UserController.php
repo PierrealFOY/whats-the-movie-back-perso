@@ -2,7 +2,7 @@
 
 namespace App\Controller\Back;
 
-use App\Controller\MainController;
+use App\Controller\Back\MainController;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -63,8 +63,9 @@ class UserController extends MainController
      * @Route("/back-office/utilisateur/modifier/{id}", name="app_back_user_edit", methods={"GET","POST"})
      * To edit a user by his ID
      */
-    public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
+    public function edit(Request $request, int $id, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
+        $user = $userRepository->find($id);
         $form = $this->createForm(UserType::class, $user,["edit" => true]);
         $form->handleRequest($request);
 
@@ -84,10 +85,11 @@ class UserController extends MainController
      * @Route("/back-office/utilisateur/{id}", name="app_back_user_show", methods={"GET"})
      * To get a user by his ID
      */
-    public function show(User $user): Response 
+    public function show(UserRepository $userRepository, int $id): Response 
     {
+
         return $this->render('back/user/show.html.twig', [
-            'user' => $user,
+            'user' => $userRepository->find($id)
         ]);
     }
 
