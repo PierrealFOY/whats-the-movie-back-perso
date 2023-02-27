@@ -2,11 +2,7 @@
 
 namespace App\Controller\Back;
 
-<<<<<<< HEAD
 use App\Controller\MainController;
-=======
-
->>>>>>> c359ba9e19debf21675e98ef434895f41528dbf6
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
