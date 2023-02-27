@@ -2,7 +2,11 @@
 
 namespace App\Controller\Back;
 
+<<<<<<< HEAD
+use App\Controller\MainController;
+=======
 
+>>>>>>> c359ba9e19debf21675e98ef434895f41528dbf6
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
@@ -17,35 +21,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\ORM\EntityManagerInterface;
 
 
-/**
- * @Route("/back-office/utilisateur")
- */
-class UserController extends AbstractController
+class UserController extends MainController
 {
     /**
-     * @Route("/", name="app_back_user_list")
+     * @Route("/back-office/utilisateur", name="app_back_user_list")
      */
     public function list(UserRepository $userRepository): Response
     {
         return $this->render('back/user/list.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
-    }
+    }  
 
     /**
-     * @Route("/{id}", name="app_back_user_show", methods={"GET"})
-     * Je viens récupérer l'utilisateur par son ID
-     */
-    public function show(User $user): Response 
-    {
-        return $this->render('back/user/show.html.twig', [
-            'user' => $user,
-        ]);
-    }
-
-    /**
-     * @Route("/ajouter", name="app_back_user_add", methods={"GET","POST"})
-     * Je viens ajouter un utilisateur
+     * @Route("/back-office/utilisateur/ajouter", name="app_back_user_add", methods={"GET","POST"})
+     * To add a user
      */
     public function add(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
@@ -65,20 +55,20 @@ class UserController extends AbstractController
 
         $userRepository->add($user, true);
 
-        return $this->redirectToRoute('back/user/new.html.twig', [
-            'user' => $user,
-            'form' => $form,
-        ]);
+        return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
         }    
+    return $this->renderForm('back/user/new.html.twig', [
+        'user' => $user,
+        'form' => $form,
+        ]);
     }
 
      /**
-     * @Route("/modifier/{id}", name="app_back_user_edit", methods={"GET","POST"})
-     * On vient ici modifier un user par son ID
+     * @Route("/back-office/utilisateur/modifier/{id}", name="app_back_user_edit", methods={"GET","POST"})
+     * To edit a user by his ID
      */
     public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
-        dump($user);
         $form = $this->createForm(UserType::class, $user,["edit" => true]);
         $form->handleRequest($request);
 
@@ -95,10 +85,21 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/supprimer/{id}", name="app_back_user_delete", methods={"POST"})
-     * On vient supprimer un utilisateur par son ID
+     * @Route("/back-office/utilisateur/{id}", name="app_back_user_show", methods={"GET"})
+     * To get a user by his ID
      */
-    public function delete(Request $request, User $user, UserRepository $userRepository)
+    public function show(User $user): Response 
+    {
+        return $this->render('back/user/show.html.twig', [
+            'user' => $user,
+        ]);
+    }
+
+    /**
+     * @Route("/back-office/utilisateur/supprimer/{id}", name="app_back_user_delete", methods={"POST"})
+     * To delete a user by his ID
+     */
+    public function delete(Request $request, User $user, UserRepository $userRepository): Response
     {
         // On récupère la valeur du Token et on vient vérifier sa validité
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->get('_token'))) {

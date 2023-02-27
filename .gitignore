@@ -9,6 +9,13 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
+<<<<<<< HEAD
+/var/
+/var/*
+
+/vendor/
+/vendor/*
+=======
 /var
 .env.local
 .env.test
@@ -29,3 +36,4 @@ symfony.lock
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
+>>>>>>> c359ba9e19debf21675e98ef434895f41528dbf6
