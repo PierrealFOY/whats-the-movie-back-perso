@@ -6,6 +6,8 @@ use App\Repository\MovieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MovieRepository::class)
@@ -16,66 +18,90 @@ class Movie
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"movies"})
+     * @Groups({"games"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=65)
+     * @Groups({"movies"})
+     * @Groups({"games"})
+     * @Assert\Length(min = 1, max = 65)
+     * @Assert\NotBlank
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"movies"})
+     * @Assert\Length(min = 50, max = 2000)
+     * @Assert\NotBlank
      */
-    private $synopsys;
+    private $synopsis;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"movies"})
+     * @Assert\NotBlank
      */
-    private $realeaseDate;
+    private $releaseDate;
 
     /**
      * @ORM\Column(type="string", length=155)
+     * @Groups({"movies"})
+     * @Assert\Url
      */
     private $poster;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"movies"})
+     * @Assert\NotBlank
+     * @Assert\Range(min = 0, max = 1)
      */
     private $status;
 
     /**
      * @ORM\ManyToMany(targetEntity=Genre::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $genres;
 
     /**
      * @ORM\ManyToMany(targetEntity=Actor::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $actors;
 
     /**
      * @ORM\ManyToMany(targetEntity=ProductionStudio::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $productionStudios;
 
     /**
      * @ORM\ManyToMany(targetEntity=Director::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $directors;
 
     /**
      * @ORM\ManyToMany(targetEntity=Country::class, inversedBy="movies")
+     * @Groups({"movies"})
      */
     private $countries;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="movies")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     * @Groups({"movies"})
      */
     private $user;
 
     /**
      * @ORM\ManyToMany(targetEntity=Game::class, inversedBy="movies")
+     * 
      */
     private $games;
 
@@ -106,26 +132,26 @@ class Movie
         return $this;
     }
 
-    public function getSynopsys(): ?string
+    public function getSynopsis(): ?string
     {
-        return $this->synopsys;
+        return $this->synopsis;
     }
 
-    public function setSynopsys(?string $synopsys): self
+    public function setSynopsis(?string $synopsis): self
     {
-        $this->synopsys = $synopsys;
+        $this->synopsis = $synopsis;
 
         return $this;
     }
 
-    public function getRealeaseDate(): ?\DateTimeInterface
+    public function getReleaseDate(): ?\DateTimeInterface
     {
-        return $this->realeaseDate;
+        return $this->releaseDate;
     }
 
-    public function setRealeaseDate(\DateTimeInterface $realeaseDate): self
+    public function setReleaseDate(\DateTimeInterface $releaseDate): self
     {
-        $this->realeaseDate = $realeaseDate;
+        $this->releaseDate = $releaseDate;
 
         return $this;
     }
@@ -210,7 +236,7 @@ class Movie
         return $this->productionStudios;
     }
 
-    public function addProductionStudio(productionStudio $productionStudio): self
+    public function addProductionStudio(ProductionStudio $productionStudio): self
     {
         if (!$this->productionStudios->contains($productionStudio)) {
             $this->productionStudios[] = $productionStudio;
@@ -219,7 +245,7 @@ class Movie
         return $this;
     }
 
-    public function removeProductionStudio(productionStudio $productionStudio): self
+    public function removeProductionStudio(ProductionStudio $productionStudio): self
     {
         $this->productionStudios->removeElement($productionStudio);
 

@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -18,37 +20,59 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @Groups({"movies"})
+     * @Groups({"users"})
+     * @Groups({"games"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"movies"})
+     * @Groups({"users"})
+     * @Assert\NotBlank
+     * @Assert\Length(min = 10, max = 180)
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"movies"})
+     * @Groups({"users"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=65)
+     * @Groups({"movies"})
+     * @Groups({"users"})
+     * @Groups({"games"})
+     * @Assert\NotBlank
+     * @Assert\Length(min = 1, max = 65)
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"movies"})
+     * @Groups({"users"})
+     * @Groups({"games"})
+     * 
      */
     private $score;
 
     /**
      * @ORM\Column(type="string", length=155, nullable=true)
+     * @Groups({"movies"})
+     * @Groups({"users"})
+     * @Assert\Url
      */
     private $picture;
 
@@ -58,7 +82,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $movies;
 
     /**
-     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"users"})
+     * 
      */
     private $games;
 
