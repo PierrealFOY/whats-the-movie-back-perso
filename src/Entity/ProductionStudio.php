@@ -31,6 +31,11 @@ class ProductionStudio
      * @ORM\ManyToMany(targetEntity=Movie::class, mappedBy="productionStudios")
      */
     private $movies;
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
 
     public function __construct()
     {
