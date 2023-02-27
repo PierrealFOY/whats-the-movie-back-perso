@@ -4,8 +4,7 @@
 
 {% block subBody %}
     <h1>Liste des utilisateurs</h1>
-    <a class=" mt-2 mb-1 btn btn-outline-primary btn-sm" href="{{ path('app_back_user_add') }}">Créer un Utilisateur</a>
-
+  <a type="button" class="btn btn-primary mb-2" href="{{ path('app_back_user_add') }}">Créer un Utilisateur</a>
   
     <table class="table">
         <thead>
@@ -17,7 +16,7 @@
                 <th>Mot de Passe</th>
                 <th>Score</th>
                 <th>Image</th>
-                <th>Afficher</th>
+                <th>Visualiser</th>
                 <th>Editer</th>
             </tr>
         </thead>
@@ -29,7 +28,7 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td><a class="badge bg-warning">Action impossible</a></td>
+                <td><span class="badge bg-warning">Impossible</span></td>
                 <td>{{ user.score }}</td>
                 <td>{{ user.picture }}</td>
                 <td><a class="btn btn-success" href="{{ path('app_back_user_show', {'id': user.id}) }}"><i class="bi bi-eye"></i></a></td>

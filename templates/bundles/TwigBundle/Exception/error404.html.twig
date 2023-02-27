@@ -1,0 +1,11 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Page not found</h1>
+
+    <p>
+        La page recherchée est introuvable.
+    <a href="{{ path('app_back_user_list') }}">Retourner sur la page principale</a>.
+    </p>
+{% endblock %}

@@ -12,6 +12,11 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+ .backoffice-background {
+  background-image: url("https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.smartelia.com%2Fwp-content%2Fuploads%2F2019%2F07%2FGestion-de-back-office.jpg&imgrefurl=https%3A%2F%2Fwww.smartelia.com%2Ftout-savoir-sur-la-gestion-de-back-office-web%2F&tbnid=-tuNRMlNrioR-M&vet=12ahUKEwiMpZ-DvK79AhX1vicCHeUpDSkQMyglegUIARCQAg..i&docid=uYNmZIgenxLJ6M&w=836&h=523&q=homepage%20backoffice&ved=2ahUKEwiMpZ-DvK79AhX1vicCHeUpDSkQMyglegUIARCQAg");
+ }
+ 
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
 :root {
   --bs-blue: #b58900;
