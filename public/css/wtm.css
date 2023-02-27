@@ -10959,3 +10959,12 @@ textarea.form-control-lg {
 .badge.bg-light {
   color: #073642;
 }
+
+
+
+/* -------------- Personal modifications ------------- */
+
+.item-backoffice {
+  display: flex;
+  justify-content: center;
+}
