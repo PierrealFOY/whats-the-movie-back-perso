@@ -1,0 +1,44 @@
+{% extends 'back/layout/layout.html.twig' %}
+
+{% block title %}Les films{% endblock %}
+
+{% block subBody %}
+    <h1>Les films</h1>
+
+    <div class="mb-2">
+    <a class="btn btn-success" href="{{ path('app_back_movie_add') }}">Créer un film</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                
+                <th>Numero</th>
+                <th>Titre</th>
+                <th>Image</th>
+                <th>Edit</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for movie in movies %}
+            <tr>
+                <td>{{ movie.id }}</td>
+
+                <td>{{ movie.title }}</td>
+                
+                <td><img width="30" height="50" src="{{ movie.poster }}" alt=""></td>
+               
+                
+                <td>
+                    <a class="btn btn-success" href="{{ path('app_back_movie_show', {'id': movie.id}) }}"><i class="bi bi-eye"></i></a>
+                    <a class="btn btn-warning" href="{{ path('app_back_movie_edit', {'id': movie.id}) }}"><i class="bi bi-pencil"></i></a>
+                </td>
+            </tr>
+        
+        {% endfor %}
+        </tbody>
+    </table>
+
+   
+{% endblock %}

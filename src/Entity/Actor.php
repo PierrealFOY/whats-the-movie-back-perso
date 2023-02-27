@@ -39,6 +39,11 @@ class Actor
      */
     private $movies;
 
+    public function __toString()
+    {
+        return $this->getFirstname();
+    }
+
     public function __construct()
     {
         $this->movies = new ArrayCollection();
