@@ -41,7 +41,7 @@ class Actor
 
     public function __toString()
     {
-        return $this->getFirstName();
+        return $this->getFirstname();
     }
 
     public function __construct()

@@ -41,22 +41,21 @@ class MovieType extends AbstractType
                 "widget" => "single_text"
 
             ])
-            /*
-           ->add('directors',CollectionType::class,[
+          
+           ->add('directors',EntityType::class,[
                "class"=> Director::class,
                "label" => "Nom du Réalisateur",
-                "attr" => [
-                    "placeholder" => "Nom d Réalisateur"
-                ]
+               "multiple"=> true,
+                
             ])
               
-            ->add('actors',TextType::class,[
-                "label" => "Nom de l'Acteur",
-                "attr" => [
-                    "placeholder" => "Nom de l'Acteur"
-                 
-                ]
-            ]) */
+            ->add('actors',EntityType::class,[
+                "class" => Actor::class,
+                "label" => "Nom de l'acteur", 
+                "multiple"=> true,
+                
+                ])
+
             
             ->add('productionStudios',EntityType::class,[
                 "class" => ProductionStudio::class,

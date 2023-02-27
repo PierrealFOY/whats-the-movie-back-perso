@@ -46,22 +46,10 @@
                         <a class="nav-link {% block home_menu %}{% endblock %}" href="{{path("app_back_movie_home")}}">Accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% block movie_menu %}{% endblock %}" href="{{path("app_back_movie_home")}}"><i class="bi bi-film"></i> Films, séries TV</a>
+                        <a class="nav-link {% block movie_menu %}{% endblock %}" href="{{path("app_back_movie_home")}}"><i class="bi bi-film"></i> Films</a>
                     </li>
-                    {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-                        <li class="nav-item">
-                            <a class="nav-link {% block favorite_menu %}{% endblock %}" href="{{path("app_favorite_list")}}"><i class="bi bi-bookmark"></i> Ma liste</a>
-                        </li>
-                    
-                    {% endif %}
-                    {% if is_granted("ROLE_MANAGER") %}
-                        <li class="nav-item">
-                            <a class="nav-link " href="{{path("app_back_movie_index")}}"><i class="bi bi-emoji-smile"></i> Back-office</a>
-                        </li>
-                    
-                    {% endif %}
-                    
-                {% endblock %}
+                                    
+                {% endblock %} 
                 </ul>
 
         </div>
@@ -83,19 +71,14 @@
         </span>
     </footer>
 
-    <!-- Optional JavaScript; choose one of 
-        the two! -->
+    
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <!--  Bootstrap Bundle with Popper--> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
-    -->
+    
 </body>
 
 </html>

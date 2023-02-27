@@ -1,9 +1,10 @@
 {% extends 'back/layout/layout.html.twig' %}
 
-{% block title %}Movie{% endblock %}
+{% block title %}Film{% endblock %}
 
 {% block subBody %}
-    <h1>Movie</h1>
+
+    <h1>Film</h1>
 
     <table class="table">
         <tbody>
@@ -29,12 +30,66 @@
                 <th>Poster</th>
                 <td>{{ movie.poster }}</td>
             </tr>
+
+            <tr>
+                <th>Acteur</th>
+                <td>
+                {% for actor in movie.actors %}
+                  {% if actor is defined %}
+                    {{ actor }} {{" "}}
+                  {% endif %}
+                {% endfor %}
+                </td>
+            </tr>  
+
+            <tr>
+          
+                <th>Réalisateur</th>   
+                
+                <td>
+                {% for director in movie.directors %}
+                  {% if director is defined %}
+                     {{ director }}/
+                  {% endif %}
+                {% endfor %}
+                </td>
+           
+            </tr> 
+            <tr>
+                <th>Studio</th>
+            <td>
+                {% for productionStudio in movie.productionStudios %}
+                {{ productionStudio }}/
             
-            
+                {% endfor %}
+            </td>
+            </tr> 
+
+           <tr>
+                <th>Pays</th>
+               <td>
+                {% for countrie in movie.countries %}
+                {{ countrie }}/
+                {% endfor %}
+                </td>
+            </tr>    
+           
+
+            <tr>
+                <th>Genre</th>
+                <td>
+
+                {% for genre in movie.genres %}
+                {{ genre}}/
+                {% endfor %}
+
+                </td>
+            </tr> 
+
         </tbody>
     </table>
 
-    <div>
+    <div class="mt-3">
         <a class="btn btn-success" href="{{ path('app_back_movie_home') }}">Retour liste</a>
     </div>
 
