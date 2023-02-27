@@ -13,12 +13,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use  Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use OpenApi\Annotations as OA;
 
 class GameController extends AbstractController
 {
     /**
      * method that returns the list of games
+     * 
+     * @OA\Tag(name="games")
+     * 
      * @Route("/api/games", name="app_api_game_list", methods={"GET"})
+     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param GameRepository $gameRepository
      * @return JsonResponse
@@ -32,18 +40,28 @@ class GameController extends AbstractController
 
     /**
      * method that returns one game
-     * @Route("/api/games/{id}", name="app_api_game_show", methods={"GET"})
      * 
-     * @param Game $game
+     * @OA\Tag(name="games")
+     * 
+     * @Route("/api/games/{id}", name="app_api_game_show", methods={"GET"})
+     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
+     * 
+     * @param GameRepository $gameRepository
+     * @param int $id
      * @return JsonResponse
      */
-    public function show(Game $game): JsonResponse
+    public function show(GameRepository $gameRepository, int $id): JsonResponse
     {
+        $game = $gameRepository->find($id);
+
         return $this->json($game, Response::HTTP_OK, [], ['groups' => 'games']);
     }
 
     /**
      * method that returns one game
+     * 
+     * @OA\Tag(name="games")
+     * 
      * @Route("/api/games", name="app_api_game_add", methods={"POST"})
      * 
      * @param Game $game

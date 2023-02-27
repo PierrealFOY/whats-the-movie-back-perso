@@ -30,32 +30,35 @@
     {% else %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     {% endif %}
-        <div class="container-fluid">
+    
+  <div class="container-fluid">
             <a href="{{path("app_back_movie_home")}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none header-logo">
                 {#<img src="{{asset('favicon.png')}}" height="24" alt="Logo WTM">#}
                 <span class="header-logo__title">WTM</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                {% block menu %}
-                    <li class="nav-item">
-                        <a class="nav-link {% block home_menu %}{% endblock %}" href="{{path("app_back_movie_home")}}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% block movie_menu %}{% endblock %}" href="{{path("app_back_movie_home")}}"><i class="bi bi-film"></i> Films</a>
-                    </li>
-                                    
-                {% endblock %} 
-                </ul>
+            </a>    
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Utilisateurs</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {% block movie_menu %}{% endblock %}" href="{{path("app_back_movie_home")}}"><i class="bi bi-film"></i>Films</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Espace Personnel</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-sm-2" type="search" placeholder="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
 
-        </div>
-    </nav>
-
-    {# ce block body, est l'espace laissé pour que les templates viennnent se "caler" dedans #}
     {% block body %}{% endblock %}
 
     {% if randomMovie is defined %}

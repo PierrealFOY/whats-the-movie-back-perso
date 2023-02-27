@@ -14,12 +14,20 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use  Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
+use OpenApi\Annotations as OA;
 
 class UserController extends AbstractController
 {
     /**
      * method that returns the list of users
+     * 
+     * @OA\Tag(name="users")
+     * 
      * @Route("/api/users", name="app_api_user_list", methods={"GET"})
+     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param UserRepository $userRepository
      * @return JsonResponse
@@ -32,19 +40,46 @@ class UserController extends AbstractController
     }
 
     /**
+    * @Route("/api/users/classement", name="app_api_movie_bestUsersList", methods={"GET"})
+    * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
+    * 
+    * @param UserRepository $userRepository
+    * @param Request $request
+    * @return JsonResponse
+    */
+   public function bestUsersList(UserRepository $userRepository, Request $request): JsonResponse
+   {
+       $limit = (int)$request->get('limit', 10);
+
+       $bestUsers = $userRepository->findUsersByScore($limit);
+
+       return $this->json($bestUsers, Response::HTTP_OK, [], ['groups' => 'users']);
+   }
+
+    /**
      * method that returns one user
-     * @Route("/api/users/{id}", name="app_api_user_show", methods={"GET"})
      * 
-     * @param User $user
+     * @OA\Tag(name="users")
+     * 
+     * @Route("/api/users/{id}", name="app_api_user_show", methods={"GET"})
+     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
+     * 
+     * @param UserRepository $userRepository
+     * @param int $id
      * @return JsonResponse
      */
-    public function show(User $user): JsonResponse
+    public function show(UserRepository $userRepository, int $id): JsonResponse
     {
+        $user = $userRepository->find($id);
+
         return $this->json($user, Response::HTTP_OK, [], ['groups' => 'users']);
     }
 
     /**
-     * method that records a user 
+     * method that records a user
+     * 
+     * @OA\Tag(name="users") 
+     * 
      * @Route("/api/users", name="app_api_user_add", methods={"POST"})
      * 
      * @param Request $request
@@ -96,7 +131,10 @@ class UserController extends AbstractController
 
     /**
      * method to edit user profil
-     *@Route("/api/users/{id}", name="app_api_user_edit", methods={"PUT"})
+     * 
+     * @OA\Tag(name="users")
+     * 
+     * @Route("/api/users/{id}", name="app_api_user_edit", methods={"PUT"})
 
      * @param User $user
      * @param Request $request
@@ -146,14 +184,18 @@ class UserController extends AbstractController
 
     /**
      * method to delete account
+     * 
+     * @OA\Tag(name="users")
+     * 
      * @Route("/api/users/{id}", name="app_api_user_delete", methods={"DELETE"})
      *
      * @param User $user
      * @param EntityManagerInterface $em
      * @return JsonResponse
      */
-    public function delete(User $user, EntityManagerInterface $em): JsonResponse
+    public function delete(UserRepository $userRepository, int $id, EntityManagerInterface $em): JsonResponse
     {
+        $user = $userRepository->find($id);
         $em->remove($user);
 
         $em->flush();

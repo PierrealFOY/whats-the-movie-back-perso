@@ -18,7 +18,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
      * @Groups({"movies"})
      * @Groups({"users"})
@@ -63,6 +63,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="integer", nullable=true)
      * @Groups({"movies"})
      * @Groups({"users"})
+     * @Groups({"games"})
      * 
      */
     private $score;
@@ -81,7 +82,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $movies;
 
     /**
-     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user", orphanRemoval=true)
      * @Groups({"users"})
      * 
      */
