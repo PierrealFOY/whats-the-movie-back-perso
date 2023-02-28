@@ -3,7 +3,6 @@
 namespace App\DataFixtures\Providers;
 
 class AppProvider{
-     // Taleau des 300 films disponibles pour les Fixtures
      private $movies = [
         'Detachment',
         'Horrible Bosses 2',
