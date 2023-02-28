@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Director{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un Réalisateur</h1>
+
+    <div class="mb-3">
+        <a href="{{ path('app_back_director_index') }}" >Retour à la liste des réalisateur</a>
+    </div>
+
+    {{ include('back/director/_form.html.twig') }}
+    
+{% endblock %}

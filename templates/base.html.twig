@@ -45,12 +45,9 @@
             <a class="nav-link {% if "app_back_movie" in app.request.get('_route') %}active{% endif %} "  href="{{path("app_back_movie_home")}}"><i class="bi bi-film">    </i>Films</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Espace Personnel</a>
+          <a class="nav-link {% if "app_back_user" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_user_list")}}"><i class="bi bi-person"></i> Utilisateur</a>
         </li>
         <li class="nav-item">
-
-
-
           <a class="nav-link {% if "app_back_actor" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_actor_index")}}"><i class="bi bi-emoji-sunglasses"></i> Acteur</a>
         </li>
         <li class="nav-item">
@@ -60,14 +57,12 @@
           <a class="nav-link {% if "app_back_productionStudio" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_productionStudio_index")}}"><i class="bi bi-cash-coin"></i> Studio de Production</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Espace Personnel</a>
-
+          <a class="nav-link {% if "app_back_director" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_director_index")}}"><i class="bi bi-camera-reels"></i> Réalisateur</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if "app_back_genre" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_genre_index")}}"><i class="bi bi-collection"></i> Genre</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Recherche">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Recherche</button>
-      </form>
     </div>
   </div>
 </nav>
@@ -79,8 +74,7 @@
   </div>
 </main>
 
-    
-    
+        
     <!-- footer -->
     <footer class="container-fluid py-4 border-top text-center">
         <span class="text-muted">what's the movie made with &hearts; !

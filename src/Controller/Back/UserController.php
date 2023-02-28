@@ -97,8 +97,10 @@ class UserController extends MainController
      * @Route("/back-office/utilisateur/supprimer/{id}", name="app_back_user_delete", methods={"POST"})
      * To delete a user by his ID
      */
-    public function delete(Request $request, User $user, UserRepository $userRepository): Response
+    public function delete(Request $request,int $id, UserRepository $userRepository): Response
     {
+
+        $user = $userRepository->find($id);
         // On récupère la valeur du Token et on vient vérifier sa validité
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->get('_token'))) {
             $userRepository->remove($user, true);

@@ -15,19 +15,23 @@
   <a class="btn btn-lg btn-primary" type="button" >Gérer les films</a>
   <a class="btn btn-lg btn-primary" type="button" href="{{ path('app_back_user_list') }}">Gérer les utilisateurs</a>
 
+<!-- blocs on the home page of the back office to manage movies and users -->
+<div class="d-flex justify-content-center">
 
-<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
-  <div class="card-header">Films</div>
-  <div class="card-body">
-    <h4 class="card-title">Gestion des films</h4>
-    <p class="card-text">Ajout, suppression, edition de tous les films présents en BDD.</p>
+  <div align="center" class="card item-backoffice text-white bg-primary mt-3 mb-3" style="max-width: 20rem;">
+    <div class="card-header">Films</div>
+      <div class="card-body">
+        <a align="center" class="btn btn-lg btn-primary" type="button" >Gérer les films</a>
+        <p class="card-text">Ajout, suppression, edition de tous les films présents en BDD.</p>
+      </div>
   </div>
-</div>
-<div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
-  <div class="card-header">Utilisateurs</div>
-  <div class="card-body">
-    <h4 class="card-title">Gestion des utilisateurs</h4>
-    <p class="card-text">Gestion des rôles et autorisations des membres du Back Office. Ajout, suppression, edition de tous les utilisateurs présents en BDD.</p>
+
+  <div align="center" class="card item-backoffice text-white bg-secondary mb-3" style="max-width: 20rem;">
+    <div class="card-header">Utilisateurs</div>
+      <div class="card-body">
+      <a align="center" class="btn btn-lg btn-primary" type="button" href="{{ path('app_back_user_list') }}">Gérer les utilisateurs</a>
+        <p class="card-text">Gestion des rôles et autorisations des membres du Back Office. Ajout, suppression, edition de tous les utilisateurs présents en BDD.</p>
+    </div>
   </div>
 </div>
 {% endblock %}

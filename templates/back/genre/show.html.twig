@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Genre{% endblock %}
+
+{% block body %}
+    <h1>Genre</h1>
+
+    <div class="mb-3">
+        <a href="{{ path('app_back_genre_index') }}" >Retour à la liste des genres</a>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ genre.id }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ genre.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_back_genre_edit', {'id': genre.id}) }}" class="btn btn-warning">Modifier</a>
+
+    {{ include('back/genre/_delete_form.html.twig') }}
+{% endblock %}
