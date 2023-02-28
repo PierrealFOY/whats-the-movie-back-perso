@@ -40,7 +40,7 @@ class Director
 
     public function __toString()
     {
-        return $this->getFirstname();
+        return $this->getFirstname() ." ". $this->getLastname();
     }
 
 

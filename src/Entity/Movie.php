@@ -74,6 +74,7 @@ class Movie
      * @Groups({"movies"})
      */
     private $actors;
+    
 
     /**
      * @ORM\ManyToMany(targetEntity=ProductionStudio::class, inversedBy="movies")
