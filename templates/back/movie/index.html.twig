@@ -18,8 +18,8 @@
                 <th>Id</th>
                 <th>Titre</th>
                 <th>Image</th>
-                <th>Afficher</th>
-                <th>Edit</th>
+                <th>Actions</th>
+                
                 
             </tr>
         </thead>
@@ -34,9 +34,12 @@
                
                 <td>
                     <a class="btn btn-success" href="{{ path('app_back_movie_show', {'id': movie.id}) }}"><i class="bi bi-eye"></i></a>
-
-
                     <a class="btn btn-warning" href="{{ path('app_back_movie_edit', {'id': movie.id}) }}"><i class="bi bi-pencil"></i></a>
+                     <form method="post" action="{{ path('app_back_movie_delete', {'id': movie.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer ce film?');" class="d-inline" >
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ movie.id) }}">
+                        <button class="btn btn-danger rounded"><i class="bi bi-trash-fill"></i></button>
+                    </form>
+
                 </td>
             </tr>
            

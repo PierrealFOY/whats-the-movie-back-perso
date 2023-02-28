@@ -85,8 +85,10 @@ class MovieController extends AbstractController
     /**
      * @Route("/back-office/film/supprimer/{id}", name="app_back_movie_delete", methods={"POST"})
      */
-    public function delete(Request $request, Movie $movie, MovieRepository $movieRepository): Response
+    public function delete(Request $request, MovieRepository $movieRepository , int $id): Response
     {
+        $movie= $movieRepository->find($id);
+        
          if ($this->isCsrfTokenValid( 'delete'.$movie->getId(), $request->get('_token'))){
             $movieRepository->remove($movie, true);
         }
