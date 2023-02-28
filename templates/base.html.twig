@@ -45,9 +45,6 @@
             <a class="nav-link {% if "app_back_movie" in app.request.get('_route') %}active{% endif %} "  href="{{path("app_back_movie_home")}}"><i class="bi bi-film">    </i>Films</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Espace Personnel</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link {% if "app_back_user" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_user_list")}}"><i class="bi bi-person"></i> Utilisateur</a>
         </li>
         <li class="nav-item">
@@ -57,14 +54,9 @@
           <a class="nav-link {% if "app_back_country" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_country_index")}}"><i class="bi bi-signpost"></i> Pays</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Espace Personnel</a>
+          <a class="nav-link {% if "app_back_genre" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_genre_index")}}"><i class="bi bi-collection"></i> Genre</a>
         </li>
-        
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Recherche">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Recherche</button>
-      </form>
     </div>
   </div>
 </nav>
