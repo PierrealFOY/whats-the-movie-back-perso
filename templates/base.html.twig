@@ -51,6 +51,9 @@
           <a class="nav-link {% if "app_back_actor" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_actor_index")}}"><i class="bi bi-emoji-sunglasses"></i> Acteur</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link {% if "app_back_country" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_country_index")}}"><i class="bi bi-emoji-sunglasses"></i> Pays</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">Espace Personnel</a>
         </li>
       </ul>
