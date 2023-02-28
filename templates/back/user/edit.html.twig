@@ -1,9 +1,9 @@
-{% extends "base.html.twig" %}
+{% extends "back/user/layout/layout.html.twig" %}
 
 {% block title %}Editer un utilisateur{% endblock %}
 
 {% block subBody %}
-    <h1>Editer un utilisateur</h1>
+    <h1>Modifier un utilisateur</h1>
 
     <div class="mt-2">
         {{ include('back/user/_form.html.twig', {'button_label': 'Modifier'}) }}
