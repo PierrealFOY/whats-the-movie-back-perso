@@ -164,6 +164,8 @@ class MovieController extends AbstractController
         // ! User TODO
         $movie->setUser($userRepository->find(291));
 
+        $movie->setStatus(0);
+
         $movieRepository->add($movie, true);
 
         return $this->json($movie, Response::HTTP_CREATED, [

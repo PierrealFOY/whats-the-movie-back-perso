@@ -58,8 +58,7 @@ class Movie
     /**
      * @ORM\Column(type="integer")
      * @Groups({"movies"})
-     * @Assert\NotBlank
-     * @Assert\Range(min = 0, max = 1)
+     * 
      */
     private $status;
 
