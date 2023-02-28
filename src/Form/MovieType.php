@@ -30,13 +30,13 @@ class MovieType extends AbstractType
                     "placeholder" => "Titre du film"
                 ]
             ])
-            ->add('synopsys',TextareaType::class,[
+            ->add('synopsis',TextareaType::class,[
                 "label" => "Synopsis",
                 "attr" => [
                     "placeholder" => "Synopsis"
                 ]
             ])
-            ->add('realeaseDate', DateType::class,[
+            ->add('releaseDate', DateType::class,[
                 "label" => "Date de sortie du film",
                 "widget" => "single_text"
 

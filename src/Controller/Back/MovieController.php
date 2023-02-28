@@ -49,8 +49,9 @@ class MovieController extends AbstractController
     /**
      * @Route("/back-office/film/{id}", name="app_back_movie_show", methods={"GET"})
      */
-    public function show(Movie $movie): Response
+    public function show(MovieRepository $movieRepository, int $id): Response
     {
+        $movie= $movieRepository->find($id);
         return $this->render('back/movie/show.html.twig', [
             'movie' => $movie,
         ]);
@@ -59,8 +60,9 @@ class MovieController extends AbstractController
     /**
      * @Route("/back-office/film/modifier/{id}", name="app_back_movie_edit", methods={"GET", "POST"})
     */
-    public function edit(Request $request, Movie $movie, MovieRepository $movieRepository): Response
+    public function edit(Request $request, MovieRepository $movieRepository , int $id): Response
     {
+        $movie= $movieRepository->find($id);
         
         $form = $this->createForm(MovieType::class, $movie);
       
