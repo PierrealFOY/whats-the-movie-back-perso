@@ -42,14 +42,23 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-            <!--<a class="nav-link {% block movie_menu %}{% endblock %}" {#href="{{path("app_back_movie_home")}}#}"><i class="bi bi-film">    </i>Films</a> -->
+            <a class="nav-link {% if "app_back_movie" in app.request.get('_route') %}active{% endif %} "  href="{{path("app_back_movie_home")}}"><i class="bi bi-film">    </i>Films</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Espace Personnel</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {% if "app_back_user" in app.request.get('_route') %}active{% endif %}
- " href="{{path("app_back_user_list")}}"><i class="bi bi-person">    </i>Utilisateurs</a>
+
+
+
+          <a class="nav-link {% if "app_back_actor" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_actor_index")}}"><i class="bi bi-emoji-sunglasses"></i> Acteur</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if "app_back_country" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_country_index")}}"><i class="bi bi-signpost"></i> Pays</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Espace Personnel</a>
+
         </li>
         
       </ul>
@@ -61,8 +70,14 @@
   </div>
 </nav>
 
+<main class="container">
+  <div class="mt-4">
     {% block body %}{% endblock %}
-    
+
+  </div>
+</main>
+
+        
     <!-- footer -->
     <footer class="container-fluid py-4 border-top text-center">
         <span class="text-muted">what's the movie made with &hearts; !

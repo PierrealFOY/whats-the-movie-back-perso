@@ -64,7 +64,12 @@ class GameController extends AbstractController
      * 
      * @Route("/api/games", name="app_api_game_add", methods={"POST"})
      * 
-     * @param Game $game
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     * @param ValidatorInterface $validator
+     * @param GameRepository $gameRepository
+     * @param UserRepository $userRepository
+     * @param MovieRepository $movieRepository
      * @return JsonResponse
      */
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, GameRepository $gameRepository, UserRepository $userRepository, MovieRepository $movieRepository): JsonResponse

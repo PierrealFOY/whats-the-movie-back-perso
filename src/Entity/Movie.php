@@ -6,6 +6,7 @@ use App\Repository\MovieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use PHPUnit\Framework\SelfDescribing;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -73,6 +74,7 @@ class Movie
      * @Groups({"movies"})
      */
     private $actors;
+    
 
     /**
      * @ORM\ManyToMany(targetEntity=ProductionStudio::class, inversedBy="movies")
@@ -91,6 +93,12 @@ class Movie
      * @Groups({"movies"})
      */
     private $countries;
+    
+    public function __toString()
+    {
+        return $this->getTitle();
+    }
+    
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="movies")
@@ -104,6 +112,8 @@ class Movie
      * 
      */
     private $games;
+
+    
 
     public function __construct()
     {
@@ -264,6 +274,7 @@ class Movie
     {
         if (!$this->directors->contains($director)) {
             $this->directors[] = $director;
+          
         }
 
         return $this;

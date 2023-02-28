@@ -88,6 +88,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $games;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"games"})
+     * @Groups({"users"})
+     */
+    private $numberGame;
+
     public function __construct()
     {
         $this->movies = new ArrayCollection();
@@ -275,6 +282,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $game->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNumberGame(): ?int
+    {
+        return $this->numberGame;
+    }
+
+    public function setNumberGame(?int $numberGame): self
+    {
+        $this->numberGame = $numberGame;
 
         return $this;
     }
