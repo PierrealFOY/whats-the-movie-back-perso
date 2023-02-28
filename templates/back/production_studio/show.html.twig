@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Production Studio{% endblock %}
+
+{% block body %}
+    <h1>Studio de Production</h1>
+
+    <div class="mb-3">
+        <a href="{{ path('app_back_productionStudio_index') }}" >Retour à la liste des Studios de Productions</a>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ProductionStudio.id }}</td>
+            </tr>
+            
+            <tr>
+                <th>Nom</th>
+                <td>{{ ProductionStudio.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+
+    <a href="{{ path('app_back_productionStudio_edit', {'id': ProductionStudio.id}) }}" class="btn btn-warning">Modifier</a>
+
+    {{ include('back/production_studio/_delete_form.html.twig') }}
+{% endblock %}
