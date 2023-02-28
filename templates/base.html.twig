@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="{{asset('css/wtm.css')}}">
     <!-- favicon -->
    
-
     <title> {% block title %}What's the Movie{% endblock %}</title>
+
 </head>
 
 <body>
@@ -32,8 +32,8 @@
     {% endif %}
     
   <div class="container-fluid">
-            <a href="{{path("app_back_movie_home")}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none header-logo">
-                {#<img src="{{asset('favicon.png')}}" height="24" alt="Logo WTM">#}
+            <a href="{{path("app_back_home")}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none header-logo">
+                
                 <span class="header-logo__title">WTM</span>
             </a>    
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,31 +42,25 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Utilisateurs</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link {% block movie_menu %}{% endblock %}" href="{{path("app_back_movie_home")}}"><i class="bi bi-film"></i>Films</a>
+            <a class="nav-link {% block movie_menu %}{% endblock %}" href="{{path("app_back_movie_home")}}"><i class="bi bi-film">    </i>Films</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Espace Personnel</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link " href="{{path("app_back_user_list")}}"><i class="bi bi-person">    </i>Utilisateurs</a>
+        </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control me-sm-2" type="search" placeholder="Recherche">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Recherche</button>
       </form>
     </div>
   </div>
 </nav>
 
     {% block body %}{% endblock %}
-
-    {% if randomMovie is defined %}
-        <div class="text-center pt-3 border-top" >
-            <p>Un film au hasard : <a href="{{path("app_movie_show",{id:randomMovie.id, slug:randomMovie.slug})}}">{{randomMovie.title}}</a></p>
-        </div>
     
-    {% endif %}
     <!-- footer -->
     <footer class="container-fluid py-4 border-top text-center">
         <span class="text-muted">what's the movie made with &hearts; !
@@ -74,14 +68,11 @@
         </span>
     </footer>
 
-    
-
     <!--  Bootstrap Bundle with Popper--> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
 
-    
 </body>
 
 </html>
