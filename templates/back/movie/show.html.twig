@@ -18,12 +18,12 @@
             </tr>
            
             <tr>
-                <th>RealeaseDate</th>
-                <td>{{ movie.realeaseDate ? movie.realeaseDate|date('Y-m-d') : '' }}</td>
+                <th>ReleaseDate</th>
+                <td>{{ movie.releaseDate ? movie.releaseDate|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
                 <th>Synopsis</th>
-                <td>{{ movie.synopsys }}</td>
+                <td>{{ movie.synopsis }}</td>
             </tr>
             
             <tr>
@@ -36,7 +36,7 @@
                 <td>
                 {% for actor in movie.actors %}
                   {% if actor is defined %}
-                    {{ actor }} {{" "}}
+                    {{ actor }}</br>
                   {% endif %}
                 {% endfor %}
                 </td>
@@ -48,9 +48,12 @@
                 
                 <td>
                 {% for director in movie.directors %}
-                  {% if director is defined %}
-                     {{ director }}/
+                  {% if director is defined %} 
+
+                     {{ director }}</br>
+
                   {% endif %}
+
                 {% endfor %}
                 </td>
            
@@ -59,7 +62,7 @@
                 <th>Studio</th>
             <td>
                 {% for productionStudio in movie.productionStudios %}
-                {{ productionStudio }}/
+                {{ productionStudio }}</br>
             
                 {% endfor %}
             </td>
@@ -69,18 +72,17 @@
                 <th>Pays</th>
                <td>
                 {% for countrie in movie.countries %}
-                {{ countrie }}/
+                {{ countrie }}</br>
                 {% endfor %}
                 </td>
             </tr>    
            
-
             <tr>
                 <th>Genre</th>
                 <td>
 
                 {% for genre in movie.genres %}
-                {{ genre}}/
+                {{ genre}}</br>
                 {% endfor %}
 
                 </td>

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Country{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un Pays</h1>
+
+    <div class="mb-3">
+        <a href="{{ path('app_back_country_index') }}" >Retour à la liste des pays</a>
+    </div>
+
+    {{ include('back/country/_form.html.twig') }}
+    
+{% endblock %}

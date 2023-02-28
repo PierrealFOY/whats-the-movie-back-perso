@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Actor{% endblock %}
+
+{% block body %}
+    <h1>Modifier un Acteur</h1>
+    <div class="mb-3">
+        <a href="{{ path('app_back_actor_index') }}" >Retour à la liste des acteurs</a>
+    </div>
+    {{ include('back/actor/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    {{ include('back/actor/_delete_form.html.twig') }}
+{% endblock %}

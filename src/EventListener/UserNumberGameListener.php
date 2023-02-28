@@ -7,7 +7,7 @@ use App\Repository\GameRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
-class UserScoreListener
+class UserNumberGameListener
 {
     private $entityManager;
 
@@ -17,26 +17,22 @@ class UserScoreListener
     }
 
     /**
-     * method that calculates the average score of the player who saves a game
+     * method that adds a game to a user when he saves a game
      *
      * @param Game $game
      * @param LifecycleEventArgs $event
      * @return void
      */
-    public function calculUserScore(Game $game, LifecycleEventArgs $event): void
+    public function addUserNumberGame(Game $game, LifecycleEventArgs $event): void
     {
         $user = $game->getUser();
+
+        $nbGame = $user->getNumberGame();
+
+        $newNumberGame = $nbGame + 1;
+
+        $user->setNumberGame($newNumberGame);
         
-        $allScores = null;
-
-        foreach ($user->getGames() as $game) {
-            $allScores += $game->getScore();
-        }
-
-        $score = $allScores / count($user->getGames());
-
-        $user->setScore(round($score));
-
         $this->entityManager->flush();
     }
 }
