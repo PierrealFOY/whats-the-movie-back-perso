@@ -16,9 +16,15 @@ class UserNumberGameListener
         $this->entityManager = $entityManager;
     }
 
-    public function addUserNumberGame(Game $game, LifecycleEventArgs $event)
+    /**
+     * method that adds a game to a user when he saves a game
+     *
+     * @param Game $game
+     * @param LifecycleEventArgs $event
+     * @return void
+     */
+    public function addUserNumberGame(Game $game, LifecycleEventArgs $event): void
     {
-
         $user = $game->getUser();
 
         $nbGame = $user->getNumberGame();
@@ -27,7 +33,6 @@ class UserNumberGameListener
 
         $user->setNumberGame($newNumberGame);
         
-        //je flush
         $this->entityManager->flush();
     }
 }

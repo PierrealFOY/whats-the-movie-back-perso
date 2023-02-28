@@ -16,9 +16,15 @@ class UserScoreListener
         $this->entityManager = $entityManager;
     }
 
-    public function calculUserScore(Game $game, LifecycleEventArgs $event)
+    /**
+     * method that calculates the average score of the player who saves a game
+     *
+     * @param Game $game
+     * @param LifecycleEventArgs $event
+     * @return void
+     */
+    public function calculUserScore(Game $game, LifecycleEventArgs $event): void
     {
-
         $user = $game->getUser();
         
         $allScores = null;
@@ -31,7 +37,6 @@ class UserScoreListener
 
         $user->setScore(round($score));
 
-        //je flush
         $this->entityManager->flush();
     }
 }

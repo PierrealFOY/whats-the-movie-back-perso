@@ -40,6 +40,10 @@ class UserController extends AbstractController
     }
 
     /**
+    * method that returns the ranking of the best player(limit = number of player)
+    *
+    * @OA\Tag(name="users")
+    *
     * @Route("/api/users/classement", name="app_api_movie_bestUsersList", methods={"GET"})
     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
     * 
@@ -130,13 +134,14 @@ class UserController extends AbstractController
     }
 
     /**
-     * method to edit user profil
+     * method to edit user 
      * 
      * @OA\Tag(name="users")
      * 
      * @Route("/api/users/{id}", name="app_api_user_edit", methods={"PUT"})
 
-     * @param User $user
+     * @param UserRepository $userRepository
+     * @param int $id
      * @param Request $request
      * @param SerializerInterface $serializer
      * @param ValidatorInterface $validator
@@ -144,9 +149,11 @@ class UserController extends AbstractController
      * @param UserPasswordHasherInterface $passwordHasher
      * @return JsonResponse
      */
-    public function edit(User $user, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): JsonResponse
+    public function edit(UserRepository $userRepository, int $id, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): JsonResponse
     {
         $json = $request->getContent();
+
+        $user = $userRepository->find($id);
 
         $editUser = $serializer->deserialize($json, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);
 
@@ -183,7 +190,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * method to delete account
+     * method to delete a user
      * 
      * @OA\Tag(name="users")
      * 
