@@ -1,4 +1,4 @@
-{% extends 'back/user/layout/layout.html.twig' %}
+{% extends "base.html.twig" %}
 
 {% block title %}User{% endblock %}
 
@@ -40,12 +40,13 @@
         </thead>
     </table>
 
-    <div>
-        <a href="{{ path('app_back_user_list') }}">Retourner à la liste des utilisateurs</a>
-    </div>
-    <div>
-        <a href="{{ path('app_back_user_edit', {'id': user.id}) }}">Editer</a>
+    <div class="mt-3 mb-3">
+        <a class="badge bg-secondary" href="{{ path('app_back_user_list') }}">Retourner sur la liste</a>
     </div>
 
+    <div class="mt-3">
+        <a class="badge bg-light" href="{{ path('app_back_user_list') }}">Editer</a>
+    </div>
+    
    {# {{ include('back/user/_delete_form.html.twig') }} #}
 {% endblock %}
