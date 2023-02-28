@@ -2,12 +2,11 @@
 
 {% block menu %}
 <li class="nav-item">
-    <a class="nav-link" href="{{path("app_back_user_list")}}">Front-office</a>
+    <a class="nav-link" href="{{path("app_back_user_list")}}">Back-office</a>
 </li>
 <li class="nav-item">
     <a class="nav-link{% if "user" in app.request.get("_route") %} active {% endif %}" href="{{path("app_back_user_list")}}"><i class="bi bi-person"></i> Utilisateurs</a>
 </li>
-
 
 {% endblock %}
 
