@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Production Studio{% endblock %}
+
+{% block body %}
+    <h1>Modifier un Studio de Production</h1>
+    <div class="mb-3">
+        <a href="{{ path('app_back_productionStudio_index') }}" >Retour à la liste des Studios de productions</a>
+    </div>
+    {{ include('back/production_studio/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    {{ include('back/production_studio/_delete_form.html.twig') }}
+{% endblock %}

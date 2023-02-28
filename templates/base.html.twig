@@ -57,6 +57,9 @@
           <a class="nav-link {% if "app_back_country" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_country_index")}}"><i class="bi bi-signpost"></i> Pays</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link {% if "app_back_productionStudio" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_productionStudio_index")}}"><i class="bi bi-cash-coin"></i> Studio de Production</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="#">Espace Personnel</a>
 
         </li>
