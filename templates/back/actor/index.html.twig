@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actor index{% endblock %}
+
+{% block body %}
+
+<div class="mt-5">
+    {% include "fragments/_flash_message.html.twig" %}
+    <h1>Liste des Acteurs</h1>
+
+    <a href="{{ path('app_back_actor_new') }}" class="btn btn-success">Ajouter</a>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for actor in actors %}
+            <tr>
+                <td>{{ actor.id }}</td>
+                <td>{{ actor.firstname }}</td>
+                <td>{{ actor.lastname }}</td>
+                <td>
+                    <a href="{{ path('app_back_actor_show', {'id': actor.id}) }}" class="btn btn-success rounded">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    <a href="{{path("app_back_actor_edit", {id:actor.id})}}" class="btn btn-warning rounded">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                    <form method="post" action="{{ path('app_back_actor_delete', {'id': actor.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer cette acteur?');" class="d-inline" >
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ actor.id) }}">
+                        <button class="btn btn-danger rounded"><i class="bi bi-trash-fill"></i></button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

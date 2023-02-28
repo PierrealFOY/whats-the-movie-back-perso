@@ -33,3 +33,10 @@ services:
                 event: 'postPersist'
                 entity: 'App\Entity\Game'
                 method: "calculUserScore"
+    App\EventListener\UserNumberGameListener:
+        tags:
+            -
+                name: 'doctrine.orm.entity_listener'
+                event: 'postPersist'
+                entity: 'App\Entity\Game'
+                method: "addUserNumberGame"
