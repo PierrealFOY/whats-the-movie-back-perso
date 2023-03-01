@@ -53,6 +53,6 @@ class FormController extends AbstractController
             "genres"            => $genres,
             "productionStudios" => $productionStudios
             ], 
-            Response::HTTP_OK, [], ['groups' => 'movies']);
+            Response::HTTP_OK, [], ['groups' => 'forms']);
     }
 }
