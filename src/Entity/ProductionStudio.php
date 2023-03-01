@@ -18,12 +18,14 @@ class ProductionStudio
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups({"movies"})
+     * @Groups({"forms"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=65)
      * @Groups({"movies"})
+     * @Groups({"forms"})
      */
     private $name;
 

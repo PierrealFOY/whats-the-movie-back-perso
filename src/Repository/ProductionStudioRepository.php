@@ -39,6 +39,19 @@ class ProductionStudioRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * method return ProductionStudio[] Returns an array of ProductionStudio objects where id = value and name = label
+     *
+     * @return array
+     */
+    public function findAllForForm(): array
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p.id as value', 'p.name as label')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 //    /**
 //     * @return ProductionStudio[] Returns an array of ProductionStudio objects
 //     */

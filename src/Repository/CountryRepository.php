@@ -39,6 +39,19 @@ class CountryRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * method return Country[] Returns an array of Country objects where id = value and name = label
+     *
+     * @return array
+     */
+    public function findAllForForm(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->select('c.id as value', 'c.name as label')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 //    /**
 //     * @return Country[] Returns an array of Country objects
 //     */
