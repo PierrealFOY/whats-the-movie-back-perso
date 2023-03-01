@@ -43,4 +43,42 @@ Dans le .env.local :
   
   - Revenir sur le haut de la page cliquer sur Authorize tapez "bearer [copier votre token] -> Authorize
   vous pouvez tester vos routes mtn directement sur la doc!
+
+### Mise à jour de la BDD (si vous aviez déja créé la bdd) :
+
+- Supprimer les fichiers de migrations
+
+- Drop toutes les tables de la base de donnée
+
+- migration : ```php bin/console make:migration``` ensuite ```php bin/console doctrine:migrations:migrate```
+
+- Dans /config/service.yaml commenter 
+
+```php
+  App\EventListener\UserScoreListener:
+      tags:
+          -
+              name: 'doctrine.orm.entity_listener'
+              event: 'postPersist'
+              entity: 'App\Entity\Game'
+              method: "calculUserScore"
+  App\EventListener\UserNumberGameListener:
+      tags:
+          -
+              name: 'doctrine.orm.entity_listener'
+              event: 'postPersist'
+              entity: 'App\Entity\Game'
+              method: "addUserNumberGame"
+  acme_api.event.authentication_success_listener:
+      class: App\EventListener\AuthenticationSuccessListener
+      tags:
+          - { name: kernel.event_listener, event: lexik_jwt_authentication.on_authentication_success, method: onAuthenticationSuccessResponse }
+```
+
+- Charger les fixtures : ```php bin/console doctrine:fixtures:load```
+
+- Décommenter le bloque commenté avant de lancer les fixtures
   
+### Création de la clé JWT :
+
+- Pour générer la clef : ```php bin/console lexik:jwt:generate-keypair```
