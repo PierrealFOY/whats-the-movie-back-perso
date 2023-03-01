@@ -39,6 +39,19 @@ class GenreRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * method return Genre[] Returns an array of Genre objects where id = value and name = label
+     *
+     * @return array
+     */
+    public function findAllForForm(): array
+    {
+        return $this->createQueryBuilder('g')
+            ->select('g.id as value', 'g.name as label')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 //    /**
 //     * @return Genre[] Returns an array of Genre objects
 //     */

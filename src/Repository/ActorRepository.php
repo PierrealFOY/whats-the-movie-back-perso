@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Actor;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use PhpParser\Node\Expr\AssignOp\Concat;
 
 /**
  * @extends ServiceEntityRepository<Actor>
@@ -38,6 +39,20 @@ class ActorRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    /**
+     * method return Actor[] Returns an array of Actor objects where id = value and label = "firstname lastname"
+     *
+     * @return array
+     */
+    public function findAllForForm(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->select('a.id as value', "(concat(concat(a.firstname,' '), a.lastname)) as label")
+            ->getQuery()
+            ->getResult()
+        ;
+    }   
 
 //    /**
 //     * @return Actor[] Returns an array of Actor objects
