@@ -12,26 +12,67 @@
 
 {% block body %}
 
-  <a class="btn btn-lg btn-primary" type="button" >Gérer les films</a>
-  <a class="btn btn-lg btn-primary" type="button" href="{{ path('app_back_user_list') }}">Gérer les utilisateurs</a>
-
 <!-- blocs on the home page of the back office to manage movies and users -->
 <div class="d-flex justify-content-center">
 
-  <div align="center" class="card item-backoffice text-white bg-primary mt-3 mb-3" style="max-width: 20rem;">
-    <div class="card-header">Films</div>
-      <div class="card-body">
-        <a align="center" class="btn btn-lg btn-primary" type="button" >Gérer les films</a>
-        <p class="card-text">Ajout, suppression, edition de tous les films présents en BDD.</p>
-      </div>
-  </div>
-
-  <div align="center" class="card item-backoffice text-white bg-secondary mb-3" style="max-width: 20rem;">
-    <div class="card-header">Utilisateurs</div>
-      <div class="card-body">
-      <a align="center" class="btn btn-lg btn-primary" type="button" href="{{ path('app_back_user_list') }}">Gérer les utilisateurs</a>
+  <div class="container">
+    <div class="row">
+        <a align="center" class="btn btn-lg btn-primary" type="button" href="{{ path('app_back_user_list') }}">Gérer les utilisateurs</a>
         <p class="card-text">Gestion des rôles et autorisations des membres du Back Office. Ajout, suppression, edition de tous les utilisateurs présents en BDD.</p>
+      <div class="col-sm mt-3 mb-3">
+        <a align="center" class="btn btn-lg btn-primary" type="button" href="{{ path('app_back_actor_index') }}">Gérer les acteurs</a>
+    </div>
+    <div class="col-sm mt-3 mb-3">
+      <a align="center" class="btn btn-lg btn-primary" type="button" href="{{ path('app_back_genre_index') }}">Gérer les genres</a>
     </div>
   </div>
+
+
+  <div class="row">
+  <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 movie-picture-gallery">
+    <a align="center" class="btn btn-lg btn-primary" type="button" href="{#{{ path('app_back_movie_index') }}#}" >Gérer les films</a>
+        <p class="card-text">Ajout, suppression, edition de tous les films présents en BDD.</p>
+    <img
+    src="https://i0.wp.com/networknuts.net/wp-content/uploads/2019/11/zahir-accounting-software-have-more-than-60.000-users.png"
+    class="w-100 shadow-1-strong rounded mb-4"
+    />
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain1.webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Wintry Mountain Landscape"
+    />
+  </div>
+
+  <div class="col-lg-4 mb-4 mb-lg-0 user-picture-gallery">
+    <a align="center" class="btn btn-lg btn-primary" type="button" href="{{ path('app_back_user_list') }}">Gérer les utilisateurs</a>
+    <p class="card-text">Gestion des rôles et autorisations des membres du Back Office. Ajout, suppression, edition de tous les utilisateurs présents en BDD.</p>
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain2.webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Mountains in the Clouds"
+    />
+
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Boat on Calm Water"
+    />
+  </div>
+
+  <div class="col-lg-4 mb-4 mb-lg-0">
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(18).webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Waves at Sea"
+    />
+
+    <img
+      src="https://mdbcdn.b-cdn.net/img/Photos/Vertical/mountain3.webp"
+      class="w-100 shadow-1-strong rounded mb-4"
+      alt="Yosemite National Park"
+    />
+  </div>
+</div>
+
 </div>
 {% endblock %}
