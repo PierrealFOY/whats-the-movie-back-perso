@@ -37,7 +37,7 @@ class GenreController extends AbstractController
 
             $this->addFlash(
                 "success",
-                "Le genre a bien été ajoutée"
+                "Le genre a bien été ajouté"
             );
 
             return $this->redirectToRoute('app_back_genre_index', [], Response::HTTP_SEE_OTHER);

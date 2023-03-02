@@ -39,6 +39,19 @@ class DirectorRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * method return Director[] Returns an array of Director objects where id = value and label = "firstname lastname"
+     *
+     * @return array
+     */
+    public function findAllForForm(): array
+    {
+        return $this->createQueryBuilder('d')
+            ->select('d.id as value', "(concat(concat(d.firstname,' '), d.lastname)) as label")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 //    /**
 //     * @return Director[] Returns an array of Director objects
 //     */
