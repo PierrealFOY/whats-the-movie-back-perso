@@ -37,6 +37,10 @@ class MovieController extends AbstractController
 
             $movieRepository->add($movie, true);
 
+            $this->addFlash(
+                "success",
+                "Le film est bien ajouté");
+
             return $this->redirectToRoute('app_back_movie_home', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -52,6 +56,7 @@ class MovieController extends AbstractController
     public function show(MovieRepository $movieRepository, int $id): Response
     {
         $movie= $movieRepository->find($id);
+
         return $this->render('back/movie/show.html.twig', [
             'movie' => $movie,
         ]);
@@ -73,6 +78,11 @@ class MovieController extends AbstractController
             
             $movieRepository->add($movie, true);
 
+            $this->addFlash(
+                "warning",
+                "Le film est bien modifié");
+
+
             return $this->redirectToRoute('app_back_movie_home', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -91,6 +101,11 @@ class MovieController extends AbstractController
         
          if ($this->isCsrfTokenValid( 'delete'.$movie->getId(), $request->get('_token'))){
             $movieRepository->remove($movie, true);
+
+            $this->addFlash(
+                "danger",
+                "Le film est bien supprimé");
+
         }
         
         return $this->redirectToRoute('app_back_movie_home', [], Response::HTTP_SEE_OTHER);
