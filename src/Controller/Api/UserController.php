@@ -80,6 +80,24 @@ class UserController extends AbstractController
     }
 
     /**
+     * method that returns one user
+     * 
+     * @OA\Tag(name="users")
+     * 
+     * @Route("/api/users/user", name="app_api_user_show", methods={"GET"})
+     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
+     * 
+     * 
+     * @return JsonResponse
+     */
+    public function showUser(): JsonResponse
+    {
+        $user = $this->getUser();
+
+        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'users']);
+    }
+
+    /**
      * method that records a user
      * 
      * @OA\Tag(name="users") 
