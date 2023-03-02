@@ -31,9 +31,15 @@ security:
 
             form_login:
                 # "app_login" is the name of the route created previously
-                login_path: app_login
-                check_path: app_login
+                login_path: app_back_login_index
+                check_path: app_back_login_index
+                enable_csrf: true
 
+            logout:
+                path: app_back_logout
+
+                # where to redirect after logout
+                # target: app_any_route
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -44,13 +50,21 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        #  - { path: ^/admin, roles: ROLE_ADMIN }
+        #  - { path: ^/profile, roles: ROLE_USER }
 
-        # ! API
+         # ! BACK-OFFICE
+         # Roles concerning permissions of the back office
+         # Testing roles, the normal one is ROLE_ADMIN
+         - { path: ^/back-office.*(ajouter|modifier|supprimer), roles: ROLE_ADMIN }
+
+         - { path: ^/back-office/utilisateur, roles: ROLE_ADMIN }
+         # - { path: ^/profile, roles: ROLE_USER }
+
+         # ! API
          - { path: ^/api/login, roles: PUBLIC_ACCESS }
          - { path: ^/api/doc, roles: PUBLIC_ACCESS }
-         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
+         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:
     security:
