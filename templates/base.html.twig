@@ -64,6 +64,11 @@
           <a class="nav-link {% if "app_back_genre" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_genre_index")}}"><i class="bi bi-collection"></i> Genre</a>
         </li>
       </ul>
+      {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+       <a href="{{path("app_back_logout")}}" class="btn btn-danger me-2">Deconnexion</a>
+      {% else %}  
+       <a href="{{path("app_back_login_index")}}" class="btn btn-danger me-2">Connexion</a>
+      {% endif %}
     </div>
   </div>
 </nav>

@@ -27,7 +27,7 @@ class UserController extends MainController
         return $this->render('back/user/list.html.twig', [
             'users' => $userRepository->findAll(),
         ]);
-    }  
+    }
 
     /**
      * @Route("/back-office/utilisateur/ajouter", name="app_back_user_add", methods={"GET","POST"})
@@ -40,29 +40,29 @@ class UserController extends MainController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-        // On vient hasher les password pour qu'ils soient illisibles
-        $hashedPassword = $userPasswordHasherInterface->hashPassword(
-            $user,
-            // ça correspond à la saisie en clair du MDP
-            $user->getPassword()
-        );
+            // On vient hasher les password pour qu'ils soient illisibles
+            $hashedPassword = $userPasswordHasherInterface->hashPassword(
+                $user,
+                // ça correspond à la saisie en clair du MDP
+                $user->getPassword()
+            );
 
-        $user->setPassword($hashedPassword);
+            $user->setPassword($hashedPassword);
 
-        $userRepository->add($user, true);
+            $userRepository->add($user, true);
 
-        $this->addFlash(
-            "success",
-            "Super! Le nouvel utilisateur a bien été ajouté !"
-        );
+            $this->addFlash(
+                "success",
+                "Super! Le nouvel utilisateur a bien été ajouté !"
+            );
 
 
-        return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
-        }    
-    return $this->renderForm('back/user/new.html.twig', [
-        'user' => $user,
-        'form' => $form,
-        ]);
+            return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
+        }
+        return $this->renderForm('back/user/new.html.twig', [
+            'user' => $user,
+            'form' => $form,
+            ]);
     }
 
      /**
@@ -72,7 +72,7 @@ class UserController extends MainController
     public function edit(Request $request, int $id, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
     {
         $user = $userRepository->find($id);
-        $form = $this->createForm(UserType::class, $user,["edit" => true]);
+        $form = $this->createForm(UserType::class, $user, ["edit" => true]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -84,21 +84,20 @@ class UserController extends MainController
             );
 
             return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
-            }
+        }
 
-            return $this->renderForm('back/user/edit.html.twig', [
-                'user' => $user,
-                'form' => $form,
-            ]);
+        return $this->renderForm('back/user/edit.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
     }
 
     /**
      * @Route("/back-office/utilisateur/{id}", name="app_back_user_show", methods={"GET"})
      * To get a user by his ID
      */
-    public function show(UserRepository $userRepository, int $id): Response 
+    public function show(UserRepository $userRepository, int $id): Response
     {
-
         return $this->render('back/user/show.html.twig', [
             'user' => $userRepository->find($id)
         ]);
@@ -108,9 +107,8 @@ class UserController extends MainController
      * @Route("/back-office/utilisateur/supprimer/{id}", name="app_back_user_delete", methods={"POST"})
      * To delete a user by his ID
      */
-    public function delete(Request $request,int $id, UserRepository $userRepository): Response
+    public function delete(Request $request, int $id, UserRepository $userRepository): Response
     {
-
         $user = $userRepository->find($id);
         // On récupère la valeur du Token et on vient vérifier sa validité
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->get('_token'))) {
