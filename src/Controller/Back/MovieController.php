@@ -2,8 +2,10 @@
 
 namespace App\Controller\Back;
 
+use App\Data\SearchData;
 use App\Entity\Movie;
 use App\Form\MovieType;
+use App\Form\SearchFormType;
 use App\Repository\MovieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,10 +18,16 @@ class MovieController extends AbstractController
     /**
      * @Route("/back-office/film", name="app_back_movie_home", methods={"GET"})
      */
-    public function home(MovieRepository $movieRepository): Response
+    public function home(MovieRepository $movieRepository, Request $request): Response
     {
+        $data = new SearchData;
+        $form = $this->createForm(SearchFormType::class, $data);
+        $form->handleRequest($request);
+        $movies = $movieRepository->findSearch($data);
+
         return $this->render('back/movie/index.html.twig', [
-            'movies' => $movieRepository->findAll(),
+            'movies' => $movies,
+            'form' => $form->createView()
         ]);
     }
 

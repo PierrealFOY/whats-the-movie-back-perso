@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -54,6 +55,30 @@ class MovieRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findSearch(SearchData $search)
+    {
+        $query = $this
+            ->createQueryBuilder('m');
+
+        if ($search->actif && $search->inactif) {
+
+            return $query->getQuery()->getResult();
+        }
+        if ($search->inactif) {
+            $query = $query
+                ->andWhere('m.status = 0');
+        }
+        if ($search->actif) {
+            $query = $query
+                ->andWhere('m.status = 1');
+        }
+
+
+        return $query->getQuery()->getResult();
+        
+    }   
+
 
 //    /**
 //     * @return Movie[] Returns an array of Movie objects
