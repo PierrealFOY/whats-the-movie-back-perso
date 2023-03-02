@@ -10971,3 +10971,27 @@ textarea.form-control-lg {
   display: flex;
   justify-content: center;
 }
+
+.gallery-pictures-back {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+
+}
+
+.gallery-padding {
+  margin: 30px;
+  padding: 20px;
+}
+
+.img-gallery-size {
+  width: auto;
+  height: 150;
+  padding-bottom: 15px;
+}
+
+.button-gallery {
+  display: flex;
+  justify-content: center;
+}

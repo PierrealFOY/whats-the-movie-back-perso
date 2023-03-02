@@ -1,6 +1,6 @@
 <div class="mt-3 mb-3">
     <form method="post" action="{{ path('app_back_director_delete', {'id': director.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer ce réalisateur?');">
         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ director.id) }}">
-        <button class="btn btn-danger">Supprimer</button>
+        <button class="btn btn-warning">Supprimer</button>
     </form>
 </div>

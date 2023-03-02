@@ -51,6 +51,12 @@ class UserController extends MainController
 
         $userRepository->add($user, true);
 
+        $this->addFlash(
+            "success",
+            "Super! Le nouvel utilisateur a bien été ajouté !"
+        );
+
+
         return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
         }    
     return $this->renderForm('back/user/new.html.twig', [
@@ -71,6 +77,11 @@ class UserController extends MainController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->add($user, true);
+
+            $this->addFlash(
+                "warning",
+                "L'utilisateur a bien été modifié"
+            );
 
             return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
             }
@@ -105,6 +116,11 @@ class UserController extends MainController
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->get('_token'))) {
             $userRepository->remove($user, true);
         }
+
+        $this->addFlash(
+            "danger",
+            "L'utilisateur a bien été supprimé"
+        );
 
         return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
     }
