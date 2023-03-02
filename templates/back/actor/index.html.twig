@@ -29,12 +29,12 @@
                     <a href="{{ path('app_back_actor_show', {'id': actor.id}) }}" class="btn btn-success rounded">
                         <i class="bi bi-eye"></i>
                     </a>
-                    <a href="{{path("app_back_actor_edit", {id:actor.id})}}" class="btn btn-warning rounded">
+                    <a href="{{path("app_back_actor_edit", {id:actor.id})}}" class="btn btn-light rounded">
                         <i class="bi bi-pencil-fill"></i>
                     </a>
                     <form method="post" action="{{ path('app_back_actor_delete', {'id': actor.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer cette acteur?');" class="d-inline" >
                         <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ actor.id) }}">
-                        <button class="btn btn-danger rounded"><i class="bi bi-trash-fill"></i></button>
+                        <button class="btn btn-warning rounded"><i class="bi bi-trash-fill"></i></button>
                     </form>
                 </td>
             </tr>
