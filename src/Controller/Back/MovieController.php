@@ -118,4 +118,26 @@ class MovieController extends AbstractController
         
         return $this->redirectToRoute('app_back_movie_home', [], Response::HTTP_SEE_OTHER);
     }
+
+        /** 
+     * @Route("/back-office/search", name="app_back_movie_search")
+     */
+    public function search (Request $request, MovieRepository $movieRepository)
+    {
+        $form = $this->createForm(SearchType::class);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $query = $data['query'];
+
+            $movies = $movieRepository->searchByTitle($query);
+
+            return $this->render('back/movie/index.html.twig', [
+                'movies' => $movies,
+            ]);
+        }
+    }
 }
