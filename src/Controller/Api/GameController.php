@@ -26,7 +26,6 @@ class GameController extends AbstractController
      * @OA\Tag(name="games")
      * 
      * @Route("/api/games", name="app_api_game_list", methods={"GET"})
-     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param GameRepository $gameRepository
      * @return JsonResponse
@@ -44,7 +43,6 @@ class GameController extends AbstractController
      * @OA\Tag(name="games")
      * 
      * @Route("/api/games/{id}", name="app_api_game_show", methods={"GET"})
-     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param GameRepository $gameRepository
      * @param int $id

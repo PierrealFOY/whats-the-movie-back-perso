@@ -30,7 +30,6 @@ class MovieController extends AbstractController
      * @OA\Tag(name="movies")
      * 
      * @Route("/api/movies", name="app_api_movie_list", methods={"GET"})
-     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param MovieRepository $movieRepository
      * @return JsonResponse
@@ -54,7 +53,6 @@ class MovieController extends AbstractController
      * @OA\Tag(name="movies")
      * 
      * @Route("/api/movies/games", name="app_api_movie_randomMoviesGame", methods={"GET"})
-     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param MovieRepository $movieRepository
      * @param Request $request
@@ -75,7 +73,6 @@ class MovieController extends AbstractController
      * @OA\Tag(name="movies")
      * 
      * @Route("/api/movies/{id}", name="app_api_movie_show", methods={"GET"})
-     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param MovieRepository $movieRepository
      * @param int $id
@@ -162,7 +159,8 @@ class MovieController extends AbstractController
         }
 
         // ! User TODO
-        $movie->setUser($userRepository->find(291));
+        $idUser = $content['idUser'];
+        $movie->setUser($userRepository->find($idUser));
 
         $movie->setStatus(0);
 

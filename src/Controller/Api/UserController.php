@@ -27,7 +27,6 @@ class UserController extends AbstractController
      * @OA\Tag(name="users")
      * 
      * @Route("/api/users", name="app_api_user_list", methods={"GET"})
-     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param UserRepository $userRepository
      * @return JsonResponse
@@ -45,7 +44,6 @@ class UserController extends AbstractController
     * @OA\Tag(name="users")
     *
     * @Route("/api/users/classement", name="app_api_movie_bestUsersList", methods={"GET"})
-    * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
     * 
     * @param UserRepository $userRepository
     * @param Request $request
@@ -66,7 +64,6 @@ class UserController extends AbstractController
      * @OA\Tag(name="users")
      * 
      * @Route("/api/users/{id}", name="app_api_user_show", methods={"GET"})
-     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * @param UserRepository $userRepository
      * @param int $id
@@ -85,7 +82,6 @@ class UserController extends AbstractController
      * @OA\Tag(name="users")
      * 
      * @Route("/api/users/user", name="app_api_user_show", methods={"GET"})
-     * @isGranted("ROLE_ADMIN", message="Vous devez être un administrateur")
      * 
      * 
      * @return JsonResponse
@@ -178,10 +174,8 @@ class UserController extends AbstractController
         $errors = $validator->validate($user);
 
         if(count($errors) > 0){
-            // Je créer un tableau avec mes erreurs
             $errorsArray = [];
             foreach($errors as $error){
-                // A l'index qui correspond au champs mal remplis, j'y injecte le/les messages d'erreurs
                 $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
             }
             return $this->json($errorsArray,Response::HTTP_UNPROCESSABLE_ENTITY);
