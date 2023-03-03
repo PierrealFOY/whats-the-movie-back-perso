@@ -57,7 +57,6 @@ security:
          # Roles concerning permissions of the back office
          # Testing roles, the normal one is ROLE_ADMIN
          - { path: ^/back-office.*(ajouter|modifier|supprimer), roles: ROLE_ADMIN }
-
          - { path: ^/back-office/utilisateur, roles: ROLE_ADMIN }
          # - { path: ^/profile, roles: ROLE_USER }
 
