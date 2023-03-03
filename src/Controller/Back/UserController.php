@@ -21,6 +21,7 @@ class UserController extends MainController
 {
     /**
      * @Route("/back-office/utilisateur", name="app_back_user_list")
+     * List of all the users from the Repository
      */
     public function list(UserRepository $userRepository): Response
     {
@@ -40,10 +41,10 @@ class UserController extends MainController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // On vient hasher les password pour qu'ils soient illisibles
+            // The password is hashed and stored in the database
             $hashedPassword = $userPasswordHasherInterface->hashPassword(
                 $user,
-                // ça correspond à la saisie en clair du MDP
+                // this is the password you input in clear 
                 $user->getPassword()
             );
 

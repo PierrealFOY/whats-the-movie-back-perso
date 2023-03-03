@@ -10,6 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GenreType extends AbstractType
 {
+    /** This form is used to add a genre by a text input */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder

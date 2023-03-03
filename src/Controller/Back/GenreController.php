@@ -15,6 +15,7 @@ class GenreController extends AbstractController
 {
     /**
      * @Route("/back-office/genre", name="app_back_genre_index", methods={"GET"})
+     * List of all the genres in the DB
      */
     public function index(GenreRepository $genreRepository): Response
     {
@@ -25,6 +26,7 @@ class GenreController extends AbstractController
 
     /**
      * @Route("/back-office/genre/ajouter", name="app_back_genre_new", methods={"GET", "POST"})
+     * To add a new genre
      */
     public function new(Request $request, GenreRepository $genreRepository): Response
     {
@@ -51,6 +53,7 @@ class GenreController extends AbstractController
 
     /**
      * @Route("/back-office/genre/{id}", name="app_back_genre_show", methods={"GET"})
+     * To show a specific genre
      */
     public function show(GenreRepository $genreRepository, int $id): Response
     {
@@ -63,6 +66,7 @@ class GenreController extends AbstractController
 
     /**
      * @Route("/back-office/genre/modifier/{id}", name="app_back_genre_edit", methods={"GET", "POST"})
+     * To edit a specific genre by id
      */
     public function edit(Request $request, GenreRepository $genreRepository, int $id): Response
     {
@@ -89,6 +93,7 @@ class GenreController extends AbstractController
 
     /**
      * @Route("/back-office/genre/supprimer/{id}", name="app_back_genre_delete", methods={"POST"})
+     * To delete a specific genre by id
      */
     public function delete(Request $request, GenreRepository $genreRepository, int $id): Response
     {

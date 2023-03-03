@@ -18,6 +18,7 @@ class LoginController extends AbstractController
 {
      /**
      * @Route("/back-office/login", name="app_back_login_index")
+     * To login a user to the backoffice
      */
     
     public function index(AuthenticationUtils $authenticationUtils): Response
@@ -38,6 +39,7 @@ class LoginController extends AbstractController
 
     /**
      * @Route("/back-office/logout", name="app_back_logout", methods={"GET"})
+     * To logout from the backoffice
      */
     public function logout(): void
     {

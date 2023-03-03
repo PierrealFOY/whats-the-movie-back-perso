@@ -11,6 +11,8 @@ class MainController extends AbstractController
 {
     /**
      * @Route("/", name="app_back_home")
+     * This route is used to redirect to the home page
+     * This is the root of the back office
      */
     public function home(): Response
     {

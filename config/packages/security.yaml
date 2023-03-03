@@ -30,7 +30,7 @@ security:
             provider: app_user_provider
 
             form_login:
-                # "app_login" is the name of the route created previously
+                # "app_back_login_index" is the name of the route created to 
                 login_path: app_back_login_index
                 check_path: app_back_login_index
                 enable_csrf: true
@@ -55,10 +55,11 @@ security:
 
          # ! BACK-OFFICE
          # Roles concerning permissions of the back office
-         # Testing roles, the normal one is ROLE_ADMIN
+         # The ADMIN role is allowed to add, edit, delete all entities with CRUD methods
          - { path: ^/back-office.*(ajouter|modifier|supprimer), roles: ROLE_ADMIN }
-
-         - { path: ^/back-office/utilisateur, roles: ROLE_ADMIN }
+         
+         # The ADMIN is the only one who can access the back office
+         - { path: ^/back-office/, roles: ROLE_ADMIN }
          # - { path: ^/profile, roles: ROLE_USER }
 
          # ! API
