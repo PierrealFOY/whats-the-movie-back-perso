@@ -8,9 +8,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=GenreRepository::class)
+ * @UniqueEntity(fields = {"name"})
  */
 class Genre
 {
@@ -27,6 +29,8 @@ class Genre
      * @ORM\Column(type="string", length=65)
      * @Groups({"movies"})
      * @Groups({"forms"})
+     * @Assert\NotBlank
+     * @Assert\Length(min = 1, max = 65)
      */
     private $name;
 

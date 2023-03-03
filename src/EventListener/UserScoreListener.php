@@ -26,6 +26,8 @@ class UserScoreListener
     public function calculUserScore(Game $game, LifecycleEventArgs $event): void
     {
         $user = $game->getUser();
+
+        //dd(count($user->getGames()));
         
         $allScores = null;
 

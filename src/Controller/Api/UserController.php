@@ -55,7 +55,7 @@ class UserController extends AbstractController
 
        $bestUsers = $userRepository->findUsersByScore($limit);
 
-       return $this->json($bestUsers, Response::HTTP_OK, [], ['groups' => 'users']);
+       return $this->json([$bestUsers], Response::HTTP_OK, [], ['groups' => 'users']);
    }
 
     /**
