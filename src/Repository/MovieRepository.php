@@ -74,10 +74,18 @@ class MovieRepository extends ServiceEntityRepository
                 ->andWhere('m.status = 1');
         }
 
-
         return $query->getQuery()->getResult();
         
     }   
+
+    public function search($query)
+    {
+        return $this->createQueryBuilder('m')
+        ->where('m.status LIKE :query')
+        ->setParameter('query', '%'.$query. '%')
+        ->getQuery()
+        ->getResult();
+    }
 
 
 //    /**

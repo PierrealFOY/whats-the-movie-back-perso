@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Résultats de votre recherche</h1>
+
+    {% if movies is empty %}
+        <p>Aucun résultat trouvé</p>
+    {% else %}
+        <ul>
+            {% for movie in movies %}
+                <li>{{ movie.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

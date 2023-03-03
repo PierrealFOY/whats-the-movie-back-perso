@@ -1,0 +1,23 @@
+{# templates/search/search.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% form_theme form _self %}
+
+{% block body %}
+    <h1>Recherche</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.search) }}
+        <button type="submit">Recherche</button>
+    {{ form_end(form) }}
+
+    {% if results %}
+        <h2>Résultats</h2>
+        <ul>
+            {% for result in results %}
+                <li>{{ result.field }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

@@ -10977,7 +10977,6 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   justify-content: space-around;
   padding: 20px;
-
 }
 
 .gallery-padding {
@@ -10989,6 +10988,8 @@ textarea.form-control-lg {
   width: auto;
   height: 150;
   padding-bottom: 15px;
+  border-radius: 20px;
+  transition: .5s ease;
 }
 
 .button-gallery {
