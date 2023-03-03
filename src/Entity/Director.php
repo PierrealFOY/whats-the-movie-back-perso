@@ -7,9 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=DirectorRepository::class)
+ * @UniqueEntity(fields = {"firstname", "lastname"})
  */
 class Director
 {
@@ -26,6 +29,8 @@ class Director
      * @ORM\Column(type="string", length=65)
      * @Groups({"movies"})
      * @Groups({"forms"})
+     * @Assert\NotBlank
+     * @Assert\Length(min = 1, max = 65)
      */
     private $firstname;
 
@@ -33,6 +38,8 @@ class Director
      * @ORM\Column(type="string", length=65)
      * @Groups({"movies"})
      * @Groups({"forms"})
+     * @Assert\NotBlank
+     * @Assert\Length(min = 1, max = 65)
      */
     private $lastname;
 

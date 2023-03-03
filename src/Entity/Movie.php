@@ -9,9 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
 use PHPUnit\Framework\SelfDescribing;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=MovieRepository::class)
+ * @UniqueEntity(fields = {"title", "releaseDate"})
  */
 class Movie
 {
