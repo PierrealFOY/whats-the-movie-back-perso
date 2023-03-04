@@ -8,9 +8,9 @@
 
 	<div class="container-fluid d-flex ">
 
-		<div class="col-12 col-lg-2 mt-2">
+		{# <div class="col-12 col-lg-2 mt-2">
 			{% include "fragments/_filter.html.twig" %}
-		</div>
+		</div>  #}
 
 		<div class="col-12 col-lg-9">
 
@@ -55,11 +55,14 @@
 								</form>
 
 							</td>
+							
 						</tr>
 					{% endfor %}
+					{{ knp_pagination_render(movies) }}
 				</tbody>
 			</table>
 		</div>
+		
 	</div>
 
 {% endblock %}

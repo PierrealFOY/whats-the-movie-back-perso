@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Paginator
 
 
 class MovieController extends AbstractController
@@ -118,4 +119,25 @@ class MovieController extends AbstractController
         
         return $this->redirectToRoute('app_back_movie_home', [], Response::HTTP_SEE_OTHER);
     }
+
+    /**
+     * @Route("/back-office/films", name="app_back_movie_homes", methods={"GET"})
+     */
+    public function index(Request $request, PaginatorInterface $paginator,MovieRepository $movieRepository) // Nous ajoutons les paramètres requis
+    {
+        // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
+        $donnees = $movieRepository->findBy([],['title' => 'asc']);
+
+        $movies = $paginator->paginate(
+            $donnees, // Requête contenant les données à paginer (ici nos movies)
+            $request->query->getInt('page', 1), // Numéro de la page en cours, passé dans l'URL, 1 si aucune page
+            10// Nombre de résultats par page
+        );
+        
+        return $this->render('back/movie/index.html.twig', [
+            'movies' => $movies,
+        ]);
+    }
+
+
 }
