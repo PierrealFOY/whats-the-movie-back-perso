@@ -18,6 +18,8 @@ class CountryController extends AbstractController
     public function index(Request $request, CountryRepository $countryRepository): Response
     {
 
+        // I get a country by its name from the database
+        // With a query builder in CountryRepository
         $countries = $countryRepository->searchByName($request->get("search"));
         return $this->render('back/country/index.html.twig', [
             'countries' => $countries,
