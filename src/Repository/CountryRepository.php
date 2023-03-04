@@ -52,6 +52,16 @@ class CountryRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function searchByName($query = null)
+    {
+        return $this->createQueryBuilder('c')
+        ->orderBy('c.name')
+        ->where('c.name LIKE :query')
+        ->setParameter('query', '%'. $query.'%')
+        ->getQuery()
+        ->getResult();
+    }
 //    /**
 //     * @return Country[] Returns an array of Country objects
 //     */

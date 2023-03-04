@@ -20,6 +20,7 @@ class MovieController extends AbstractController
      */
     public function home(MovieRepository $movieRepository, Request $request): Response
     {
+
         $data = new SearchData;
         $form = $this->createForm(SearchFormType::class, $data);
         $form->handleRequest($request);
@@ -118,26 +119,18 @@ class MovieController extends AbstractController
         
         return $this->redirectToRoute('app_back_movie_home', [], Response::HTTP_SEE_OTHER);
     }
-
+ 
         /** 
-     * @Route("/back-office/search", name="app_back_movie_search")
+     * @Route("/back-office/film", name="app_back_movie_home")
      */
     public function search (Request $request, MovieRepository $movieRepository)
     {
-        $form = $this->createForm(SearchType::class);
 
-        $form->handleRequest($request);
+        $movies = $movieRepository->searchByTitle($request->get("search"));
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
-
-            $query = $data['query'];
-
-            $movies = $movieRepository->searchByTitle($query);
-
-            return $this->render('back/movie/index.html.twig', [
-                'movies' => $movies,
-            ]);
-        }
+        return $this->render('back/movie/index.html.twig', [
+            'movies' => $movies,
+        ]);
     }
+
 }

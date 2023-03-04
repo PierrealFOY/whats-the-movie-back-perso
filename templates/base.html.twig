@@ -61,9 +61,9 @@
         <li class="nav-item">
           <a class="nav-link {% if "app_back_genre" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_genre_index")}}"><i class="bi bi-collection"></i> Genre</a>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Recherche">
-        <button class="btn btn-secondary ml-3 mr-3 my-2 my-sm-0" href="{{ path('app_back_movie_home') }}" type="submit">Recherche</button>
+      <form class="d-flex" action="{{path("app_back_country_index")}}">
+        <input class="form-control me-sm-2" type="search" name="search" placeholder="Recherche">
+        <button class="btn btn-secondary ml-3 mr-3 my-2 my-sm-0" type="submit">Recherche</button>
       </form>
       
       {% if is_granted("IS_AUTHENTICATED_FULLY") %}

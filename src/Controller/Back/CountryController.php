@@ -15,10 +15,12 @@ class CountryController extends AbstractController
     /**
      * @Route("/back-office/pays", name="app_back_country_index", methods={"GET"})
      */
-    public function index(CountryRepository $countryRepository): Response
+    public function index(Request $request, CountryRepository $countryRepository): Response
     {
+
+        $countries = $countryRepository->searchByName($request->get("search"));
         return $this->render('back/country/index.html.twig', [
-            'countries' => $countryRepository->findAll(),
+            'countries' => $countries,
         ]);
     }
 
