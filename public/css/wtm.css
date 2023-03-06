@@ -5,20 +5,26 @@
  * Copyright 2012-2022 Thomas Park
  * Licensed under MIT
  * Based on Bootstrap
-*/
+ */
+
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+ .backoffice-background {
+  background-image: url("https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.smartelia.com%2Fwp-content%2Fuploads%2F2019%2F07%2FGestion-de-back-office.jpg&imgrefurl=https%3A%2F%2Fwww.smartelia.com%2Ftout-savoir-sur-la-gestion-de-back-office-web%2F&tbnid=-tuNRMlNrioR-M&vet=12ahUKEwiMpZ-DvK79AhX1vicCHeUpDSkQMyglegUIARCQAg..i&docid=uYNmZIgenxLJ6M&w=836&h=523&q=homepage%20backoffice&ved=2ahUKEwiMpZ-DvK79AhX1vicCHeUpDSkQMyglegUIARCQAg");
+ }
+ 
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap");
 :root {
   --bs-blue: #b58900;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
   --bs-pink: #e83e8c;
-  --bs-red: #d33682;
+  --bs-red: #db1515;
   --bs-orange: #fd7e14;
   --bs-yellow: #cb4b16;
   --bs-green: #2aa198;
@@ -42,7 +48,7 @@
   --bs-success: #2aa198;
   --bs-info: #268bd2;
   --bs-warning: #cb4b16;
-  --bs-danger: #d33682;
+  --bs-danger: #d61c1c;
   --bs-light: #fdf6e3;
   --bs-dark: #073642;
   --bs-primary-rgb: 181, 137, 0;
@@ -78,7 +84,7 @@
   --bs-border-radius-pill: 50rem;
   --bs-link-color: #2aa198;
   --bs-link-hover-color: #2aa198;
-  --bs-code-color: #e83e8c;
+  --bs-code-color: #de1616;
   --bs-highlight-bg: #f5dbd0;
 }
 
@@ -8191,6 +8197,7 @@ textarea.form-control-lg {
 .bg-secondary {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity)) !important;
+  text-decoration: none;
 }
 
 .bg-success {
@@ -8216,6 +8223,7 @@ textarea.form-control-lg {
 .bg-light {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  text-decoration: none;
 }
 
 .bg-dark {
@@ -10953,4 +10961,37 @@ textarea.form-control-lg {
 
 .badge.bg-light {
   color: #073642;
+}
+
+
+
+/* -------------- Personal modifications ------------- */
+
+.item-backoffice {
+  display: flex;
+  justify-content: center;
+}
+
+.gallery-pictures-back {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+
+}
+
+.gallery-padding {
+  margin: 30px;
+  padding: 20px;
+}
+
+.img-gallery-size {
+  width: auto;
+  height: 150;
+  padding-bottom: 15px;
+}
+
+.button-gallery {
+  display: flex;
+  justify-content: center;
 }

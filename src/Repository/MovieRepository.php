@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Data\SearchData;
 use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -38,6 +39,46 @@ class MovieRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    /**
+     * Return Movie[] Returns an array of limit Movies objects
+     *
+     * @param integer $limit
+     * @return array
+     */
+    public function findRandomMoviesGame(int $limit): array
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('RAND()')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findSearch(SearchData $search)
+    {
+        $query = $this
+            ->createQueryBuilder('m');
+
+        if ($search->actif && $search->inactif) {
+
+            return $query->getQuery()->getResult();
+        }
+        if ($search->inactif) {
+            $query = $query
+                ->andWhere('m.status = 0');
+        }
+        if ($search->actif) {
+            $query = $query
+                ->andWhere('m.status = 1');
+        }
+
+
+        return $query->getQuery()->getResult();
+        
+    }   
+
 
 //    /**
 //     * @return Movie[] Returns an array of Movie objects

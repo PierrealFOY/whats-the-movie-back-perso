@@ -1,23 +1,26 @@
-{% extends 'back/user/layout/layout.html.twig' %}
+{% extends "back/user/layout/layout.html.twig" %}
 
 {% block title %}Liste des utilisateurs{% endblock %}
 
 {% block subBody %}
+    {% include "fragments/_flash_message.html.twig" %}
     <h1>Liste des utilisateurs</h1>
-  <a href="{{ path('app_back_user_add') }}">Créer un Utilisateur</a>
+  <a type="button" class="btn btn-primary mb-2" href="{{ path('app_back_user_add') }}">Créer un Utilisateur</a>
+  
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Email</th>
-                <th>Name</th>
+                <th>Nom</th>
                 <th>Roles</th>
                 <th>Mot de Passe</th>
                 <th>Score</th>
                 <th>Image</th>
+                <th>Action</th>
             </tr>
-
         </thead>
+
         <tbody>
         {% for user in users %}
             <tr>
@@ -25,12 +28,18 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.name }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                <td><span class="badge bg-warning">Impossible</span></td>
                 <td>{{ user.score }}</td>
                 <td>{{ user.picture }}</td>
                 <td>
-                    <a class="btn btn-success" href="{{ path('app_back_user_show', {'id': user.id}) }}"><i class="bi bi-eye"></i></a>
-                    <a class="btn btn-warning" href="{{ path('app_back_user_edit', {'id': user.id}) }}"><i class="bi bi-pencil"></i></a>
+                <a class="btn btn-success" href="{{ path('app_back_user_show', {'id': user.id}) }}"><i class="bi bi-eye"></i></a>
+                <a class="btn btn-light" href="{{ path('app_back_user_edit', {'id': user.id}) }}"><i class="bi bi-pencil"></i></a>
+                    <form method="post" action="{{ path('app_back_user_delete', {'id': user.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer cet utilisateur?');" class="d-inline" >
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                    <button class="btn btn-warning rounded"><i class="bi bi-trash-fill"></i></button>
+                </form>
                 </td>
+
             </tr>
         {% else %}
             <tr>

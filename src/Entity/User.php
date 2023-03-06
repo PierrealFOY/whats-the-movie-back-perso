@@ -8,47 +8,74 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields = {"name"})
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @ORM\Column(type="integer")
+     * @Groups({"movies"})
+     * @Groups({"users"})
+     * @Groups({"games"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups({"movies"})
+     * @Groups({"users"})
+     * @Assert\NotBlank
+     * @Assert\Length(min = 10, max = 180)
      */
     private $email;
 
     /**
      * @ORM\Column(type="json")
+     * @Groups({"movies"})
+     * @Groups({"users"})
      */
     private $roles = [];
 
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
+     * @Assert\Regex(pattern="/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/",message="Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères.")
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=65)
+     * @Groups({"movies"})
+     * @Groups({"users"})
+     * @Groups({"games"})
+     * @Assert\NotBlank
+     * @Assert\Length(min = 1, max = 65)
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"movies"})
+     * @Groups({"users"})
+     * @Groups({"games"})
+     * 
      */
     private $score;
 
     /**
      * @ORM\Column(type="string", length=155, nullable=true)
+     * @Groups({"movies"})
+     * @Groups({"users"})
+     * @Assert\Url
      */
     private $picture;
 
@@ -58,9 +85,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $movies;
 
     /**
-     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Game::class, mappedBy="user", orphanRemoval=true)
+     * @Groups({"users"})
+     * 
      */
     private $games;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"games"})
+     * @Groups({"users"})
+     */
+    private $numberGame;
 
     public function __construct()
     {
@@ -249,6 +285,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $game->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNumberGame(): ?int
+    {
+        return $this->numberGame;
+    }
+
+    public function setNumberGame(?int $numberGame): self
+    {
+        $this->numberGame = $numberGame;
 
         return $this;
     }

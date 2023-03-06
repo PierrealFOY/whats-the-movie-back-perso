@@ -6,9 +6,11 @@ use App\Repository\GameRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=GameRepository::class)
+ * 
  */
 class Game
 {
@@ -16,23 +18,32 @@ class Game
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups({"users"})
+     * @Groups({"games"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"users"})
+     * @Groups({"games"})
+     * 
      */
     private $score;
 
     /**
      * @ORM\ManyToMany(targetEntity=Movie::class, mappedBy="games")
+     * @Groups({"games"})
+     * 
      */
     private $movies;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="games")
+     * @Groups({"games"})
      */
     private $user;
+    
 
     public function __construct()
     {

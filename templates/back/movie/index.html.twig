@@ -1,0 +1,68 @@
+{% extends 'back/layout/layout.html.twig' %}
+
+{% block title %}Les films
+{% endblock %}
+
+{% block subBody %}
+
+
+
+	<div class="row">
+	<div class="container d-flex"> 
+
+
+			{% include "fragments/_filter.html.twig" %}
+
+
+		<div class="col-md-9">
+
+			<h1>Les films</h1>
+			
+			{% include "fragments/_flash_message.html.twig" %}
+
+			<div class="mb-2">
+				<a class="btn btn-success" href="{{ path('app_back_movie_add') }}">Créer un film</a>
+			</div>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Titre</th>
+						<th>Image</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for movie in movies %}
+						<tr>
+							<td>{{ movie.id }}</td>
+
+							<td>{{ movie.title }}</td>
+
+							<td><img width="30" height="50" src="{{ movie.poster }}" alt=""></td>
+
+							<td>
+								<a class="btn btn-success" href="{{ path('app_back_movie_show', {'id': movie.id}) }}">
+									<i class="bi bi-eye"></i>
+								</a>
+								<a class="btn btn-warning" href="{{ path('app_back_movie_edit', {'id': movie.id}) }}">
+									<i class="bi bi-pencil"></i>
+								</a>
+								<form method="post" action="{{ path('app_back_movie_delete', {'id': movie.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer ce film?');" class="d-inline">
+									<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ movie.id) }}">
+									<button class="btn btn-danger rounded">
+										<i class="bi bi-trash-fill"></i>
+									</button>
+								</form>
+
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	</div>
+
+{% endblock %}

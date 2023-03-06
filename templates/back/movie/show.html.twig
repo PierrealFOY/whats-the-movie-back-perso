@@ -1,0 +1,103 @@
+{% extends 'back/layout/layout.html.twig' %}
+
+{% block title %}Film{% endblock %}
+
+{% block subBody %}
+
+    <h1>Film</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ movie.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ movie.title }}</td>
+            </tr>
+           
+            <tr>
+                <th>ReleaseDate</th>
+                <td>{{ movie.releaseDate ? movie.releaseDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Synopsis</th>
+                <td>{{ movie.synopsis }}</td>
+            </tr>
+            
+            <tr>
+                <th>Poster</th>
+                <td>{{ movie.poster }}</td>
+            </tr>
+
+            <tr>
+                <th>Acteur</th>
+                <td>
+                {% for actor in movie.actors %}
+                  {% if actor is defined %}
+                    {{ actor }}</br>
+                  {% endif %}
+                {% endfor %}
+                </td>
+            </tr>  
+
+            <tr>
+          
+                <th>Réalisateur</th>   
+                
+                <td>
+                {% for director in movie.directors %}
+                  {% if director is defined %} 
+
+                     {{ director }}</br>
+
+                  {% endif %}
+
+                {% endfor %}
+                </td>
+           
+            </tr> 
+            <tr>
+                <th>Studio</th>
+            <td>
+                {% for productionStudio in movie.productionStudios %}
+                {{ productionStudio }}</br>
+            
+                {% endfor %}
+            </td>
+            </tr> 
+
+           <tr>
+                <th>Pays</th>
+               <td>
+                {% for countrie in movie.countries %}
+                {{ countrie }}</br>
+                {% endfor %}
+                </td>
+            </tr>    
+           
+            <tr>
+                <th>Genre</th>
+                <td>
+
+                {% for genre in movie.genres %}
+                {{ genre}}</br>
+                {% endfor %}
+
+                </td>
+            </tr> 
+
+        </tbody>
+    </table>
+
+    <div class="mt-3">
+        <a class="btn btn-success" href="{{ path('app_back_movie_home') }}">Retour liste</a>
+    </div>
+
+    <div class="mt-3">
+        <a class="btn btn-success" href="{{ path('app_back_movie_edit', {'id': movie.id}) }}">Modifier</a>
+    </div>
+
+    {{ include('back/movie/_delete_form.html.twig') }}
+{% endblock %}

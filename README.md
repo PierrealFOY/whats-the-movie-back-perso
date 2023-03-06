@@ -82,3 +82,4 @@ Dans le .env.local :
 ### Création de la clé JWT :
 
 - Pour générer la clef : ```php bin/console lexik:jwt:generate-keypair```
+

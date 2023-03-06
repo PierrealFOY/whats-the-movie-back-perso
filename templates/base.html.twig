@@ -1,98 +1,113 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html lang="fr">
 
+<head>
 
-<head> <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-
-    <!-- Bootstrap icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">    
-
-    <!-- Our custom CSS -->
-    <link rel="stylesheet" href="{{asset('css/wtm.css')}}">
-
-        <title>{% block title %}Welcome dans le Back Office de What's The Movie!{% endblock %}</title>
-
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <!-- Bootstrap icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  <!-- Our custom CSS -->
+  <link rel="stylesheet" href="{{asset('css/wtm.css')}}">
+  
 </head>
 
-    <body>
+<body>
 
-        <!-- Navigation -->
-
-         {# Si le mot back est présent dans la route #}
+    <!-- Nav -->
+    
+    {# if the word "back" was write in the raod  #}
     {% if "back" in app.request.get("_route") %}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-sucess">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     {% else %}
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     {% endif %}
     
   <div class="container-fluid">
-    <a href="{{path("app_back_user_list")}}" class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <a href="{{path("app_back_home")}}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none header-logo">
+                
+                <span class="header-logo__title">WTM</span>
+            </a>    
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarColor01">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link active" href="#">Accueil
-            <span class="visually-hidden">(current)</span>
-          </a>
+            <a class="nav-link {% if "app_back_movie" in app.request.get('_route') %}active{% endif %} "  href="{{path("app_back_movie_home")}}"><i class="bi bi-film">    
+            </i>Films</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Gestion Utilisateurs</a>
+          <a class="nav-link {% if "app_back_user" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_user_list")}}"><i class="bi bi-person"></i> Utilisateur</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Gestion Films</a>
+          <a class="nav-link {% if "app_back_actor" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_actor_index")}}"><i class="bi bi-emoji-sunglasses"></i> Acteur</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Espace Personnel</a>
+          <a class="nav-link {% if "app_back_country" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_country_index")}}"><i class="bi bi-signpost"></i> Pays</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Separated link</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link {% if "app_back_productionStudio" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_productionStudio_index")}}"><i class="bi bi-cash-coin"></i> Studio de Production</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {% if "app_back_director" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_director_index")}}"><i class="bi bi-camera-reels"></i> Réalisateur</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if "app_back_genre" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_genre_index")}}"><i class="bi bi-collection"></i> Genre</a>
+
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      
+      {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                      {# {% if app.user %} #}
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item ">
+              <a class="nav-link ">
+                  <span>
+                  {{app.user.email}} |
+                  {% if "ROLE_ADMIN" in app.user.roles %}
+                      Administrateur
+                  {% else %}
+                      Utilisateur
+                  {% endif %}
+                  </span> <i class="bi bi-person-square">
+                  </i>
+              </a>
+            </li>
+        </ul>
+      {% endif %}
+
+      {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+       <a href="{{path("app_back_logout")}}" class="btn btn-danger me-2">Deconnexion</a>
+      {% else %}  
+       <a href="{{path("app_back_login_index")}}" class="btn btn-danger me-2">Connexion</a>
+      {% endif %}
     </div>
   </div>
 </nav>
 
+<main class="container">
+  <div class="mt-4">
     {% block body %}{% endblock %}
 
+  </div>
+</main>
 
+        
     <!-- footer -->
-
     <footer class="container-fluid py-4 border-top text-center">
-        <span class="text-muted">What's the Movie !
-            <br><small>Thème :<a href="" class="link-secondary text-decoration-none"><i class="bi bi-toggle-on mx-1"></i></a></small></a>
+        <span class="text-muted">what's the movie made with &hearts; !
+             
         </span>
     </footer>
 
-        <!-- Option 1: Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    <!--  Bootstrap Bundle with Popper--> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
         crossorigin="anonymous"></script>
 

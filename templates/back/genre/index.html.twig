@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}genre index{% endblock %}
+
+{% block body %}
+
+<div class="mt-5">
+    {% include "fragments/_flash_message.html.twig" %}
+    <h1>Liste des genres</h1>
+
+    <a href="{{ path('app_back_genre_new') }}" class="btn btn-success">Ajouter</a>
+
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Genre</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+        {% for genre in genres %}
+            <tr>
+                <td>{{ genre.id }}</td>
+                <td>{{ genre.name }}</td>
+                <td>
+                    <a href="{{ path('app_back_genre_show', {'id': genre.id}) }}" class="btn btn-success rounded">
+                        <i class="bi bi-eye"></i>
+                    </a>
+                    <a href="{{path("app_back_genre_edit", {id:genre.id})}}" class="btn btn-light rounded">
+                        <i class="bi bi-pencil-fill"></i>
+                    </a>
+                    <form method="post" action="{{ path('app_back_genre_delete', {'id': genre.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer cette genre?');" class="d-inline" >
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ genre.id) }}">
+                        <button class="btn btn-warning  rounded"><i class="bi bi-trash-fill"></i></button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

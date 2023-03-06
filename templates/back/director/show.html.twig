@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Director{% endblock %}
+
+{% block body %}
+    <h1>Réalisateur</h1>
+
+    <div class="mb-3">
+        <a href="{{ path('app_back_director_index') }}" >Retour à la liste des réalisateurs</a>
+    </div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ director.id }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ director.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ director.lastname }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    
+
+    <a href="{{ path('app_back_director_edit', {'id': director.id}) }}" class="btn btn-warning">Modifier</a>
+
+    {{ include('back/director/_delete_form.html.twig') }}
+{% endblock %}
