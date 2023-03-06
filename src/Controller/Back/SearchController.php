@@ -18,7 +18,6 @@ class SearchController extends AbstractController
     {
 
         $countries = $countryRepository->searchByName($request->get("search"));
-
         $genres = $genreRepository->searchByName($request->get("search"));
 
         return $this->render('back/results/results.html.twig', [
