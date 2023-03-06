@@ -53,7 +53,7 @@ class CountryRepository extends ServiceEntityRepository
         ;
     }
 
-    public function searchByName($query = null)
+    public function searchByName($query)
     {
         return $this->createQueryBuilder('c')
         ->orderBy('c.name')
