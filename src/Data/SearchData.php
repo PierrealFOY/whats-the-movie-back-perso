@@ -15,4 +15,5 @@ class SearchData
      * @var bool
      */
     public $actif = false;
+
 }

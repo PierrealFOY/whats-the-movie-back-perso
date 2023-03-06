@@ -6,13 +6,15 @@
 {% block subBody %}
 
 
-	<div class="container-fluid d-flex ">
 
-		<div class="col-12 col-lg-2 mt-2">
+	<div class="row">
+	<div class="container d-flex"> 
+
+
 			{% include "fragments/_filter.html.twig" %}
-		</div>
 
-		<div class="col-12 col-lg-9">
+
+		<div class="col-md-9">
 
 			<h1>Les films</h1>
 			
@@ -60,6 +62,7 @@
 				</tbody>
 			</table>
 		</div>
+	</div>
 	</div>
 
 {% endblock %}
