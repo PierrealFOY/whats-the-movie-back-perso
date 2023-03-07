@@ -18,7 +18,7 @@ class ActorController extends AbstractController
     public function index(ActorRepository $actorRepository): Response
     {
         return $this->render('back/actor/index.html.twig', [
-            'actors' => $actorRepository->findAll(),
+            'actors' => $actorRepository->findBy([], ['lastname' => 'ASC']),
         ]);
     }
 

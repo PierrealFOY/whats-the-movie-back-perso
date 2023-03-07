@@ -22,7 +22,7 @@ class GenreController extends AbstractController
         $genres = $genreRepository->searchByName($request->get("search"));
 
         return $this->render('back/genre/index.html.twig', [
-            'genres' => $genreRepository->findAll(),
+            'genres' => $genreRepository->findBy([], ['name' => 'ASC']),
         ]);
     }
 

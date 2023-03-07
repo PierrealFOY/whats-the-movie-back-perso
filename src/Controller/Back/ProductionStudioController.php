@@ -18,7 +18,7 @@ class ProductionStudioController extends AbstractController
     public function index(ProductionStudioRepository $ProductionStudioRepository): Response
     {
         return $this->render('back/production_studio/index.html.twig', [
-            'ProductionStudios' => $ProductionStudioRepository->findAll(),
+            'ProductionStudios' => $ProductionStudioRepository->findBy([], ['name' => 'ASC']),
         ]);
     }
 

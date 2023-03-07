@@ -44,9 +44,12 @@ class DirectorRepository extends ServiceEntityRepository
      *
      * @return array
      */
-    public function findAllForForm(): array
+    public function findAllForForm($needle): array
     {
         return $this->createQueryBuilder('d')
+            ->orderBy('d.lastname')
+            ->where('d.lastname LIKE :needle')
+            ->setParameter('needle', '%'. $needle.'%')
             ->select('d.id as value', "(concat(concat(d.firstname,' '), d.lastname)) as label")
             ->getQuery()
             ->getResult()
