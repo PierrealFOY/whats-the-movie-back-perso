@@ -24,7 +24,7 @@ class UserType extends AbstractType
                 "label" => 'Choisis un pseudo',
             ])
             ->add('email', EmailType::class,[
-                "label" => 'Email',
+                "label"  => 'Email',
                 "attr"   => [
                     "placeholder" => 'Email'
                 ]
@@ -32,8 +32,8 @@ class UserType extends AbstractType
 
             ->add('roles', ChoiceType::class,[
                 "choices" => [
-                    "Manager" => "ROLE_MANAGER",
-                    "Admin" => "ROLE_ADMIN",
+                    "Utilisateur" => "ROLE_USER",
+                    "Admin"       => "ROLE_ADMIN",
                 ],
                 "expanded" => true,
                 "multiple" => true
@@ -48,17 +48,17 @@ class UserType extends AbstractType
                             'message' => "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères."
                         ]),
                     ],
-                    "type" => PasswordType::class,
+                    "type"            => PasswordType::class,
                     "invalid_message" => "Les deux mots de passes doivent être identiques",
-                    "first_options" => [
-                        "label" => "Le mot de passe",
-                        "attr" => [
+                    "first_options"   => [
+                        "label"       => "Le mot de passe",
+                        "attr"        => [
                             "placeholder" => "Le mot de passe"
                         ]
                     ],
                     "second_options" => [
                         "label" => "Répétez le mot de passe",
-                        "attr" => [
+                        "attr"  => [
                             "placeholder" => "Répétez le mot de passe"
                         ]
                     ]
