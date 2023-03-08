@@ -40,10 +40,10 @@ class UserController extends MainController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // On vient hasher les password pour qu'ils soient illisibles
+            // We hash password to make them not be visible
             $hashedPassword = $userPasswordHasherInterface->hashPassword(
                 $user,
-                // ça correspond à la saisie en clair du MDP
+                // it is the clear password entered in the form
                 $user->getPassword()
             );
 
@@ -85,6 +85,23 @@ class UserController extends MainController
 
             return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
         }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
+
+            $newPassword = $userPasswordHasherInterface->hashPassword($user, $form->get('newPassword')->getData());
+            $user->setPassword($newPassword);
+
+            $userRepository->add($user, true);
+
+            $this->addFlash(
+                "warning",
+                "Le mot de passe a bien été modifié"
+            );
+
+            return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
+
+        }   
 
         return $this->renderForm('back/user/edit.html.twig', [
             'user' => $user,
