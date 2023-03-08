@@ -18,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Intl\Countries;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 
 class MovieType extends AbstractType
@@ -40,14 +41,13 @@ class MovieType extends AbstractType
             ->add('releaseDate', DateType::class,[
                 "label" => "Date de sortie du film",
                 "widget" => "single_text"
-
             ])
-          
-           ->add('directors',EntityType::class,[
-               "class"=> Director::class,
-               "label" => "Nom du Réalisateur",
-               "multiple"=> true,
-               "query_builder" => function (EntityRepository $er) {
+
+            ->add('directors',EntityType::class,[
+                "class"=> Director::class,
+                "label" => "Nom du Réalisateur",
+                "multiple"=> true,
+                "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('directors')
                         ->orderBy('directors.lastname', 'ASC');
                }
