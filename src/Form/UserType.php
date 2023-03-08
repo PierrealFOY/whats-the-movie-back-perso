@@ -44,6 +44,7 @@ class UserType extends AbstractType
                     "constraints" => [
                         new Assert\Regex([
                             'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/',
+                            "match" => true,
                             'message' => "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères."
                         ]),
                     ],

@@ -61,11 +61,11 @@
         <li class="nav-item">
           <a class="nav-link {% if "app_back_genre" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_genre_index")}}"><i class="bi bi-collection"></i> Genre</a>
       </ul>
-      <form class="d-flex" action="{{path("app_back_search")}}">
+      {# <form class="d-flex" action="{{path("app_back_search")}}">
         <input class="form-control me-sm-2" type="search" name="search" placeholder="Recherche">
         <button class="btn btn-secondary ml-3 mr-3 my-2 my-sm-0" type="submit">Recherche</button>
       </form>
-      
+       #}
       {% if is_granted("IS_AUTHENTICATED_FULLY") %}
                       {# {% if app.user %} #}
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -86,9 +86,9 @@
       {% endif %}
 
       {% if is_granted("IS_AUTHENTICATED_FULLY") %}
-       <a href="{{path("app_back_logout")}}" class="btn btn-danger me-2">Deconnexion</a>
+       <a href="{{path("app_back_logout")}}" class="btn btn-warning me-2">Deconnexion</a>
       {% else %}  
-       <a href="{{path("app_back_login_index")}}" class="btn btn-danger me-2">Connexion</a>
+       <a href="{{path("app_back_login_index")}}" class="btn btn-light me-2">Connexion</a>
       {% endif %}
     </div>
   </div>
@@ -97,7 +97,6 @@
 <main class="container">
   <div class="mt-4">
     {% block body %}{% endblock %}
-
   </div>
 </main>
 
