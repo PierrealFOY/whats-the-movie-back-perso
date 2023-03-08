@@ -7,6 +7,7 @@ use App\Entity\ProductionStudio;
 use App\Entity\Country;
 use App\Entity\Genre;
 use App\Entity\Movie;
+use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -96,8 +97,7 @@ class MovieType extends AbstractType
                 "multiple" => true,
                 //"expanded" => true,
                 "help" => "* Vous pouvez choisir plusieurs genres"
-            ])
-           
+            ])          
     
         ;
     }
