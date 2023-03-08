@@ -99,7 +99,6 @@ class MovieType extends AbstractType
                 "class" => Genre::class,
                 "label" => "Genres *",
                 "multiple" => true,
-                //"expanded" => true,
                 "help" => "* Vous pouvez choisir plusieurs genres en appuyant sur la touche Ctrl du clavier"
             ])
            
