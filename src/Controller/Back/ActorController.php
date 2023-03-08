@@ -18,7 +18,7 @@ class ActorController extends AbstractController
     public function index(ActorRepository $actorRepository): Response
     {
         return $this->render('back/actor/index.html.twig', [
-            'actors' => $actorRepository->findAll(),
+            'actors' => $actorRepository->findBy([], ['lastname' => 'ASC']),
         ]);
     }
 
@@ -36,7 +36,7 @@ class ActorController extends AbstractController
 
             $this->addFlash(
                 "success",
-                "L'acteur a bien été ajoutée"
+                "L'acteur a bien été ajouté"
             );
 
             return $this->redirectToRoute('app_back_actor_index', [], Response::HTTP_SEE_OTHER);
