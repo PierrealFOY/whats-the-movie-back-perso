@@ -14,7 +14,7 @@ class ProductionStudioType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                "label" => 'nom',
+                "label" => 'Nom',
             ])
         ;
            

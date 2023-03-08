@@ -46,6 +46,7 @@ class MovieType extends AbstractType
                "class"=> Director::class,
                "label" => "Nom du Réalisateur",
                "multiple"=> true,
+               "help" => "* Vous pouvez choisir plusieurs réalisateurs en appuyant sur la touche Ctrl du clavier"
                 
             ])
               
@@ -53,6 +54,7 @@ class MovieType extends AbstractType
                 "class" => Actor::class,
                 "label" => "Nom de l'acteur", 
                 "multiple"=> true,
+                "help" => "* Vous pouvez choisir plusieurs acteurs en appuyant sur la touche Ctrl du clavier"
                 
                 ])
 
@@ -63,15 +65,18 @@ class MovieType extends AbstractType
                 "multiple"=> true,
                 "attr" => [
                     "placeholder" => "Nom du Studio"
-                ]
+                ],
+                "help" => "* Vous pouvez choisir plusieurs Studios en appuyant sur la touche Ctrl du clavier"
             ])  
             ->add('countries',EntityType::class,[
                 "class" => Country:: class,
                 "label" => "Pays de Production",
                 "multiple" => true,
+                
                 "attr" => [
                     "placeholder" => "Pays"
-                ]
+                ],
+                "help" => "* Vous pouvez choisir plusieurs pays en appuyant sur la touche Ctrl du clavier"
             ])
 
 
@@ -95,7 +100,7 @@ class MovieType extends AbstractType
                 "label" => "Genres *",
                 "multiple" => true,
                 //"expanded" => true,
-                "help" => "* Vous pouvez choisir plusieurs genres"
+                "help" => "* Vous pouvez choisir plusieurs genres en appuyant sur la touche Ctrl du clavier"
             ])
            
     
