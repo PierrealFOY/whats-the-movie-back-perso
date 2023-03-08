@@ -7,6 +7,7 @@ use App\Entity\ProductionStudio;
 use App\Entity\Country;
 use App\Entity\Genre;
 use App\Entity\Movie;
+use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -114,6 +115,7 @@ class MovieType extends AbstractType
                         ->orderBy('genres.name', 'ASC');
                }
             ]); 
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

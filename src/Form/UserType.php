@@ -44,9 +44,9 @@ class UserType extends AbstractType
                 ->add('password', RepeatedType::class, [
                     "constraints" => [
                         new Assert\Regex([
-                            'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/',
-                            'message' => "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères."
-                        ]),
+                            'pattern' => '/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};:\'"\\|,.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=[\]{};:\'"\\|,.<>\/?]{8,}/',
+                            'message' => 'Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères.'
+                        ])
                     ],
                     "type" => PasswordType::class,
                     "invalid_message" => "Les deux mots de passes doivent être identiques",

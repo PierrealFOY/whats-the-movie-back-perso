@@ -7,11 +7,12 @@ use App\Entity\Movie;
 use App\Form\MovieType;
 use App\Form\SearchFormType;
 use App\Repository\MovieRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class MovieController extends AbstractController
 {
@@ -35,7 +36,7 @@ class MovieController extends AbstractController
     /**
      * @Route("/back-office/film/ajouter", name="app_back_movie_add", methods={"GET", "POST"})
      */
-    public function add(Request $request, MovieRepository $movieRepository ): Response
+    public function add(Request $request, MovieRepository $movieRepository, UserInterface $user, UserRepository $userRepository ): Response
     {
         $movie = new Movie();
         $form = $this->createForm(MovieType::class, $movie);
@@ -43,6 +44,11 @@ class MovieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) 
         {
+            $userConecting = $user->getUserIdentifier();
+
+            $user = $userRepository->findOneBy(["email" => $userConecting]);
+
+            $movie->setUser($user);
 
             $movieRepository->add($movie, true);
 

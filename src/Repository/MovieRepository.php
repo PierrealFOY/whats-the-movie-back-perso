@@ -50,6 +50,7 @@ class MovieRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('m')
             ->orderBy('RAND()')
+            ->where('m.status = 1')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
