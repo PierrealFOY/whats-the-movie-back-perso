@@ -14,7 +14,7 @@ class GenreType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                "label" => 'Choisis un genre',
+                "label" => 'Nom du genre',
             ])
         ;
     }

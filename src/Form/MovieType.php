@@ -47,6 +47,7 @@ class MovieType extends AbstractType
                 "class"=> Director::class,
                 "label" => "Nom du Réalisateur",
                 "multiple"=> true,
+                "help" => "* Vous pouvez choisir plusieurs réalisateurs en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('directors')
                         ->orderBy('directors.lastname', 'ASC');
@@ -57,11 +58,12 @@ class MovieType extends AbstractType
                 "class" => Actor::class,
                 "label" => "Nom de l'acteur", 
                 "multiple"=> true,
+                "help" => "* Vous pouvez choisir plusieurs acteurs en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('actors')
                         ->orderBy('actors.lastname', 'ASC');
-               } 
-                ])
+               }       
+              ])
             
             ->add('productionStudios',EntityType::class,[
                 "class" => ProductionStudio::class,
@@ -70,6 +72,7 @@ class MovieType extends AbstractType
                 "attr" => [
                     "placeholder" => "Nom du Studio"
                 ],
+                "help" => "* Vous pouvez choisir plusieurs Studios en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('productionStudios')
                         ->orderBy('productionStudios.name', 'ASC');
@@ -78,16 +81,16 @@ class MovieType extends AbstractType
             ->add('countries',EntityType::class,[
                 "class" => Country:: class,
                 "label" => "Pays de Production",
-                "multiple" => true,
+                "multiple" => true,  
                 "attr" => [
                     "placeholder" => "Pays"
                 ],
+                "help" => "* Vous pouvez choisir plusieurs pays en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('countries')
                         ->orderBy('countries.name', 'ASC');
                }
             ])
-
             ->add('poster',UrlType::class,[
                 "label" => "Votre image *",
                 "attr" => [
@@ -95,28 +98,22 @@ class MovieType extends AbstractType
                 ],
                 "help"=> "* L'url d'une image"
             ])
-
             ->add('status',ChoiceType::class,[
             "choices" => [
                 "actif" => 1 ,
                 "inactif" => 0 ,
             ]
            ])
-
             ->add('genres', EntityType::class,[
                 "class" => Genre::class,
                 "label" => "Genres *",
                 "multiple" => true,
-                //"expanded" => true,
-                "help" => "* Vous pouvez choisir plusieurs genres",
+                "help" => "* Vous pouvez choisir plusieurs genres en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('genres')
                         ->orderBy('genres.name', 'ASC');
                }
-            ])
-           
-    
-        ;
+            ]); 
     }
 
     public function configureOptions(OptionsResolver $resolver): void
