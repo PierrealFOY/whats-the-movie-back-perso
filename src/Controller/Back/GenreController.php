@@ -16,10 +16,13 @@ class GenreController extends AbstractController
     /**
      * @Route("/back-office/genre", name="app_back_genre_index", methods={"GET"})
      */
-    public function index(GenreRepository $genreRepository): Response
+    public function index(Request $request, GenreRepository $genreRepository): Response
     {
+
+        $genres = $genreRepository->searchByName($request->get("search"));
+
         return $this->render('back/genre/index.html.twig', [
-            'genres' => $genreRepository->findAll(),
+            'genres' => $genreRepository->findBy([], ['name' => 'ASC']),
         ]);
     }
 
