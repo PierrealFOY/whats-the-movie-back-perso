@@ -1,0 +1,25 @@
+{% extends 'back/layout/layout.html.twig' %}
+
+{% block body %}
+
+{% if countries is not empty %}
+  <h2>Résultats de la recherche de pays :</h2>
+  <ul>
+    {% for country in countries %}
+      <li><a href="{{ path('app_back_country_show', {'id': country.id}) }}">{{ country.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% if genres is not empty %}
+  <h2>Résultats de la recherche de genres :</h2>
+  <ul>
+    {% for genre in genres %}
+      <li><a href="{{ path('app_back_genre_show', {'id': genre.id}) }}">{{ genre.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% endblock %}
+
+
