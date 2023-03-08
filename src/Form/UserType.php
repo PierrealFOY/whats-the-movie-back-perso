@@ -29,7 +29,6 @@ class UserType extends AbstractType
                     "placeholder" => 'Email'
                 ]
             ])
-
             ->add('roles', ChoiceType::class,[
                 "choices" => [
                     "Utilisateur" => "ROLE_USER",
@@ -57,8 +56,8 @@ class UserType extends AbstractType
                         ]
                     ],
                     "second_options" => [
-                        "label" => "Répétez le mot de passe",
-                        "attr"  => [
+                        "label"      => "Répétez le mot de passe",
+                        "attr"       => [
                             "placeholder" => "Répétez le mot de passe"
                         ]
                     ]
