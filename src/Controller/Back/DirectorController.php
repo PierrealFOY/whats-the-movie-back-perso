@@ -5,6 +5,7 @@ namespace App\Controller\Back;
 use App\Entity\Director;
 use App\Form\DirectorType;
 use App\Repository\DirectorRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,18 @@ class DirectorController extends AbstractController
     /**
      * @Route("/back-office/realisateur", name="app_back_director_index", methods={"GET"})
      */
-    public function index(DirectorRepository $directorRepository): Response
+    public function index(Request $request, DirectorRepository $directorRepository, PaginatorInterface $paginator): Response
     {
+        $donnees = $directorRepository->findBy([],['lastname' => 'asc']);
+
+        $directors = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            10
+        );
+        
         return $this->render('back/director/index.html.twig', [
-            'directors' => $directorRepository->findBy([], ['lastname' => 'ASC']),
+            'directors' => $directors
         ]);
     }
 

@@ -15,17 +15,25 @@ use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\ORM\EntityManagerInterface;
-
+use Knp\Component\Pager\PaginatorInterface;
 
 class UserController extends MainController
 {
     /**
      * @Route("/back-office/utilisateur", name="app_back_user_list")
      */
-    public function list(UserRepository $userRepository): Response
+    public function list(Request $request, UserRepository $userRepository, PaginatorInterface $paginator): Response
     {
+        $donnees = $userRepository->findBy([],['roles' => 'asc']);
+
+        $users = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('back/user/list.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $users,
         ]);
     }
 
