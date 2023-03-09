@@ -24,6 +24,10 @@
 				<a class="btn btn-success" href="{{ path('app_back_movie_add') }}">Créer un film</a>
 			</div>
 
+			<div>
+				{{ knp_pagination_render(movies) }}
+			</div>			
+
 			<table class="table">
 				<thead>
 					<tr>
