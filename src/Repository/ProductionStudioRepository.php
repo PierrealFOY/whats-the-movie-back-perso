@@ -48,6 +48,7 @@ class ProductionStudioRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('p')
             ->select('p.id as value', 'p.name as label')
+            ->orderBy('p.name')
             ->getQuery()
             ->getResult()
         ;

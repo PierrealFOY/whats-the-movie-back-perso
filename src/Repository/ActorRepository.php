@@ -48,7 +48,8 @@ class ActorRepository extends ServiceEntityRepository
     public function findAllForForm(): array
     {
         return $this->createQueryBuilder('a')
-            ->select('a.id as value', "(concat(concat(a.firstname,' '), a.lastname)) as label")
+            ->select('a.id as value', "(concat(concat(a.lastname,' '), a.firstname)) as label")
+            ->orderby('a.lastname')
             ->getQuery()
             ->getResult()
         ;

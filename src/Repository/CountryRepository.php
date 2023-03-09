@@ -48,6 +48,7 @@ class CountryRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('c')
             ->select('c.id as value', 'c.name as label')
+            ->orderBy('c.name')
             ->getQuery()
             ->getResult()
         ;

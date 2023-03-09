@@ -48,6 +48,7 @@ class GenreRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('g')
             ->select('g.id as value', 'g.name as label')
+            ->orderBy('g.name')
             ->getQuery()
             ->getResult()
         ;
