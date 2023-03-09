@@ -5,6 +5,7 @@ namespace App\Controller\Back;
 use App\Entity\Country;
 use App\Form\CountryType;
 use App\Repository\CountryRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,18 @@ class CountryController extends AbstractController
     /**
      * @Route("/back-office/pays", name="app_back_country_index", methods={"GET"})
      */
-    public function index(CountryRepository $countryRepository): Response
+    public function index(Request $request, CountryRepository $countryRepository, PaginatorInterface $paginator): Response
     {
+        $donnees = $countryRepository->findBy([],['name' => 'asc']);
+
+        $countries = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('back/country/index.html.twig', [
-            'countries' => $countryRepository->findAll(),
+            'countries' => $countries,
         ]);
     }
 

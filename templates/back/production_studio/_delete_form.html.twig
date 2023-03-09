@@ -1,6 +1,6 @@
 <div class="mt-3 mb-3">
-    <form method="post" action="{{ path('app_back_productionStudio_delete', {'id': ProductionStudio.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer ce Studio de production?');">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ProductionStudio.id) }}">
+    <form method="post" action="{{ path('app_back_productionStudio_delete', {'id': productionStudio.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer ce Studio de production?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ productionStudio.id) }}">
         <button class="btn btn-warning">Supprimer</button>
     </form>
 </div>
