@@ -97,7 +97,7 @@ class UserController extends MainController
     }
 
     /**
-     * @Route("/back-office/utilisateur/modifier/{id}", name="app_back_user_edit", methods={"GET","POST"})
+     * @Route("/back-office/utilisateur/mot-de-passe/modifier/{id}", name="app_back_user_changePassword", methods={"GET","POST"})
      * To modify its password from the user edit route/template by ID
      */
     public function editPassword(Request $request,int $id, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
@@ -107,7 +107,7 @@ class UserController extends MainController
 
         // check if the user is connected
         if (!$user) {
-            throw $this->createAccessDeniedException('Vous devez être connecté pour modifier vogtre mot de pass');
+            throw $this->createAccessDeniedException('Vous devez être connecté pour modifier votre mot de passe');
         }
 
         $user = $userRepository->find($id);
@@ -124,7 +124,7 @@ class UserController extends MainController
             // check if the old password is correct
             $oldPassword = $form->get('oldPassword')->getData();
             if (!$passwordHasher->isPasswordValid($user, $oldPassword)) {
-                $form->get($oldPassword)->addError(new FormError('L\'ancien mot de passe est incorrect'));
+                $form->get($oldPassword->hashPassword($user, $oldPassword))->addError(new FormError('L\'ancien mot de passe est incorrect'));
             } else {
 
                 // we save the new password
@@ -142,7 +142,7 @@ class UserController extends MainController
             }
         }
 
-        return $this->renderForm('back/user/new.html.twig', [
+        return $this->renderForm('back/user/changePassword.html.twig', [
             'user' => $user,
             'form' => $form,
             ]);    }

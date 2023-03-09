@@ -30,13 +30,13 @@ class ChangePasswordType extends AbstractType
         ->add('newPassword', RepeatedType::class, [
             'type'  => PasswordType::class,
             'mapped' => false,
-            'invalid_message' => 'Les deux mots de passe doivent correspondre',
             'first_options' => ['label' => 'Nouveau mot de passe'],
             'second_options' => ['label' => 'Confirmer le nouveau mot de passe'],
+            'invalid_message' => 'Les deux mots de passe doivent correspondre',
             'constraints' => [
                 new Assert\NotBlank(),
                 new Assert\Regex([
-                    'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/',
+                    'pattern' => '/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};:\'"\\|,.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=[\]{};:\'"\\|,.<>\/?]{8,}/',
                     "match" => true,
                     'message' => "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères."
                 ]), 
