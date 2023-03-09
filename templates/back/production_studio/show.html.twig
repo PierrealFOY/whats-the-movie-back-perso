@@ -13,19 +13,19 @@
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ ProductionStudio.id }}</td>
+                <td>{{ productionStudio.id }}</td>
             </tr>
             
             <tr>
                 <th>Nom</th>
-                <td>{{ ProductionStudio.name }}</td>
+                <td>{{ productionStudio.name }}</td>
             </tr>
         </tbody>
     </table>
 
     
 
-    <a href="{{ path('app_back_productionStudio_edit', {'id': ProductionStudio.id}) }}" class="btn btn-warning">Modifier</a>
+    <a href="{{ path('app_back_productionStudio_edit', {'id': productionStudio.id}) }}" class="btn btn-warning">Modifier</a>
 
     {{ include('back/production_studio/_delete_form.html.twig') }}
 {% endblock %}

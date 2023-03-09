@@ -6,25 +6,29 @@
 
 <div class="mt-5">
     {% include "fragments/_flash_message.html.twig" %}
-    <h1>Liste des Réalisateur</h1>
+    <h1>Liste des réalisateurs</h1>
 
     <a href="{{ path('app_back_director_new') }}" class="btn btn-success">Ajouter</a>
+
+    <div>
+        {{ knp_pagination_render(directors) }}
+    </div>
 
     <table class="table mt-3">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Prénom</th>
                 <th>Nom</th>
-                <th>actions</th>
+                <th>Prénom</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for director in directors %}
             <tr>
                 <td>{{ director.id }}</td>
-                <td>{{ director.firstname }}</td>
                 <td>{{ director.lastname }}</td>
+                <td>{{ director.firstname}}</td>
                 <td>
                     <a href="{{ path('app_back_director_show', {'id': director.id}) }}" class="btn btn-success rounded">
                         <i class="bi bi-eye"></i>

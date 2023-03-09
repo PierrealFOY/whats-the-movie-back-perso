@@ -6,6 +6,7 @@ use Symfony\Component\Form\FormTypeInterface;
 use App\Entity\Genre;
 use App\Form\GenreType;
 use App\Repository\GenreRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +17,19 @@ class GenreController extends AbstractController
     /**
      * @Route("/back-office/genre", name="app_back_genre_index", methods={"GET"})
      */
-    public function index(GenreRepository $genreRepository): Response
+    public function index(Request $request, GenreRepository $genreRepository, PaginatorInterface $paginator): Response
     {
+
+        $donnees = $genreRepository->findBy([],['name' => 'asc']);
+
+        $genres = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('back/genre/index.html.twig', [
-            'genres' => $genreRepository->findAll(),
+            'genres' => $genres,
         ]);
     }
 

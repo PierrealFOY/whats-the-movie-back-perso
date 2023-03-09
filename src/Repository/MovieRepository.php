@@ -6,6 +6,8 @@ use App\Data\SearchData;
 use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Movie>
@@ -17,9 +19,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MovieRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Movie::class);
+        $this->paginator = $paginator;
     }
 
     public function add(Movie $entity, bool $flush = false): void
@@ -50,17 +53,25 @@ class MovieRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('m')
             ->orderBy('RAND()')
+            ->where('m.status = 1')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult()
         ;
     }
 
-    public function findSearch(SearchData $search)
+    /**
+     * Return Movie List paginated with filter actif/inactif
+     *
+     * @param SearchData $search
+     * @return PaginationInterface
+     */
+    public function findSearch(SearchData $search): PaginationInterface
     {
         $query = $this
-            ->createQueryBuilder('m');
-
+            ->createQueryBuilder('m')
+            ->orderBy('m.title');
+            
         if ($search->actif && $search->inactif) {
 
             return $query->getQuery()->getResult();
@@ -75,10 +86,23 @@ class MovieRepository extends ServiceEntityRepository
         }
 
 
-        return $query->getQuery()->getResult();
-        
+        $query = $query->getQuery();
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            10
+        );
     }   
 
+    // public function searchByTitle($query = null)
+    // {
+    //     return $this->createQueryBuilder('m')
+    //     ->orderBy('m.title', 'ASC')
+    //     ->where('m.title LIKE :query')
+    //     ->setParameter('query', '%'. $query.'%')
+    //     ->getQuery()
+    //     ->getResult();
+    // }
 
 //    /**
 //     * @return Movie[] Returns an array of Movie objects

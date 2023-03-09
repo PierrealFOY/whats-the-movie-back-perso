@@ -15,6 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields = {"name"})
+ * @UniqueEntity(fields = {"email"})
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -34,6 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups({"users"})
      * @Assert\NotBlank
      * @Assert\Length(min = 10, max = 180)
+     * @Assert\Email
      */
     private $email;
 
@@ -48,7 +50,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      * @ORM\Column(type="string")
      * @Assert\NotBlank
-     * @Assert\Regex(pattern="/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/",message="Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères.")
      */
     private $password;
 

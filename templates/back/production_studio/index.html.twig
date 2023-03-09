@@ -6,32 +6,36 @@
 
 <div class="mt-5">
     {% include "fragments/_flash_message.html.twig" %}
-    <h1>Liste des Studios de Productions</h1>
+    <h1>Liste des studios de productions</h1>
 
     <a href="{{ path('app_back_productionStudio_new') }}" class="btn btn-success">Ajouter</a>
+
+    <div>
+        {{ knp_pagination_render(productionStudios) }}
+    </div>
 
     <table class="table mt-3">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Nom</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for ProductionStudio in ProductionStudios %}
+        {% for productionStudio in productionStudios %}
             <tr>
-                <td>{{ ProductionStudio.id }}</td>
-                <td>{{ ProductionStudio.name }}</td>
+                <td>{{ productionStudio.id }}</td>
+                <td>{{ productionStudio.name }}</td>
                 <td>
-                    <a href="{{ path('app_back_productionStudio_show', {'id': ProductionStudio.id}) }}" class="btn btn-success rounded">
+                    <a href="{{ path('app_back_productionStudio_show', {'id': productionStudio.id}) }}" class="btn btn-success rounded">
                         <i class="bi bi-eye"></i>
                     </a>
-                    <a href="{{path("app_back_productionStudio_edit", {id:ProductionStudio.id})}}" class="btn btn-light rounded">
+                    <a href="{{path("app_back_productionStudio_edit", {id:productionStudio.id})}}" class="btn btn-light rounded">
                         <i class="bi bi-pencil-fill"></i>
                     </a>
-                    <form method="post" action="{{ path('app_back_productionStudio_delete', {'id': ProductionStudio.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer ce studio de production?');" class="d-inline" >
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ProductionStudio.id) }}">
+                    <form method="post" action="{{ path('app_back_productionStudio_delete', {'id': productionStudio.id}) }}" onsubmit="return confirm('êtes-vous sûr de vouloir supprimer ce studio de production?');" class="d-inline" >
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ productionStudio.id) }}">
                         <button class="btn btn-warning rounded"><i class="bi bi-trash-fill"></i></button>
                     </form>
                 </td>

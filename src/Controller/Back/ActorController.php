@@ -5,6 +5,7 @@ namespace App\Controller\Back;
 use App\Entity\Actor;
 use App\Form\ActorType;
 use App\Repository\ActorRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +16,18 @@ class ActorController extends AbstractController
     /**
      * @Route("/back-office/acteur", name="app_back_actor_index", methods={"GET"})
      */
-    public function index(ActorRepository $actorRepository): Response
+    public function index(ActorRepository $actorRepository, Request $request, PaginatorInterface $paginator): Response
     {
+        $donnees = $actorRepository->findBy([],['lastname' => 'asc']);
+
+        $actors = $paginator->paginate(
+            $donnees,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('back/actor/index.html.twig', [
-            'actors' => $actorRepository->findAll(),
+            'actors' => $actors,
         ]);
     }
 
@@ -36,7 +45,7 @@ class ActorController extends AbstractController
 
             $this->addFlash(
                 "success",
-                "L'acteur a bien été ajoutée"
+                "L'acteur a bien été ajouté"
             );
 
             return $this->redirectToRoute('app_back_actor_index', [], Response::HTTP_SEE_OTHER);

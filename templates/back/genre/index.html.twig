@@ -10,6 +10,10 @@
 
     <a href="{{ path('app_back_genre_new') }}" class="btn btn-success">Ajouter</a>
 
+    <div>
+        {{ knp_pagination_render(genres) }}
+    </div>
+
     <table class="table mt-3">
         <thead>
             <tr>
