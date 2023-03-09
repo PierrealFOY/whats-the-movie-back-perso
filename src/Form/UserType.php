@@ -31,13 +31,13 @@ class UserType extends AbstractType
             ])
             // To edit a password
             ->add('currentPassword', PasswordType::class, [
-                "constraints" => [
-                    new Assert\Regex([
-                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/',
-                        "match" => true,
-                        'message' => "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères."
-                    ]),
-                ],
+                // "constraints" => [
+                //     new Assert\Regex([
+                //         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/',
+                //         "match" => true,
+                //         'message' => "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères."
+                //     ]),
+                // ],
                 // first input the current password
                 "invalid_message" => "Les deux mots de passes doivent être différents",
                     "label"       => "Le mot de passe actuel",
@@ -47,13 +47,13 @@ class UserType extends AbstractType
                     ]
                 ])
                 ->add('newPassword', PasswordType::class, [
-                    "constraints" => [
-                        new Assert\Regex([
-                            'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/',
-                            "match" => true,
-                            'message' => "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères."
-                        ]),
-                    ],
+                    // "constraints" => [
+                    //     new Assert\Regex([
+                    //         'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/',
+                    //         "match" => true,
+                    //         'message' => "Le mot de passe doit contenir au moins une lettre majuscule, une lettre minuscule, un chiffre, un caractère spécial et avoir au moins 8 caractères."
+                    //     ]),
+                    // ],
                     // first input the new password
                     "invalid_message" => "Les deux mots de passes doivent être différents",
                         "label"       => "Le nouveau mot de passe",
