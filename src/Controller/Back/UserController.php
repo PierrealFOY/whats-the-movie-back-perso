@@ -103,14 +103,13 @@ class UserController extends MainController
     public function editPassword(Request $request,int $id, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
     {
         // I get the connected user
-        $user = $this->getUser();
+        $user = $userRepository->find($id);
 
         // check if the user is connected
         if (!$user) {
             throw $this->createAccessDeniedException('Vous devez être connecté pour modifier votre mot de passe');
         }
 
-        $user = $userRepository->find($id);
         $form = $this->createForm(ChangePasswordType::class, $user);
         $form->handleRequest($request);
 
@@ -118,13 +117,13 @@ class UserController extends MainController
 
             // check if the user modify only its own password
             if ($user->getId() === false) {
-                throw $this->createAccessDeniedException('Vous ne pouvez modifier que votre propre mot de passe !');
+                $this->denyAccessUnlessGranted('password_edit', $user);
             }
 
             // check if the old password is correct
             $oldPassword = $form->get('oldPassword')->getData();
             if (!$passwordHasher->isPasswordValid($user, $oldPassword)) {
-                $form->get($oldPassword->hashPassword($user, $oldPassword))->addError(new FormError('L\'ancien mot de passe est incorrect'));
+                $form->addError(new FormError('L\'ancien mot de passe est incorrect'));
             } else {
 
                 // we save the new password

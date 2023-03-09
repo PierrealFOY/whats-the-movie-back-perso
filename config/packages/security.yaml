@@ -58,6 +58,8 @@ security:
          # Testing roles, the normal one is ROLE_ADMIN
          - { path: ^/back-office.*(ajouter|modifier|supprimer), roles: ROLE_ADMIN }
          - { path: ^/back-office/utilisateur, roles: ROLE_ADMIN }
+         - { path: ^/back-office/utilisateur, roles: ROLE_CONNECTED_USER }
+
          # - { path: ^/profile, roles: ROLE_USER }
 
          # ! API
