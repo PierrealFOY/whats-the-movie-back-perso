@@ -15,6 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields = {"name"})
+ * @UniqueEntity(fields = {"email"})
  */
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -34,6 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @Groups({"users"})
      * @Assert\NotBlank
      * @Assert\Length(min = 10, max = 180)
+     * @Assert\Email
      */
     private $email;
 
