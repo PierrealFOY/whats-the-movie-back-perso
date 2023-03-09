@@ -20,6 +20,47 @@
   </ul>
 {% endif %}
 
+{% if productionStudios is not empty %}
+  <h2>Résultats de la recherche de studio de productions :</h2>
+  <ul>
+    {% for productionStudio in productionStudios %}
+      <li><a href="{{ path('app_back_productionStudio_show', {'id': productionStudio.id}) }}">{{ productionStudio.name }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% if actors is not empty %}
+  <h2>Résultats de la recherche d'acteurs:</h2>
+  <ul>
+    {% for actor in actors %}
+      <li><a href="{{ path('app_back_actor_show', {'id': actor.id}) }}">{{ actor.firstname ~ ' ' ~ actor.lastname  }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% if directors is not empty %}
+  <h2>Résultats de la recherche de réalisateurs:</h2>
+  <ul>
+    {% for director in directors %}
+      <li><a href="{{ path('app_back_director_show', {'id': director.id}) }}">{{ director.firstname ~ ' ' ~ director.lastname }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+{% if movies is not empty %}
+  <h2>Résultats de la recherche de films :</h2>
+  <ul>
+    {% for movie in movies %}
+      <li><a href="{{ path('app_back_movie_show', {'id': movie.id}) }}">{{ movie.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+
+
+
+
+
 {% endblock %}
 
 

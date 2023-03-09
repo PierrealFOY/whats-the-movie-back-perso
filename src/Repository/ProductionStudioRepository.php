@@ -52,6 +52,15 @@ class ProductionStudioRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+    public function searchByName($query)
+    {
+        return $this->createQueryBuilder('p')
+        ->orderBy('p.name')
+        ->where('p.name LIKE :query')
+        ->setParameter('query', '%'. $query.'%')
+        ->getQuery()
+        ->getResult();
+    }
 //    /**
 //     * @return ProductionStudio[] Returns an array of ProductionStudio objects
 //     */
