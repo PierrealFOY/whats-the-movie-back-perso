@@ -22,6 +22,7 @@ class MovieController extends AbstractController
     public function home(MovieRepository $movieRepository, Request $request): Response
     {
         $data = new SearchData;
+        $data->page = $request->get('page', 1);
         $form = $this->createForm(SearchFormType::class, $data);
         $form->handleRequest($request);
         $movies = $movieRepository->findSearch($data);

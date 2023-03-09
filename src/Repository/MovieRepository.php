@@ -5,7 +5,10 @@ namespace App\Repository;
 use App\Data\SearchData;
 use App\Entity\Movie;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\Pagination\PaginationInterface;
+use Knp\Component\Pager\PaginatorInterface;
 
 /**
  * @extends ServiceEntityRepository<Movie>
@@ -17,9 +20,10 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class MovieRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $registry, PaginatorInterface $paginator)
     {
         parent::__construct($registry, Movie::class);
+        $this->paginator = $paginator;
     }
 
     public function add(Movie $entity, bool $flush = false): void
@@ -56,7 +60,7 @@ class MovieRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findSearch(SearchData $search)
+    public function findSearch(SearchData $search): PaginationInterface
     {
         $query = $this
             ->createQueryBuilder('m');
@@ -75,7 +79,15 @@ class MovieRepository extends ServiceEntityRepository
         }
 
 
-        return $query->getQuery()->getResult();
+
+
+        $query = $query->getQuery();
+
+        return $this->paginator->paginate(
+            $query,
+            $search->page,
+            10
+        );
         
     }   
 
