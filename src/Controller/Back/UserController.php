@@ -5,8 +5,11 @@ namespace App\Controller\Back;
 use App\Controller\Back\MainController;
 use App\Entity\User;
 use App\Form\UserType;
+use App\Form\ChangePasswordType;
+use Symfony\Component\Form\Extension\Core\Type\UserPasswordType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -15,6 +18,8 @@ use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Security\Core\Security;
+
 
 
 class UserController extends MainController
@@ -56,7 +61,6 @@ class UserController extends MainController
                 "Super! Le nouvel utilisateur a bien été ajouté !"
             );
 
-
             return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('back/user/new.html.twig', [
@@ -86,28 +90,62 @@ class UserController extends MainController
             return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
         }
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $user = $form->getData();
-
-            $newPassword = $userPasswordHasherInterface->hashPassword($user, $form->get('newPassword')->getData());
-            $user->setPassword($newPassword);
-
-            $userRepository->add($user, true);
-
-            $this->addFlash(
-                "warning",
-                "Le mot de passe a bien été modifié"
-            );
-
-            return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
-
-        }   
-
         return $this->renderForm('back/user/edit.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
     }
+
+    /**
+     * @Route("/back-office/utilisateur/modifier/{id}", name="app_back_user_edit", methods={"GET","POST"})
+     * To modify its password from the user edit route/template by ID
+     */
+    public function editPassword(Request $request,int $id, UserRepository $userRepository, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        // I get the connected user
+        $user = $this->getUser();
+
+        // check if the user is connected
+        if (!$user) {
+            throw $this->createAccessDeniedException('Vous devez être connecté pour modifier vogtre mot de pass');
+        }
+
+        $user = $userRepository->find($id);
+        $form = $this->createForm(ChangePasswordType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // check if the user modify only its own password
+            if ($user->getId() === false) {
+                throw $this->createAccessDeniedException('Vous ne pouvez modifier que votre propre mot de passe !');
+            }
+
+            // check if the old password is correct
+            $oldPassword = $form->get('oldPassword')->getData();
+            if (!$passwordHasher->isPasswordValid($user, $oldPassword)) {
+                $form->get($oldPassword)->addError(new FormError('L\'ancien mot de passe est incorrect'));
+            } else {
+
+                // we save the new password
+                $newPassword = $form->get('newPassword')->getData();
+                    $user->setPassword($passwordHasher->hashPassword($user, $newPassword));
+
+                    $userRepository->add($user, true);
+
+                    $this->addFlash(
+                        "warning",
+                        "Le mot de passe a bien été modifié"
+                    );
+
+                    return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
+            }
+        }
+
+        return $this->renderForm('back/user/new.html.twig', [
+            'user' => $user,
+            'form' => $form,
+            ]);    }
 
     /**
      * @Route("/back-office/utilisateur/{id}", name="app_back_user_show", methods={"GET"})

@@ -5,23 +5,20 @@ namespace App\Form;
 use App\Data\SearchData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 class SearchFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('actif', CheckboxType::class, [
-                'label' => 'actif',
-                'required' => false,
-            ])
-            ->add('inactif', CheckboxType::class, [
-                'label' => 'inactif',
-                'required' => false,
-            ])
-        ;
+        ->add('name', TextType::class, array());
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void
