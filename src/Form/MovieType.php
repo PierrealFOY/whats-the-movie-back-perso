@@ -48,6 +48,9 @@ class MovieType extends AbstractType
                 "class"=> Director::class,
                 "label" => "Nom du Réalisateur",
                 "multiple"=> true,
+                "attr" => [
+                    "size" => 10,
+                ],
                 "help" => "* Vous pouvez choisir plusieurs réalisateurs en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('directors')
@@ -59,6 +62,9 @@ class MovieType extends AbstractType
                 "class" => Actor::class,
                 "label" => "Nom de l'acteur", 
                 "multiple"=> true,
+                "attr" => [
+                    "size" => 10,
+                ],
                 "help" => "* Vous pouvez choisir plusieurs acteurs en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('actors')
@@ -71,7 +77,7 @@ class MovieType extends AbstractType
                 "label" => "Nom du Studio",
                 "multiple"=> true,
                 "attr" => [
-                    "placeholder" => "Nom du Studio"
+                    "size" => 10,
                 ],
                 "help" => "* Vous pouvez choisir plusieurs Studios en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
@@ -84,12 +90,25 @@ class MovieType extends AbstractType
                 "label" => "Pays de Production",
                 "multiple" => true,  
                 "attr" => [
-                    "placeholder" => "Pays"
+                    "size" => 10,
                 ],
                 "help" => "* Vous pouvez choisir plusieurs pays en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
                     return $er->createQueryBuilder('countries')
                         ->orderBy('countries.name', 'ASC');
+               }
+            ])
+            ->add('genres', EntityType::class,[
+                "class" => Genre::class,
+                "label" => "Genres *",
+                "multiple" => true,
+                "attr" => [
+                    "size" => 10,
+                ],
+                "help" => "* Vous pouvez choisir plusieurs genres en appuyant sur la touche Ctrl du clavier",
+                "query_builder" => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('genres')
+                        ->orderBy('genres.name', 'ASC');
                }
             ])
             ->add('poster',UrlType::class,[
@@ -105,16 +124,8 @@ class MovieType extends AbstractType
                 "inactif" => 0 ,
             ]
            ])
-            ->add('genres', EntityType::class,[
-                "class" => Genre::class,
-                "label" => "Genres *",
-                "multiple" => true,
-                "help" => "* Vous pouvez choisir plusieurs genres en appuyant sur la touche Ctrl du clavier",
-                "query_builder" => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('genres')
-                        ->orderBy('genres.name', 'ASC');
-               }
-            ]); 
+
+            ; 
 
     }
 
