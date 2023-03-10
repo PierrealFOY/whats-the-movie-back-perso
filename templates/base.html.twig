@@ -58,7 +58,7 @@
           <a class="nav-link {% if "app_back_user" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_user_list")}}"><i class="bi bi-person"></i> Utilisateur</a>
         </li>
       </ul>
-      <form class="d-flex" action="{{path("app_back_search")}}">
+      <form class="d-flex me-1" action="{{path("app_back_search")}}">
         <input class="form-control me-sm-2" type="search" name="search" placeholder="Recherche">
         <button class="btn btn-secondary  " type="submit"><i class="bi bi-search"></i></button>
       </form>
