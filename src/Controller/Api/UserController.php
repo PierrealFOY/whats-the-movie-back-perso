@@ -18,6 +18,7 @@ use  Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use OpenApi\Annotations as OA;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class UserController extends AbstractController
 {
@@ -112,13 +113,26 @@ class UserController extends AbstractController
         $json = $request->getContent();
 
         $user = $serializer->deserialize($json, User::class, 'json');
+ 
+        $password = $user->getPassword();
+        
+        $constraint = new Assert\Regex([
+            'pattern' => '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/',
+            'message' => 'Le mot de passe doit contenir au moins une lettre majuscule ou minuscule, un chiffre et un caractère spécial.'
+        ]);
 
-        $errors = $validator->validate($user);
+        $errorsUser = $validator->validate($user);
 
-        if (count($errors)) {
+        $errorsPassword = $validator->validate($password, $constraint);
+
+        if (count($errorsUser) || count($errorsPassword)) {
             $errorsArray = [];
 
-            foreach ($errors as $error) {
+            foreach ($errorsUser as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            foreach ($errorsPassword as $error) {
                 $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
             }
 
@@ -126,12 +140,6 @@ class UserController extends AbstractController
         }
 
         $user->setRoles(["ROLE_USER"]);
-
-        // I get my request in a array
-        $content = $request->toArray();
-
-        // I get the password enter
-        $password = $content['password'];
 
         // I hash the password recovered
         $hashedPassword = $passwordHasher->hashPassword($user, $password);
@@ -171,23 +179,40 @@ class UserController extends AbstractController
 
         $editUser = $serializer->deserialize($json, User::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $user]);
 
-        $errors = $validator->validate($user);
+        $password = $user->getPassword();
 
-        if(count($errors) > 0){
-            $errorsArray = [];
-            foreach($errors as $error){
-                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
-            }
-            return $this->json($errorsArray,Response::HTTP_UNPROCESSABLE_ENTITY);
-        }
+        $constraint = new Assert\Regex([
+            'pattern' => '/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/',
+            'message' => 'Le mot de passe doit contenir au moins une lettre majuscule ou minuscule, un chiffre et un caractère spécial.'
+        ]);
 
-        // I get my request in a array
+        $errorsUser = $validator->validate($user);
+
         $content = $request->toArray();
 
-        $password = $content['password'];
+        if (array_key_exists('password', $content)) {
+            $password = $content['password'];
+            $errorsPassword = $validator->validate($password, $constraint);
+        } else {
+            $errorsPassword = [];
+        }
 
+        if (count($errorsUser) || count($errorsPassword)) {
+            $errorsArray = [];
+
+            foreach ($errorsUser as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            foreach ($errorsPassword as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            return $this->json($errorsArray,Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+             
         $hashedPassword = $passwordHasher->hashPassword($user, $password);
-
+    
         $user->setPassword($hashedPassword);        
         
         $em->persist($editUser);
