@@ -77,14 +77,16 @@ class UserController extends MainController
      * @Route("/back-office/utilisateur/modifier/{id}", name="app_back_user_edit", methods={"GET","POST"})
      * To edit a user by his ID
      */
-    public function edit(Request $request, int $id, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface): Response
+    public function edit(Request $request, int $id, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface, EntityManagerInterface $em): Response
     {
         $user = $userRepository->find($id);
         $form = $this->createForm(UserType::class, $user, ["edit" => true]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $userRepository->add($user, true);
+            $em->persist($user);
+            $em->flush();
+
 
             $this->addFlash(
                 "warning",
@@ -93,6 +95,7 @@ class UserController extends MainController
 
             return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
         }
+
 
         return $this->renderForm('back/user/edit.html.twig', [
             'user' => $user,
