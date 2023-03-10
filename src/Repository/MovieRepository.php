@@ -94,15 +94,15 @@ class MovieRepository extends ServiceEntityRepository
         );
     }   
 
-    // public function searchByTitle($query = null)
-    // {
-    //     return $this->createQueryBuilder('m')
-    //     ->orderBy('m.title', 'ASC')
-    //     ->where('m.title LIKE :query')
-    //     ->setParameter('query', '%'. $query.'%')
-    //     ->getQuery()
-    //     ->getResult();
-    // }
+    public function searchByTitle($query)
+    {
+        return $this->createQueryBuilder('m')
+        ->orderBy('m.title' )
+        ->where('m.title LIKE :query')
+        ->setParameter('query', '%'. $query.'%')
+        ->getQuery()
+        ->getResult();
+    }
 
 //    /**
 //     * @return Movie[] Returns an array of Movie objects

@@ -40,9 +40,6 @@
             </i>Films</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {% if "app_back_user" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_user_list")}}"><i class="bi bi-person"></i> Utilisateur</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link {% if "app_back_actor" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_actor_index")}}"><i class="bi bi-emoji-sunglasses"></i> Acteur</a>
         </li>
         <li class="nav-item">
@@ -56,10 +53,14 @@
         </li>
         <li class="nav-item">
           <a class="nav-link {% if "app_back_genre" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_genre_index")}}"><i class="bi bi-collection"></i> Genre</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link {% if "app_back_user" in app.request.get('_route') %}active{% endif %}" href="{{path("app_back_user_list")}}"><i class="bi bi-person"></i> Utilisateur</a>
+        </li>
       </ul>
-      <form class="d-flex" action="{{path("app_back_search")}}">
+      <form class="d-flex me-1" action="{{path("app_back_search")}}">
         <input class="form-control me-sm-2" type="search" name="search" placeholder="Recherche">
-        <button class="btn btn-secondary ml-3 mr-3 my-2 my-sm-0" type="submit">Recherche</button>
+        <button class="btn btn-secondary  " type="submit"><i class="bi bi-search"></i></button>
       </form>
       
       {% if is_granted("IS_AUTHENTICATED_FULLY") %}
@@ -74,7 +75,7 @@
                   {% else %}
                       Utilisateur
                   {% endif %}
-                  </span> <i class="bi bi-person-square">
+                  </span><i class="bi bi-person-square">
                   </i>
               </a>
             </li>

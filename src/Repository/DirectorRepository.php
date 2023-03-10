@@ -53,6 +53,18 @@ class DirectorRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function searchByName($query)
+    {
+        return $this->createQueryBuilder('d')
+        ->orderBy('d.lastname')
+        ->where('CONCAT(d.firstname, \' \', d.lastname) LIKE :query')
+        ->setParameter('query', '%'. $query.'%')
+        ->getQuery()
+        ->getResult()
+        ;
+    }   
+       
 //    /**
 //     * @return Director[] Returns an array of Director objects
 //     */

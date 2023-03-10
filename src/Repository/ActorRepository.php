@@ -54,6 +54,15 @@ class ActorRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }   
+    public function searchByName($query)
+    {
+        return $this->createQueryBuilder('a')
+        ->orderBy('a.lastname')
+        ->where('CONCAT(a.firstname, \' \', a.lastname) LIKE :query')
+        ->setParameter('query', '%'. $query.'%')
+        ->getQuery()
+        ->getResult(); 
+    }
 
 
 //    /**
