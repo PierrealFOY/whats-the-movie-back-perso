@@ -4,6 +4,7 @@ namespace App\Controller\Back;
 
 use App\Controller\Back\MainController;
 use App\Entity\User;
+use App\Form\UserPasswordType;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,6 +17,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\Form\FormError;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class UserController extends MainController
 {
@@ -132,6 +136,56 @@ class UserController extends MainController
         );
 
         return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
+    }
+
+     /**
+     * @Route("/back-office/utilisateur/modifier/password/{id}", name="app_back_user_editPassword", methods={"GET","POST"})
+     * To edit a user by his ID
+     */
+    public function editPassword(Request $request, int $id, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasherInterface, EntityManagerInterface $em, UserInterface $userInterface): Response
+    {
+        
+        $user = $userRepository->find($id);
+        $this->denyAccessUnlessGranted('PASSWORD_EDIT', $user);
+        $form = $this->createForm(UserPasswordType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $oldPassword = $form->get('oldPassword')->getData();
+
+            if (!$userPasswordHasherInterface->isPasswordValid($user, $oldPassword)) {
+                $this->addFlash(
+                    "danger",
+                    "L'ancien mot de passe ne correspond pas"
+                );
+                return $this->redirectToRoute('app_back_user_editPassword', ["id" => $user->getId()]);
+            }
+
+            $hashedPassword = $userPasswordHasherInterface->hashPassword(
+                $user,
+                $form->get('password')->getData()
+            );
+
+            $user->setPassword($hashedPassword);
+
+            $em->persist($user);
+            $em->flush();
+
+
+            $this->addFlash(
+                "warning",
+                "Le mot de passe a bien été modifié"
+            );
+
+            return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
+        }
+
+
+        return $this->renderForm('back/user/edit_password.html.twig', [
+            'user' => $user,
+            'form' => $form,
+        ]);
     }
 
 }
