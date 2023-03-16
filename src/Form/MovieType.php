@@ -49,7 +49,7 @@ class MovieType extends AbstractType
                 "label" => "Nom du Réalisateur",
                 "multiple"=> true,
                 "attr" => [
-                    "size" => 10,
+                    "class" => "select2",
                 ],
                 "help" => "* Vous pouvez choisir plusieurs réalisateurs en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
@@ -63,7 +63,7 @@ class MovieType extends AbstractType
                 "label" => "Nom de l'acteur", 
                 "multiple"=> true,
                 "attr" => [
-                    "size" => 10,
+                    "class" => "select2",
                 ],
                 "help" => "* Vous pouvez choisir plusieurs acteurs en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
@@ -77,7 +77,7 @@ class MovieType extends AbstractType
                 "label" => "Nom du Studio",
                 "multiple"=> true,
                 "attr" => [
-                    "size" => 10,
+                    "class" => "select2",
                 ],
                 "help" => "* Vous pouvez choisir plusieurs Studios en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
@@ -90,7 +90,7 @@ class MovieType extends AbstractType
                 "label" => "Pays de Production",
                 "multiple" => true,  
                 "attr" => [
-                    "size" => 10,
+                    "class" => "select2",
                 ],
                 "help" => "* Vous pouvez choisir plusieurs pays en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
@@ -103,7 +103,7 @@ class MovieType extends AbstractType
                 "label" => "Genres *",
                 "multiple" => true,
                 "attr" => [
-                    "size" => 10,
+                    "class" => "select2",
                 ],
                 "help" => "* Vous pouvez choisir plusieurs genres en appuyant sur la touche Ctrl du clavier",
                 "query_builder" => function (EntityRepository $er) {
