@@ -48,13 +48,13 @@ class UserController extends MainController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // On vient hasher les password pour qu'ils soient illisibles
+            // We hash the passwork to make not visible for anyone
             $hashedPassword = $userPasswordHasherInterface->hashPassword(
                 $user,
-                // ça correspond à la saisie en clair du MDP
+                // it is the visible password entered in the input field
                 $user->getPassword()
             );
-
+            
             $user->setPassword($hashedPassword);
 
             $userRepository->add($user, true);
@@ -64,7 +64,7 @@ class UserController extends MainController
                 "Super! Le nouvel utilisateur a bien été ajouté !"
             );
 
-
+            it is the route we automatically go when the action / request is done
             return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('back/user/new.html.twig', [
