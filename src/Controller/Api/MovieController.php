@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use  Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Nelmio\CorsBundle\Annotation\Cors;
 use Nelmio\ApiDocBundle\Annotation\Model;
 use Nelmio\ApiDocBundle\Annotation\Security;
 use OpenApi\Annotations as OA;
@@ -30,6 +31,8 @@ class MovieController extends AbstractController
      * @OA\Tag(name="movies")
      * 
      * @Route("/api/movies", name="app_api_movie_list", methods={"GET"})
+     * 
+     * @Cors(allowOrigin="https://whats-the-movie-front-perso.vercel.app")
      * 
      * @param MovieRepository $movieRepository
      * @return JsonResponse
