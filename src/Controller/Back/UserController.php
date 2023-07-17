@@ -64,7 +64,7 @@ class UserController extends MainController
                 "Super! Le nouvel utilisateur a bien été ajouté !"
             );
 
-            it is the route we automatically go when the action / request is done
+            // it is the route we automatically go when the action / request is done
             return $this->redirectToRoute('app_back_user_list', [], Response::HTTP_SEE_OTHER);
         }
         return $this->renderForm('back/user/new.html.twig', [
